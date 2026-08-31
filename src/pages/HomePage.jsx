@@ -41,7 +41,7 @@ export default function HomePage() {
       <WhyUs />
 
       {/* Featured Properties Section */}
-      <section id="featured-section" className="py-20 lg:py-28 bg-sand-50 relative">
+      <section id="featured-section" className="py-16 lg:py-28 bg-sand-50 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tag="Featured Collections"
@@ -49,20 +49,21 @@ export default function HomePage() {
             subtitle="Discover top Collector NA plots, sea-view terrace row houses, and luxury coastal residences in Dapoli."
           />
 
-          {/* Grid of Featured Properties */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {/* On Mobile: Horizontal Swipeable Carousel | On Desktop: Standard 3-Column Grid */}
+          <div className="mt-8 sm:mt-12 flex md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 md:pb-0">
             {featuredProperties.map((property) => (
-              <PropertyCard
-                key={property.id}
-                property={property}
-                onViewDetails={(prop) => setSelectedProperty(prop)}
-                onEnquire={handleEnquireProperty}
-              />
+              <div key={property.id} className="w-[82vw] max-w-[320px] md:w-auto flex-shrink-0 snap-center">
+                <PropertyCard
+                  property={property}
+                  onViewDetails={(prop) => setSelectedProperty(prop)}
+                  onEnquire={handleEnquireProperty}
+                />
+              </div>
             ))}
           </div>
 
           {/* Explore All Properties Button Bar */}
-          <div className="mt-14 text-center">
+          <div className="mt-10 sm:mt-14 text-center">
             <Link
               to="/properties"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest text-white bg-brand-cyan hover:bg-brand-cyan-dark shadow-md transition-all duration-300 transform hover:-translate-y-1"

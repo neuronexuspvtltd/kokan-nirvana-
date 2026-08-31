@@ -76,16 +76,17 @@ export default function PropertiesPage() {
           </div>
         </div>
 
-        {/* Property Grid */}
+        {/* Property Grid: On Mobile: Horizontal Swipeable Carousel | On Desktop: Standard 3-Column Grid */}
         {filteredProperties.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="flex md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 md:pb-0">
             {filteredProperties.map((property) => (
-              <PropertyCard
-                key={property.id}
-                property={property}
-                onViewDetails={(prop) => setSelectedProperty(prop)}
-                onEnquire={handleEnquireProperty}
-              />
+              <div key={property.id} className="w-[82vw] max-w-[320px] md:w-auto flex-shrink-0 snap-center">
+                <PropertyCard
+                  property={property}
+                  onViewDetails={(prop) => setSelectedProperty(prop)}
+                  onEnquire={handleEnquireProperty}
+                />
+              </div>
             ))}
           </div>
         ) : (
