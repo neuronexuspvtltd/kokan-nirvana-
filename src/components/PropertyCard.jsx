@@ -3,7 +3,10 @@ import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Eye } from 'lucide-react'
 
 export default function PropertyCard({ property, onViewDetails, onEnquire }) {
   return (
-    <div className="bg-white rounded-3xl overflow-hidden border border-brand-cyan/15 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group transform hover:-translate-y-1">
+    <div
+      onClick={() => onViewDetails(property)}
+      className="bg-white rounded-3xl overflow-hidden border border-brand-cyan/15 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group transform hover:-translate-y-1 cursor-pointer"
+    >
       
       {/* Image Container with Badges */}
       <div className="relative h-48 sm:h-64 overflow-hidden bg-gray-100 flex-shrink-0">
@@ -73,7 +76,10 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
 
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button
-              onClick={() => onViewDetails(property)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onViewDetails(property);
+              }}
               className="p-2 sm:p-2.5 rounded-full bg-brand-cyan-tint/60 hover:bg-brand-cyan hover:text-white text-brand-slate transition-colors"
               title="Quick View Details"
             >
@@ -81,7 +87,10 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
             </button>
 
             <button
-              onClick={() => onEnquire(property)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onEnquire(property);
+              }}
               className="inline-flex items-center gap-1 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-brand-orange to-brand-orange-bright hover:from-brand-cyan hover:to-brand-cyan-dark shadow-sm transition-all"
             >
               <span>Enquire</span>
