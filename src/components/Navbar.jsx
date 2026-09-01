@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Header bar - Desktop untouched */}
+      {/* Header bar */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
@@ -49,7 +49,7 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Center Navigation Links - Desktop Untouched */}
+            {/* Center Navigation Links with Brand Cyan Active Underline Indicator */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
               {[
                 { name: 'Home', path: '/' },
@@ -66,7 +66,7 @@ export default function Navbar() {
                   className={({ isActive }) =>
                     `text-sm font-medium transition-all duration-200 py-1 relative ${
                       isActive
-                        ? 'text-white font-semibold after:content-[""] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-amber-400 after:rounded-full'
+                        ? 'text-white font-semibold after:content-[""] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2.5px] after:bg-brand-cyan after:rounded-full'
                         : 'text-gray-200 hover:text-white'
                     }`
                   }
@@ -76,7 +76,7 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Right Action Elements - Desktop Untouched */}
+            {/* Right Action Elements */}
             <div className="hidden sm:flex items-center gap-3 xl:gap-4 flex-shrink-0">
               
               {/* Phone Badge Pill */}
@@ -130,7 +130,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation - 100% Solid Opaque Dark Navy Background for High Contrast on White Sections */}
+      {/* Mobile Drawer Navigation - 100% Solid Opaque Dark Navy Background */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden flex flex-col bg-[#0B1522] text-white pt-24 px-5 pb-6 animate-fadeIn overflow-y-auto">
           <div className="flex flex-col gap-1.5 mt-2">
