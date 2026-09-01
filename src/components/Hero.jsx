@@ -1,34 +1,63 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Waves, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.log('Video autoplay prevented or loading fallback image:', err);
+      });
+    }
+  }, []);
+
   return (
     <section className="relative min-h-screen min-h-[100dvh] h-screen flex flex-col justify-between items-center pt-24 pb-8 sm:pt-32 sm:pb-12 overflow-hidden bg-slate-950">
       
-      {/* High-Res Crystal Ocean Wave & Beach Backdrop */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=95" 
-          alt="Dapoli Coastal Sea Shore Horizons" 
-          className="w-full h-full object-cover object-center scale-105 opacity-90 transition-opacity duration-500"
-        />
-        {/* Soft Balanced Gradient for Crisp Image Visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1522]/60 via-[#0B1522]/25 to-[#0B1522]/70"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-80 bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none"></div>
+      {/* Dynamic Ocean Wave Video & Motion Graphic Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        
+        {/* Real Live Ocean Wave Video Loop */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=95"
+          className="w-full h-full object-cover object-center scale-105 transition-opacity duration-1000"
+        >
+          {/* High-Quality Ocean Wave Motion Loop Sources */}
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-waves-coming-to-the-beach-42939-large.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-ocean-waves-loop-42894-large.mp4" type="video/mp4" />
+          {/* Image Fallback */}
+          <img 
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=95" 
+            alt="Dapoli Ocean Waves" 
+            className="w-full h-full object-cover"
+          />
+        </video>
+
+        {/* Soft Ocean Water Contrast Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1522]/70 via-[#0B1522]/35 to-[#0B1522]/80"></div>
+        
+        {/* Dynamic Water Caustic Glow Pulse */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-96 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none animate-pulse duration-[6000ms]"></div>
       </div>
 
       {/* Sleek & Uncluttered Hero Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white flex flex-col items-center justify-center my-auto">
         
         {/* Coastal Eyebrow Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase bg-white/15 backdrop-blur-md border border-white/25 text-white mb-4 sm:mb-6 shadow-md">
-          <Waves className="w-3.5 h-3.5 text-brand-cyan" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase bg-brand-cyan/25 backdrop-blur-md border border-brand-cyan/50 text-white mb-4 sm:mb-6 shadow-xl">
+          <Waves className="w-4 h-4 text-brand-cyan animate-bounce" />
           <span>Kokan Nirvana • Sea-Shore Property</span>
         </div>
 
         {/* Headline */}
-        <h1 className="font-serif text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight sm:leading-[1.1] drop-shadow-xl max-w-3xl">
+        <h1 className="font-serif text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight sm:leading-[1.1] drop-shadow-2xl max-w-3xl">
           Discover a Place <br className="hidden sm:inline" />
           <span className="font-normal italic text-2xl sm:text-5xl md:text-6xl text-brand-cyan-light font-serif block sm:inline mt-1 sm:mt-0">
             Worth Calling Home
@@ -36,7 +65,7 @@ export default function Hero() {
         </h1>
 
         {/* Concise 1-Line Subtitle */}
-        <p className="mt-4 sm:mt-6 text-xs sm:text-base text-gray-100 font-sans font-normal max-w-xs sm:max-w-xl leading-relaxed drop-shadow font-medium px-2 sm:px-0">
+        <p className="mt-4 sm:mt-6 text-xs sm:text-base text-gray-100 font-sans font-normal max-w-xs sm:max-w-xl leading-relaxed drop-shadow-md font-medium px-2 sm:px-0">
           Collector N.A. plots & luxury sea-view estates along the pristine Dapoli coast.
         </p>
 
