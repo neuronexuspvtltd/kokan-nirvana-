@@ -8,8 +8,8 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
       className="bg-white rounded-3xl overflow-hidden border border-brand-cyan/15 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group transform hover:-translate-y-1 cursor-pointer"
     >
       
-      {/* Image Container with Badges */}
-      <div className="relative h-48 sm:h-64 overflow-hidden bg-gray-100 flex-shrink-0">
+      {/* Image Container with Badges - Stockier Aspect Ratio on Desktop */}
+      <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden bg-gray-100 flex-shrink-0">
         <img
           src={property.image}
           alt={property.title}
@@ -44,9 +44,9 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
       </div>
 
       {/* Card Body */}
-      <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
+      <div className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
         <div>
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-brand-slate group-hover:text-brand-cyan transition-colors line-clamp-1 lg:line-clamp-none">
+          <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-brand-slate group-hover:text-brand-cyan transition-colors line-clamp-1 lg:line-clamp-none leading-snug">
             {property.title}
           </h3>
 

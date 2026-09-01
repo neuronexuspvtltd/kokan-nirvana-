@@ -42,7 +42,7 @@ export default function PropertiesPage() {
         bgImage="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2000&q=85"
       />
 
-      <div className="max-w-7xl xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-12">
         
         {/* Filter Bar & Search */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 sm:mb-12 bg-white p-4 sm:p-5 rounded-3xl border border-brand-cyan/20 shadow-sm">
@@ -76,9 +76,9 @@ export default function PropertiesPage() {
           </div>
         </div>
 
-        {/* Property Grid: On Mobile: Horizontal Swipeable Carousel (Untouched) | On Desktop: Wider 3-Column Grid */}
+        {/* Property Grid: On Mobile: Horizontal Swipeable Carousel | On Desktop: Tight gap 3-column grid for wider chunky cards */}
         {filteredProperties.length > 0 ? (
-          <div className="flex md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 xl:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 md:pb-0">
+          <div className="flex md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-5 lg:gap-6 xl:gap-7 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 md:pb-0">
             {filteredProperties.map((property) => (
               <div key={property.id} className="w-[82vw] max-w-[320px] md:w-auto flex-shrink-0 snap-center">
                 <PropertyCard
