@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Waves, ChevronDown } from 'lucide-react';
+import DapoliCoastalWidget from './DapoliCoastalWidget';
 
 export default function Hero() {
   return (
@@ -22,10 +23,9 @@ export default function Hero() {
       {/* Sleek & Uncluttered Hero Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white flex flex-col items-center justify-center my-auto">
         
-        {/* Coastal Floating Eyebrow Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase bg-white/15 backdrop-blur-md border border-brand-cyan/40 text-white mb-4 sm:mb-6 shadow-lg animate-sea-float">
-          <Waves className="w-3.5 h-3.5 text-brand-cyan animate-pulse" />
-          <span>Kokan Nirvana • Sea-Shore Property</span>
+        {/* Live Dapoli Coastal Weather & Tide Widget */}
+        <div className="mb-4 sm:mb-6 animate-sea-float">
+          <DapoliCoastalWidget />
         </div>
 
         {/* Headline */}
