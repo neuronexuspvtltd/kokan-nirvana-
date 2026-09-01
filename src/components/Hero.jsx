@@ -13,17 +13,18 @@ export default function Hero() {
           alt="Dapoli Coastal Sea Shore Horizons" 
           className="w-full h-full object-cover object-center scale-105 opacity-90 transition-opacity duration-500"
         />
-        {/* Soft Balanced Gradient for Crisp Image Visibility */}
+        {/* Soft Balanced Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1522]/60 via-[#0B1522]/25 to-[#0B1522]/70"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-80 bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none"></div>
+        {/* Dynamic Sea Turquoise Caustic Pulse Glow */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-80 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none animate-sea-pulse"></div>
       </div>
 
       {/* Sleek & Uncluttered Hero Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white flex flex-col items-center justify-center my-auto">
         
-        {/* Coastal Eyebrow Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase bg-white/15 backdrop-blur-md border border-white/25 text-white mb-4 sm:mb-6 shadow-md">
-          <Waves className="w-3.5 h-3.5 text-brand-cyan" />
+        {/* Coastal Floating Eyebrow Pill */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase bg-white/15 backdrop-blur-md border border-brand-cyan/40 text-white mb-4 sm:mb-6 shadow-lg animate-sea-float">
+          <Waves className="w-3.5 h-3.5 text-brand-cyan animate-pulse" />
           <span>Kokan Nirvana • Sea-Shore Property</span>
         </div>
 
@@ -35,7 +36,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Concise 1-Line Subtitle */}
+        {/* Concise Subtitle */}
         <p className="mt-4 sm:mt-6 text-xs sm:text-base text-gray-100 font-sans font-normal max-w-xs sm:max-w-xl leading-relaxed drop-shadow font-medium px-2 sm:px-0">
           Collector N.A. plots & luxury sea-view estates along the pristine Dapoli coast.
         </p>
@@ -62,9 +63,9 @@ export default function Hero() {
         <ChevronDown className="w-4 h-4 animate-bounce text-brand-cyan" />
       </a>
 
-      {/* Coastal Ocean Wave SVG Bottom Contour Divider */}
+      {/* Animated Coastal Ocean Wave SVG Bottom Contour Divider */}
       <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden leading-none pointer-events-none">
-        <svg className="relative block w-full h-8 sm:h-12 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+        <svg className="relative block w-full h-8 sm:h-12 text-white animate-wave-motion" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
           <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,50 L1200,120 L0,120 Z"></path>
         </svg>
       </div>
