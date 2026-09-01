@@ -1,46 +1,46 @@
 import React from 'react';
 import SectionHeading from './SectionHeading';
-import { Sparkles, MapPin, FileCheck, Award, HeartHandshake, TrendingUp } from 'lucide-react';
+import { Sparkles, MapPin, FileCheck, Award, HeartHandshake, TrendingUp, Waves } from 'lucide-react';
 
 export default function WhyUs() {
   const pillars = [
     {
-      title: "Curated Properties",
+      title: "Curated Sea-Shore Plots",
       description: "Every plot, villa, and apartment is hand-selected for high aesthetic appeal, scenic sea vistas, and superior soil stability.",
       icon: Sparkles,
       color: "text-brand-cyan",
       bg: "bg-brand-cyan-light"
     },
     {
-      title: "Strategic Locations",
+      title: "Strategic Coastal Locations",
       description: "Projects positioned near Dapoli's finest coastlines—Ladghar, Murud, Anjarle, and Harnai—with seamless highway connectivity.",
       icon: MapPin,
       color: "text-brand-orange",
       bg: "bg-brand-orange-light"
     },
     {
-      title: "Transparent Guidance",
+      title: "Transparent Legal Guidance",
       description: "No hidden charges, zero ambiguous terms. Verified 7/12 extracts, Collector NA sanctions, and RERA documentation.",
       icon: FileCheck,
       color: "text-brand-cyan-dark",
       bg: "bg-brand-cyan-light"
     },
     {
-      title: "Local Expertise",
+      title: "Local Konkan Expertise",
       description: "Over 8 years of deep regional presence in Ratnagiri district. We understand local land dynamics, soil stability, and zoning laws.",
       icon: Award,
       color: "text-brand-cyan",
       bg: "bg-brand-cyan-light"
     },
     {
-      title: "Trusted Assistance",
+      title: "Trusted Client Assistance",
       description: "End-to-end client support: plot selection, site visit arrangement, registration, land development, and bungalow construction.",
       icon: HeartHandshake,
       color: "text-brand-orange",
       bg: "bg-brand-orange-light"
     },
     {
-      title: "Long-Term Value",
+      title: "Long-Term Asset Value",
       description: "Properties chosen for personal retreat bliss, strong capital appreciation, and high weekend homestay rental yields.",
       icon: TrendingUp,
       color: "text-brand-slate",
@@ -49,11 +49,20 @@ export default function WhyUs() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-brand-cyan-tint/30 relative border-t border-b border-brand-cyan/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-cyan-tint/40 via-white to-sand-50 relative border-t border-b border-brand-cyan/15 overflow-hidden">
+      
+      {/* Background Ocean Wave Graphic */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <svg className="w-full h-full text-brand-cyan" viewBox="0 0 1000 600" fill="none">
+          <path d="M0 100 Q250 50 500 100 T1000 100" stroke="currentColor" strokeWidth="3" />
+          <path d="M0 250 Q250 200 500 250 T1000 250" stroke="currentColor" strokeWidth="3" />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           tag="The Kokan Nirvana Difference"
-          title="Why Discriminating Buyers Choose Us"
+          title="Why Discriminating Sea-View Buyers Choose Us"
           subtitle="A refined approach to coastal real estate built on transparency, craftsmanship, and regional authority."
         />
 
@@ -64,7 +73,7 @@ export default function WhyUs() {
             return (
               <div
                 key={index}
-                className="w-[82vw] max-w-[320px] md:w-auto flex-shrink-0 snap-center h-full group p-6 sm:p-8 rounded-3xl bg-white border border-brand-cyan/15 shadow-sm hover:shadow-brand-lg hover:border-brand-cyan/40 transition-all duration-300 flex flex-col justify-between"
+                className="w-[82vw] max-w-[320px] md:w-auto flex-shrink-0 snap-center h-full group p-6 sm:p-8 rounded-3xl bg-white border border-brand-cyan/20 shadow-sm hover:shadow-brand-lg hover:border-brand-cyan/50 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -79,8 +88,9 @@ export default function WhyUs() {
                 </div>
 
                 <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center text-xs font-bold uppercase tracking-wider text-brand-cyan group-hover:text-brand-orange transition-colors">
+                  <Waves className="w-3.5 h-3.5 mr-1.5 text-brand-cyan" />
                   <span>Learn More</span>
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="ml-auto group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             );

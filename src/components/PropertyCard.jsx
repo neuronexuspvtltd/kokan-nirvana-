@@ -1,14 +1,14 @@
 import React from 'react';
-import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Eye } from 'lucide-react';
+import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Eye, Waves } from 'lucide-react';
 
 export default function PropertyCard({ property, onViewDetails, onEnquire }) {
   return (
     <div
       onClick={() => onViewDetails(property)}
-      className="bg-white rounded-3xl overflow-hidden border border-brand-cyan/15 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group transform hover:-translate-y-1 cursor-pointer"
+      className="bg-white rounded-3xl overflow-hidden border border-brand-cyan/20 hover:border-brand-cyan/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group transform hover:-translate-y-1 cursor-pointer"
     >
       
-      {/* Image Container with Badges - Stockier Aspect Ratio on Desktop */}
+      {/* Image Container with Coastal Sea Badges */}
       <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden bg-gray-100 flex-shrink-0">
         <img
           src={property.image}
@@ -20,8 +20,9 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
 
         {/* Top Badges */}
         <div className="absolute top-2.5 left-2.5 right-2.5 sm:top-3 sm:left-3 sm:right-3 flex items-center justify-between pointer-events-none">
-          <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-brand-cyan text-white shadow-sm">
-            {property.category}
+          <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-brand-cyan text-white shadow-md flex items-center gap-1">
+            <Waves className="w-3 h-3 text-white" />
+            <span>{property.category}</span>
           </span>
 
           <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-white/90 backdrop-blur-md text-brand-slate shadow-sm border border-white/50 flex items-center gap-1">
@@ -37,7 +38,7 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
             <span className="truncate">{property.location}</span>
           </div>
 
-          <span className="text-[10px] sm:text-[11px] font-bold text-brand-cyan-light bg-brand-slate/80 px-2 py-0.5 sm:px-2.5 rounded-full border border-white/10 flex-shrink-0">
+          <span className="text-[10px] sm:text-[11px] font-bold text-brand-cyan-light bg-brand-slate/85 px-2 py-0.5 sm:px-2.5 rounded-full border border-brand-cyan/20 flex-shrink-0">
             {property.type}
           </span>
         </div>
