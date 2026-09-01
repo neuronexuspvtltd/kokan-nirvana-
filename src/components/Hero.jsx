@@ -63,10 +63,16 @@ export default function Hero() {
         <ChevronDown className="w-4 h-4 animate-bounce text-brand-cyan" />
       </a>
 
-      {/* Animated Coastal Ocean Wave SVG Bottom Contour Divider */}
+      {/* Dual Multi-Layered Animated Coastal Ocean Wave SVG Bottom Contour */}
       <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden leading-none pointer-events-none">
-        <svg className="relative block w-full h-8 sm:h-12 text-white animate-wave-motion" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+        {/* Layer 1: Moving Cyan Wave Background */}
+        <svg className="relative block w-[120%] h-10 sm:h-14 text-brand-cyan/40 animate-wave-motion" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
           <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,50 L1200,120 L0,120 Z"></path>
+        </svg>
+
+        {/* Layer 2: White Wave Foreground */}
+        <svg className="absolute bottom-0 left-0 block w-full h-8 sm:h-12 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+          <path d="M0,0 C200,80 400,-20 600,50 C800,100 1000,20 1200,40 L1200,120 L0,120 Z"></path>
         </svg>
       </div>
 
