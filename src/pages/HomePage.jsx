@@ -40,17 +40,17 @@ export default function HomePage() {
       {/* Why Choose Us */}
       <WhyUs />
 
-      {/* Featured Properties Section */}
+      {/* Featured Properties Section - Expanded Desktop Width for Wider Cards */}
       <section id="featured-section" className="py-16 lg:py-28 bg-sand-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tag="Featured Collections"
             title="Explore Our Handpicked Properties"
             subtitle="Discover top Collector NA plots, sea-view terrace row houses, and luxury coastal residences in Dapoli."
           />
 
-          {/* On Mobile: Horizontal Swipeable Carousel | On Desktop: Standard 3-Column Grid */}
-          <div className="mt-8 sm:mt-12 flex md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 md:pb-0">
+          {/* On Mobile: Horizontal Swipeable Carousel (Untouched) | On Desktop: Wider 3-Column Grid */}
+          <div className="mt-8 sm:mt-12 flex md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 xl:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 md:pb-0">
             {featuredProperties.map((property) => (
               <div key={property.id} className="w-[82vw] max-w-[320px] md:w-auto flex-shrink-0 snap-center">
                 <PropertyCard

@@ -46,7 +46,7 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
       {/* Card Body */}
       <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
         <div>
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-brand-slate group-hover:text-brand-cyan transition-colors line-clamp-1">
+          <h3 className="font-serif text-lg sm:text-xl font-bold text-brand-slate group-hover:text-brand-cyan transition-colors line-clamp-1 lg:line-clamp-none">
             {property.title}
           </h3>
 
@@ -56,11 +56,11 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
         </div>
 
         {/* Key Features Pill */}
-        <div className="flex flex-wrap gap-1 pt-1">
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {property.features.slice(0, 2).map((feat, idx) => (
             <span
               key={idx}
-              className="text-[9px] sm:text-[10px] font-semibold text-brand-slate bg-brand-cyan-tint/60 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-brand-cyan/15 truncate max-w-[140px]"
+              className="text-[9px] sm:text-[10px] font-semibold text-brand-slate bg-brand-cyan-tint/60 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-brand-cyan/15 truncate max-w-[140px] sm:max-w-none"
             >
               {feat}
             </span>
