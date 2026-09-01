@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
+import WaterRippleCanvas from './components/WaterRippleCanvas';
 import HomePage from './pages/HomePage';
 import PropertiesPage from './pages/PropertiesPage';
 import AboutPage from './pages/AboutPage';
@@ -24,6 +25,9 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      {/* Interactive Water Tap Ripples & Floating Sea Bubbles Canvas */}
+      <WaterRippleCanvas />
+      
       <div className="min-h-screen bg-white text-brand-slate font-sans antialiased selection:bg-brand-cyan selection:text-white flex flex-col justify-between relative">
         
         {/* Sticky Header */}
