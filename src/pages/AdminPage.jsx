@@ -11,6 +11,7 @@ import {
   getLeads,
   deleteLead,
 } from '../utils/dataStore';
+import { isFirebaseConfigured } from '../firebase';
 import {
   ShieldCheck,
   Lock,
@@ -31,12 +32,14 @@ import {
   Wrench,
   Upload,
   Image as ImageIcon,
+  Database,
 } from 'lucide-react';
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginCreds, setLoginCreds] = useState({ username: '', password: '' });
   const [loginError, setLoginError] = useState('');
+  const firebaseConnected = isFirebaseConfigured();
 
   const [activeTab, setActiveTab] = useState('properties');
 
@@ -301,7 +304,13 @@ export default function AdminPage() {
               <ShieldCheck className="w-8 h-8" />
             </div>
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-brand-cyan block">Control Center</span>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-brand-cyan block">Control Center</span>
+                <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${firebaseConnected ? 'bg-emerald-950/80 text-emerald-400 border-emerald-500/40' : 'bg-amber-950/80 text-amber-300 border-amber-500/40'}`}>
+                  <Database className="w-3 h-3" />
+                  <span>{firebaseConnected ? 'Firebase Active' : 'Firebase Ready (.env key mode)'}</span>
+                </span>
+              </div>
               <h1 className="font-serif text-2xl sm:text-3xl font-bold">Kokan Nirvana Management Panel</h1>
             </div>
           </div>
