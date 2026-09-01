@@ -1,13 +1,13 @@
 import React from 'react';
 import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Eye, Waves, Compass } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 export default function PropertyCard({ property, onViewDetails, onEnquire }) {
   return (
-    <div
+    <TiltCard
       onClick={() => onViewDetails(property)}
-      className="bg-white rounded-3xl overflow-hidden border border-brand-cyan/25 hover:border-brand-cyan/70 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between h-full group transform hover:-translate-y-1.5 cursor-pointer relative"
+      className="bg-white rounded-3xl overflow-hidden border border-brand-cyan/25 hover:border-brand-cyan/70 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between h-full group cursor-pointer"
     >
-      
       {/* Image Container with Bold Sea Badges */}
       <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden bg-slate-900 flex-shrink-0">
         <img
@@ -103,7 +103,6 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
         </div>
 
       </div>
-
-    </div>
+    </TiltCard>
   );
 }

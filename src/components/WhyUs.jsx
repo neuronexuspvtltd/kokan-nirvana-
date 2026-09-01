@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionHeading from './SectionHeading';
+import TiltCard from './TiltCard';
 import { Sparkles, MapPin, FileCheck, Award, HeartHandshake, TrendingUp, Waves } from 'lucide-react';
 
 export default function WhyUs() {
@@ -71,7 +72,7 @@ export default function WhyUs() {
           {pillars.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div
+              <TiltCard
                 key={index}
                 className="w-[82vw] max-w-[320px] md:w-auto flex-shrink-0 snap-center h-full group p-6 sm:p-8 rounded-3xl bg-white border border-brand-cyan/20 shadow-sm hover:shadow-brand-lg hover:border-brand-cyan/50 transition-all duration-300 flex flex-col justify-between"
               >
@@ -92,7 +93,7 @@ export default function WhyUs() {
                   <span>Learn More</span>
                   <span className="ml-auto group-hover:translate-x-1 transition-transform">→</span>
                 </div>
-              </div>
+              </TiltCard>
             );
           })}
         </div>
