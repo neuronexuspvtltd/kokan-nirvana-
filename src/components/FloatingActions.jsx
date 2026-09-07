@@ -29,33 +29,9 @@ export default function FloatingActions() {
   const [phoneError, setPhoneError] = useState('');
 
   const validatePhone = (phone) => {
-    if (!phone || !phone.trim()) return 'Phone number is required';
-    const digits = phone.replace(/\D/g, '');
-
-    if (digits.length === 10) {
-      if (!/^[6-9]\d{9}$/.test(digits)) {
-        return 'Mobile number must start with 6, 7, 8, or 9';
-      }
-      return '';
-    }
-    if (digits.length === 12 && digits.startsWith('91')) {
-      if (!/^[6-9]\d{9}$/.test(digits.slice(2))) {
-        return 'Mobile number after +91 must start with 6, 7, 8, or 9';
-      }
-      return '';
-    }
-    if (digits.length === 11 && digits.startsWith('0')) {
-      if (!/^[6-9]\d{9}$/.test(digits.slice(1))) {
-        return 'Mobile number must start with 6, 7, 8, or 9';
-      }
-      return '';
-    }
-    if (digits.length < 10) {
-      return `Phone number is too short (${digits.length}/10 digits)`;
-    }
-    if (digits.length > 10) {
-      return `Phone number cannot exceed 10 digits (${digits.length} digits entered)`;
-    }
+    const digits = phone ? phone.replace(/\D/g, '') : '';
+    if (digits.length === 10) return '';
+    if (digits.length === 0) return 'Phone number is required';
     return 'Please enter a valid 10-digit mobile number';
   };
 
@@ -211,13 +187,13 @@ export default function FloatingActions() {
                     <input
                       type="tel"
                       required
-                      maxLength={14}
-                      placeholder="+91 98765 43210"
+                      maxLength={10}
+                      placeholder="e.g. 9876543210"
                       value={formData.contactNumber}
                       onChange={(e) => {
-                        const val = e.target.value;
-                        setFormData({ ...formData, contactNumber: val });
-                        setPhoneError(validatePhone(val));
+                        const onlyNums = e.target.value.replace(/\D/g, '').slice(0, 10);
+                        setFormData({ ...formData, contactNumber: onlyNums });
+                        setPhoneError(validatePhone(onlyNums));
                       }}
                       onBlur={(e) => {
                         setPhoneError(validatePhone(e.target.value));
