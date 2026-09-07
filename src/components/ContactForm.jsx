@@ -12,19 +12,35 @@ export default function ContactForm({ prefilledProperty = null }) {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
+
+  const validatePhone = (phone) => {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length === 10 || (digits.length === 12 && digits.startsWith('91')) || (digits.length === 11 && digits.startsWith('0'))) {
+      return true;
+    }
+    return false;
+  };
 
   useEffect(() => {
     if (prefilledProperty) {
       setFormData(prev => ({
         ...prev,
         propertyInterest: prefilledProperty.title,
-        message: `I am interested in receiving full 7/12 legal title details and a site visit for ${prefilledProperty.title}.`
+        message: ''
       }));
     }
   }, [prefilledProperty]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validatePhone(formData.phone)) {
+      setPhoneError('Please enter a valid 10-digit phone number (e.g. 98765 43210)');
+      return;
+    }
+    setPhoneError('');
+
     setSubmitted(true);
   };
 
@@ -84,9 +100,14 @@ export default function ContactForm({ prefilledProperty = null }) {
             required
             placeholder="+91 98765 43210"
             value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="w-full px-4 py-3 rounded-xl text-xs sm:text-sm bg-brand-cyan-tint/40 border border-brand-cyan/20 focus:outline-none focus:border-brand-cyan focus:bg-white text-brand-slate font-medium"
+            onChange={(e) => {
+              const val = e.target.value;
+              setFormData({ ...formData, phone: val });
+              if (phoneError && validatePhone(val)) setPhoneError('');
+            }}
+            className={`w-full px-4 py-3 rounded-xl text-xs sm:text-sm bg-brand-cyan-tint/40 border ${phoneError ? 'border-red-500 focus:border-red-500' : 'border-brand-cyan/20 focus:border-brand-cyan'} focus:outline-none focus:bg-white text-brand-slate font-medium`}
           />
+          {phoneError && <p className="text-[11px] text-red-600 font-semibold mt-1 animate-fadeIn">{phoneError}</p>}
         </div>
       </div>
 

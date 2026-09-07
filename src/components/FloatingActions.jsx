@@ -26,6 +26,15 @@ export default function FloatingActions() {
     note: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
+
+  const validatePhone = (phone) => {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length === 10 || (digits.length === 12 && digits.startsWith('91')) || (digits.length === 11 && digits.startsWith('0'))) {
+      return true;
+    }
+    return false;
+  };
 
   // Hide floating action buttons completely when on Admin Page (/admin)
   if (location.pathname.startsWith('/admin')) {
@@ -34,6 +43,13 @@ export default function FloatingActions() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    if (!validatePhone(formData.contactNumber)) {
+      setPhoneError('Please enter a valid 10-digit phone number (e.g. 98765 43210)');
+      return;
+    }
+    setPhoneError('');
+
     // Save to admin leads storage
     addLead({
       name: formData.name,
@@ -173,9 +189,14 @@ export default function FloatingActions() {
                       required
                       placeholder="+91 98765 43210"
                       value={formData.contactNumber}
-                      onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-xs bg-sand-50 border border-gray-200 focus:outline-none focus:border-brand-cyan focus:bg-white text-brand-slate font-medium"
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setFormData({ ...formData, contactNumber: val });
+                        if (phoneError && validatePhone(val)) setPhoneError('');
+                      }}
+                      className={`w-full px-4 py-3 rounded-xl text-xs bg-sand-50 border ${phoneError ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-brand-cyan'} focus:outline-none focus:bg-white text-brand-slate font-medium`}
                     />
+                    {phoneError && <p className="text-[11px] text-red-600 font-semibold mt-1 animate-fadeIn">{phoneError}</p>}
                   </div>
 
                   {/* Note Field */}
