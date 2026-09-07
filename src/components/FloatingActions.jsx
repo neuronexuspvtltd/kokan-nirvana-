@@ -29,11 +29,34 @@ export default function FloatingActions() {
   const [phoneError, setPhoneError] = useState('');
 
   const validatePhone = (phone) => {
+    if (!phone || !phone.trim()) return 'Phone number is required';
     const digits = phone.replace(/\D/g, '');
-    if (digits.length === 10 || (digits.length === 12 && digits.startsWith('91')) || (digits.length === 11 && digits.startsWith('0'))) {
-      return true;
+
+    if (digits.length === 10) {
+      if (!/^[6-9]\d{9}$/.test(digits)) {
+        return 'Mobile number must start with 6, 7, 8, or 9';
+      }
+      return '';
     }
-    return false;
+    if (digits.length === 12 && digits.startsWith('91')) {
+      if (!/^[6-9]\d{9}$/.test(digits.slice(2))) {
+        return 'Mobile number after +91 must start with 6, 7, 8, or 9';
+      }
+      return '';
+    }
+    if (digits.length === 11 && digits.startsWith('0')) {
+      if (!/^[6-9]\d{9}$/.test(digits.slice(1))) {
+        return 'Mobile number must start with 6, 7, 8, or 9';
+      }
+      return '';
+    }
+    if (digits.length < 10) {
+      return `Phone number is too short (${digits.length}/10 digits)`;
+    }
+    if (digits.length > 10) {
+      return `Phone number cannot exceed 10 digits (${digits.length} digits entered)`;
+    }
+    return 'Please enter a valid 10-digit mobile number';
   };
 
   // Hide floating action buttons completely when on Admin Page (/admin)
@@ -44,8 +67,9 @@ export default function FloatingActions() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (!validatePhone(formData.contactNumber)) {
-      setPhoneError('Please enter a valid 10-digit phone number (e.g. 98765 43210)');
+    const err = validatePhone(formData.contactNumber);
+    if (err) {
+      setPhoneError(err);
       return;
     }
     setPhoneError('');
@@ -187,16 +211,24 @@ export default function FloatingActions() {
                     <input
                       type="tel"
                       required
+                      maxLength={14}
                       placeholder="+91 98765 43210"
                       value={formData.contactNumber}
                       onChange={(e) => {
                         const val = e.target.value;
                         setFormData({ ...formData, contactNumber: val });
-                        if (phoneError && validatePhone(val)) setPhoneError('');
+                        setPhoneError(validatePhone(val));
                       }}
-                      className={`w-full px-4 py-3 rounded-xl text-xs bg-sand-50 border ${phoneError ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-brand-cyan'} focus:outline-none focus:bg-white text-brand-slate font-medium`}
+                      onBlur={(e) => {
+                        setPhoneError(validatePhone(e.target.value));
+                      }}
+                      className={`w-full px-4 py-3 rounded-xl text-xs bg-sand-50 border ${phoneError ? 'border-red-500 ring-2 ring-red-200' : 'border-gray-200 focus:border-brand-cyan'} focus:outline-none focus:bg-white text-brand-slate font-medium transition-all`}
                     />
-                    {phoneError && <p className="text-[11px] text-red-600 font-semibold mt-1 animate-fadeIn">{phoneError}</p>}
+                    {phoneError && (
+                      <p className="text-[11px] text-red-600 font-bold mt-1.5 flex items-center gap-1 animate-fadeIn">
+                        <span>❌</span> <span>{phoneError}</span>
+                      </p>
+                    )}
                   </div>
 
                   {/* Note Field */}
