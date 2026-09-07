@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Eye, Waves, Compass } from 'lucide-react';
+import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Waves, Compass } from 'lucide-react';
 import TiltCard from './TiltCard';
 
 export default function PropertyCard({ property, onViewDetails, onEnquire }) {
@@ -78,17 +78,6 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onViewDetails(property);
-              }}
-              className="p-2 sm:p-2.5 rounded-full bg-brand-cyan-tint hover:bg-brand-cyan hover:text-white text-brand-slate transition-colors shadow-sm"
-              title="Quick View Details"
-            >
-              <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </button>
-
             <button
               onClick={(e) => {
                 e.stopPropagation();
