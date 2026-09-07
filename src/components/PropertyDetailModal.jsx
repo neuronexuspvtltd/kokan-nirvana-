@@ -134,7 +134,7 @@ export default function PropertyDetailModal({ property, onClose, onEnquire }) {
                   className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors"
                 >
                   <Phone className="w-4 h-4 text-brand-cyan" />
-                  <span>Call Agent</span>
+                  <span>Call</span>
                 </a>
 
                 <a
