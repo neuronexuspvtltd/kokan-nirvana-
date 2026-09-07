@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionHeading from './SectionHeading';
 import TiltCard from './TiltCard';
-import { Sparkles, MapPin, FileCheck, Award, HeartHandshake, TrendingUp, Waves } from 'lucide-react';
+import { Sparkles, MapPin, FileCheck, Award, HeartHandshake, TrendingUp } from 'lucide-react';
 
 export default function WhyUs() {
   const pillars = [
@@ -86,12 +86,6 @@ export default function WhyUs() {
                   <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-sans">
                     {item.description}
                   </p>
-                </div>
-
-                <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center text-xs font-bold uppercase tracking-wider text-brand-cyan group-hover:text-brand-orange transition-colors">
-                  <Waves className="w-3.5 h-3.5 mr-1.5 text-brand-cyan" />
-                  <span>Learn More</span>
-                  <span className="ml-auto group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </TiltCard>
             );
