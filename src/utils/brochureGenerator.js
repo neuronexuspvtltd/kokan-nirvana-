@@ -8,7 +8,6 @@ const loadImage = (src) => {
     img.crossOrigin = 'anonymous';
     img.onload = () => resolve(img);
     img.onerror = () => {
-      // Fallback load without crossOrigin
       const img2 = new Image();
       img2.onload = () => resolve(img2);
       img2.onerror = () => resolve(null);
@@ -18,7 +17,7 @@ const loadImage = (src) => {
   });
 };
 
-// Helper to wrap text cleanly on canvas
+// Helper to wrap text cleanly on canvas and return final Y coordinate
 const wrapText = (ctx, text, x, y, maxWidth, lineHeight) => {
   if (!text) return y;
   const words = text.split(' ');
@@ -57,205 +56,237 @@ export const downloadPropertyBrochure = async (property) => {
     return;
   }
 
-  // 2. High-Res Offscreen Canvas Card Generator (100% reliable, zero blank pages)
-  const canvas = document.createElement('canvas');
-  const width = 800;
-  const height = 1120;
-  canvas.width = width;
-  canvas.height = height;
+  // 2. Pre-load Property Cover Image
+  const origin = window.location.origin;
+  const imageSrc = property.image?.startsWith('http') ? property.image : `${origin}${property.image}`;
+  const img = await loadImage(imageSrc);
 
+  // Layout Dimensions
+  const width = 800;
+  const headerHeight = 85;
+  const photoHeight = 380;
+
+  // Measure content height dynamically to eliminate any bottom white gaps
+  const tempCanvas = document.createElement('canvas');
+  const tempCtx = tempCanvas.getContext('2d');
+  tempCtx.font = '13px sans-serif';
+
+  const words = (property.description || '').split(' ');
+  let lineCount = 1;
+  let testLine = '';
+  words.forEach((w) => {
+    if (tempCtx.measureText(testLine + w + ' ').width > 740) {
+      lineCount++;
+      testLine = w + ' ';
+    } else {
+      testLine += w + ' ';
+    }
+  });
+
+  const descHeight = lineCount * 20 + 20;
+  const featuresCount = property.features ? property.features.length : 0;
+  const featureRows = Math.ceil(featuresCount / 2);
+  const featuresHeight = featureRows * 42 + 25;
+  const plotBoxHeight = 48 + 30;
+  const footerHeight = 110;
+
+  const bodyHeight = 35 + 28 + descHeight + 18 + featuresHeight + plotBoxHeight;
+  const totalHeight = headerHeight + photoHeight + bodyHeight + footerHeight;
+
+  // Create Canvas with exact calculated height
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = totalHeight;
   const ctx = canvas.getContext('2d');
 
   // Fill White Background
   ctx.fillStyle = '#FFFFFF';
-  ctx.fillRect(0, 0, width, height);
+  ctx.fillRect(0, 0, width, totalHeight);
 
   // Outer Card Border
   ctx.strokeStyle = '#0284C7';
   ctx.lineWidth = 3;
-  ctx.strokeRect(2, 2, width - 4, height - 4);
+  ctx.strokeRect(2, 2, width - 4, totalHeight - 4);
 
-  // Header Bar
+  // 1. Header Bar
   ctx.fillStyle = '#09131F';
-  ctx.fillRect(0, 0, width, 85);
+  ctx.fillRect(0, 0, width, headerHeight);
 
   ctx.fillStyle = '#38BDF8';
-  ctx.font = 'bold 24px Georgia, serif';
+  ctx.font = 'bold 22px Georgia, serif';
   ctx.fillText(BRAND_INFO.name.toUpperCase(), 30, 42);
 
   ctx.fillStyle = '#94A3B8';
-  ctx.font = '600 11px sans-serif';
-  ctx.fillText(BRAND_INFO.tagline.toUpperCase() + ' • DAPOLI', 30, 64);
+  ctx.font = 'bold 10px sans-serif';
+  ctx.fillText(BRAND_INFO.tagline.toUpperCase() + ' • DAPOLI', 30, 62);
 
-  // Header Badge
+  // Header Badge Right
   ctx.fillStyle = '#0284C7';
   ctx.fillRect(570, 26, 200, 34);
   ctx.fillStyle = '#FFFFFF';
   ctx.font = 'bold 11px sans-serif';
   ctx.fillText('OFFICIAL PROPERTY CARD', 585, 48);
 
-  // Load Property Image
-  const origin = window.location.origin;
-  const imageSrc = property.image?.startsWith('http') ? property.image : `${origin}${property.image}`;
-  const img = await loadImage(imageSrc);
-
-  const imgY = 85;
-  const imgHeight = 380;
-
+  // 2. Photo Section
+  const imgY = headerHeight;
   if (img) {
-    // Draw Image with cover scaling
     const imgRatio = img.width / img.height;
-    const targetRatio = width / imgHeight;
+    const targetRatio = width / photoHeight;
     let renderW = width;
-    let renderH = imgHeight;
+    let renderH = photoHeight;
     let offsetX = 0;
     let offsetY = 0;
 
     if (imgRatio > targetRatio) {
-      renderW = imgHeight * imgRatio;
+      renderW = photoHeight * imgRatio;
       offsetX = (width - renderW) / 2;
     } else {
       renderH = width / imgRatio;
-      offsetY = (imgHeight - renderH) / 2;
+      offsetY = (photoHeight - renderH) / 2;
     }
 
     ctx.save();
     ctx.beginPath();
-    ctx.rect(0, imgY, width, imgHeight);
+    ctx.rect(0, imgY, width, photoHeight);
     ctx.clip();
     ctx.drawImage(img, offsetX, imgY + offsetY, renderW, renderH);
     ctx.restore();
   } else {
-    // Fallback Image Box
     ctx.fillStyle = '#0B1522';
-    ctx.fillRect(0, imgY, width, imgHeight);
+    ctx.fillRect(0, imgY, width, photoHeight);
   }
 
-  // Image Dark Gradient Overlay at Bottom
-  const grad = ctx.createLinearGradient(0, imgY + 240, 0, imgY + imgHeight);
+  // Photo Gradient Overlay
+  const grad = ctx.createLinearGradient(0, imgY + 220, 0, imgY + photoHeight);
   grad.addColorStop(0, 'rgba(11,21,34,0)');
-  grad.addColorStop(1, 'rgba(11,21,34,0.95)');
+  grad.addColorStop(1, 'rgba(11,21,34,0.92)');
   ctx.fillStyle = grad;
-  ctx.fillRect(0, imgY + 240, width, 140);
+  ctx.fillRect(0, imgY + 220, width, 160);
 
-  // Category Badge Top-Left of Photo
+  // Top-Left Badge (Category)
   ctx.fillStyle = '#0284C7';
   ctx.fillRect(30, imgY + 20, 140, 30);
   ctx.fillStyle = '#FFFFFF';
   ctx.font = 'bold 11px sans-serif';
-  ctx.fillText('🌊 ' + (property.category || 'SEA-SHORE').toUpperCase(), 42, imgY + 39);
+  ctx.fillText((property.category || 'SEA-SHORE').toUpperCase(), 45, imgY + 39);
 
-  // 7/12 Clear Badge Top-Right of Photo
-  ctx.fillStyle = 'rgba(15,23,42,0.9)';
+  // Top-Right Badge (7/12 Clear)
+  ctx.fillStyle = '#0F172A';
   ctx.fillRect(630, imgY + 20, 140, 30);
   ctx.fillStyle = '#34D399';
   ctx.font = 'bold 11px sans-serif';
-  ctx.fillText('🛡️ 7/12 CLEAR', 645, imgY + 39);
+  ctx.fillText('7/12 CLEAR ✓', 655, imgY + 39);
 
-  // Location & Type Tags at Bottom of Photo
+  // Bottom Location & Type Tags
   ctx.fillStyle = '#F1F5F9';
   ctx.font = 'bold 15px sans-serif';
-  ctx.fillText('📍 ' + property.location, 30, imgY + imgHeight - 20);
+  ctx.fillText('LOCATION: ' + property.location, 30, imgY + photoHeight - 20);
 
   ctx.fillStyle = '#7DD3FC';
-  ctx.font = 'bold 13px sans-serif';
-  ctx.fillText('🧭 ' + property.type, 560, imgY + imgHeight - 20);
+  ctx.font = 'bold 12px sans-serif';
+  ctx.fillText('TYPE: ' + property.type, 540, imgY + photoHeight - 20);
 
-  // Card Content Section
-  let currentY = imgY + imgHeight + 35;
+  // 3. Body Content
+  let currentY = imgY + photoHeight + 35;
 
   // Title
   ctx.fillStyle = '#0F172A';
-  ctx.font = 'bold 26px Georgia, serif';
+  ctx.font = 'bold 24px Georgia, serif';
   ctx.fillText(property.title, 30, currentY);
   currentY += 28;
 
-  // Description Paragraphs
+  // Description
   ctx.fillStyle = '#475569';
-  ctx.font = '14px sans-serif';
-  currentY = wrapText(ctx, property.description, 30, currentY, 740, 22);
-  currentY += 15;
-
-  // Features List Heading
-  ctx.fillStyle = '#0284C7';
-  ctx.font = 'bold 13px sans-serif';
-  ctx.fillText('KEY INFRASTRUCTURE & HIGHLIGHTS:', 30, currentY);
+  ctx.font = '13px sans-serif';
+  currentY = wrapText(ctx, property.description, 30, currentY, 740, 20);
   currentY += 20;
 
-  // Features List Pills
-  ctx.font = '600 13px sans-serif';
+  // Highlights Header
+  ctx.fillStyle = '#0284C7';
+  ctx.font = 'bold 12px sans-serif';
+  ctx.fillText('KEY INFRASTRUCTURE & HIGHLIGHTS:', 30, currentY);
+  currentY += 18;
+
+  // Features Grid (2 Columns)
   if (property.features && property.features.length > 0) {
-    let col = 0;
-    let startX = 30;
-    let itemY = currentY;
+    const pillHeight = 32;
+    const colWidth = 355;
+    const gapX = 30;
 
     property.features.forEach((feat, i) => {
-      const xPos = col === 0 ? 30 : 410;
-      const yPos = itemY + Math.floor(i / 2) * 36;
+      const isCol1 = i % 2 === 0;
+      const posX = isCol1 ? 30 : 30 + colWidth + gapX;
+      const posY = currentY + Math.floor(i / 2) * 42;
 
-      // Pill Box
+      // Draw Pill Box
       ctx.fillStyle = '#F0F9FF';
       ctx.strokeStyle = '#BAE6FD';
       ctx.lineWidth = 1;
-      ctx.fillRect(xPos, yPos - 18, 360, 28);
-      ctx.strokeRect(xPos, yPos - 18, 360, 28);
+      ctx.fillRect(posX, posY, colWidth, pillHeight);
+      ctx.strokeRect(posX, posY, colWidth, pillHeight);
+
+      // Checkmark & Text
+      ctx.fillStyle = '#0284C7';
+      ctx.font = 'bold 13px sans-serif';
+      ctx.fillText('✓', posX + 12, posY + 20);
 
       ctx.fillStyle = '#0369A1';
-      ctx.fillText('✓ ' + feat, xPos + 12, yPos);
+      ctx.font = '600 12px sans-serif';
+      ctx.fillText(feat, posX + 28, posY + 20);
     });
 
-    currentY = itemY + Math.ceil(property.features.length / 2) * 36 + 15;
+    currentY += featureRows * 42 + 15;
   }
 
-  // Plot Area Specification Box
+  // Plot Area Box
+  const boxHeight = 48;
   ctx.fillStyle = '#F8FAFC';
   ctx.strokeStyle = '#0284C7';
   ctx.lineWidth = 1.5;
-  ctx.fillRect(30, currentY, 740, 48);
-  ctx.strokeRect(30, currentY, 740, 48);
+  ctx.fillRect(30, currentY, 740, boxHeight);
+  ctx.strokeRect(30, currentY, 740, boxHeight);
 
   ctx.fillStyle = '#0F172A';
-  ctx.font = 'bold 15px sans-serif';
-  ctx.fillText('📐 Plot Area / Size: ', 50, currentY + 30);
+  ctx.font = 'bold 14px sans-serif';
+  ctx.fillText('PLOT AREA / SIZE: ', 48, currentY + 29);
 
   ctx.fillStyle = '#0284C7';
-  ctx.font = 'bold 15px sans-serif';
-  ctx.fillText(property.plotArea, 200, currentY + 30);
+  ctx.font = 'bold 14px sans-serif';
+  ctx.fillText(property.plotArea, 185, currentY + 29);
 
   ctx.fillStyle = '#059669';
   ctx.font = 'bold 12px sans-serif';
-  ctx.fillText('Collector N.A. Passed ✓', 590, currentY + 30);
+  ctx.fillText('COLLECTOR N.A. PASSED ✓', 565, currentY + 29);
 
-  // Footer Section
-  const footerY = 990;
+  currentY += boxHeight + 30;
+
+  // 4. Footer Bar (Ends exactly at totalHeight)
   ctx.fillStyle = '#09131F';
-  ctx.fillRect(0, footerY, width, 130);
+  ctx.fillRect(0, currentY, width, footerHeight);
 
   ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 15px sans-serif';
-  ctx.fillText(BRAND_INFO.legalEntity, 30, footerY + 35);
+  ctx.font = 'bold 14px sans-serif';
+  ctx.fillText(BRAND_INFO.legalEntity, 30, currentY + 35);
 
   ctx.fillStyle = '#38BDF8';
   ctx.font = 'bold 13px sans-serif';
-  ctx.fillText('📞 Direct Lines: +91 90969 99901 / +91 90962 19901', 30, footerY + 65);
+  ctx.fillText('Direct Call Lines: +91 90969 99901 / +91 90962 19901', 30, currentY + 62);
 
   ctx.fillStyle = '#94A3B8';
   ctx.font = '11px sans-serif';
-  ctx.fillText('Dapoli Regional Office: Ainarkar Heights, Near BSNL Office, Dapoli, Ratnagiri', 30, footerY + 90);
+  ctx.fillText('Dapoli Regional Office: Ainarkar Heights, Near BSNL Office, Dapoli, Ratnagiri', 30, currentY + 85);
 
   // Title Guarantee Stamp Box
   ctx.strokeStyle = '#38BDF8';
-  ctx.lineWidth = 2;
-  ctx.setLineDash([4, 4]);
-  ctx.strokeRect(610, footerY + 25, 160, 65);
-  ctx.setLineDash([]); // Reset line dash
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(610, currentY + 22, 160, 65);
 
   ctx.fillStyle = '#38BDF8';
   ctx.font = 'bold 11px sans-serif';
-  ctx.fillText('VERIFIED 7/12', 645, footerY + 50);
-  ctx.fillText('TITLE GUARANTEED', 628, footerY + 70);
+  ctx.fillText('VERIFIED 7/12', 645, currentY + 47);
+  ctx.fillText('TITLE GUARANTEED', 628, currentY + 67);
 
-  // Trigger Immediate Direct File Download (JPG/PNG High-Res Card Image)
+  // Trigger Immediate Direct File Download
   const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
   const link = document.createElement('a');
   link.download = fileName;
