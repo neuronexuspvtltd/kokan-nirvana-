@@ -17,7 +17,7 @@ export default function PropertiesPage() {
     setProperties(getProperties());
   }, []);
 
-  const categories = ['All', 'Sea-Shore', 'Plots', 'Residential', 'Investment'];
+  const categories = ['All', 'Sea View Plot', 'Sea View Apartment', 'Sea View Bungalow', 'Nearby Sea Properties'];
 
   const filteredProperties = properties.filter((prop) => {
     const matchesCategory = activeFilter === 'All' || prop.category === activeFilter;

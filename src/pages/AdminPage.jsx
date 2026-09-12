@@ -385,7 +385,7 @@ export default function AdminPage() {
                     title: '',
                     location: 'Dapoli, Ratnagiri',
                     type: 'Sea View N.A. Plot',
-                    category: 'Sea-Shore',
+                    category: 'Sea View Plot',
                     plotArea: '2,500 sq.ft.',
                     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
                     features: ['Collector Sanctioned NA', '100% 7/12 Title Clear', 'Gated Security'],
@@ -781,10 +781,10 @@ export default function AdminPage() {
                     onChange={(e) => setEditingProperty({ ...editingProperty, category: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl text-xs bg-sand-50 border border-gray-200 font-medium"
                   >
-                    <option value="Sea-Shore">Sea-Shore</option>
-                    <option value="Plots">Plots</option>
-                    <option value="Residential">Residential</option>
-                    <option value="Investment">Investment</option>
+                    <option value="Sea View Plot">Sea View Plot</option>
+                    <option value="Sea View Apartment">Sea View Apartment</option>
+                    <option value="Sea View Bungalow">Sea View Bungalow</option>
+                    <option value="Nearby Sea Properties">Nearby Sea Properties</option>
                   </select>
                 </div>
               </div>
