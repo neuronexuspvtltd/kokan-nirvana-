@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, MapPin, Maximize2, ShieldCheck, CheckCircle2, Phone, MessageSquare, ChevronLeft, ChevronRight, FileText } from 'lucide-react';
+import { X, MapPin, Maximize2, ShieldCheck, CheckCircle2, Phone, MessageSquare, ChevronLeft, ChevronRight, FileText, Download } from 'lucide-react';
 import { BRAND_INFO } from '../data/websiteData';
+import { downloadPropertyBrochure } from '../utils/brochureGenerator';
 
 export default function PropertyDetailModal({ property, onClose, onEnquire }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -128,12 +129,12 @@ export default function PropertyDetailModal({ property, onClose, onEnquire }) {
 
             {/* Action Bar */}
             <div className="pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3 w-full sm:w-auto">
+              <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
                 <a
                   href={`tel:${BRAND_INFO.phones[0].raw}`}
-                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-brand-cyan" />
+                  <Phone className="w-3.5 h-3.5 text-brand-cyan" />
                   <span>Call</span>
                 </a>
 
@@ -141,16 +142,25 @@ export default function PropertyDetailModal({ property, onClose, onEnquire }) {
                   href={`https://wa.me/${BRAND_INFO.whatsapp}?text=${encodeURIComponent(`Hi Kokan Nirvana, I want details for ${property.title} in ${property.location}.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors"
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <MessageSquare className="w-3.5 h-3.5" />
                   <span>WhatsApp</span>
                 </a>
+
+                <button
+                  onClick={() => downloadPropertyBrochure(property)}
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold bg-brand-cyan hover:bg-brand-cyan-dark text-white transition-colors shadow-sm"
+                  title="Download Official Property Brochure"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Brochure</span>
+                </button>
               </div>
 
               <button
                 onClick={() => onEnquire(property)}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-xs text-white bg-gradient-to-r from-brand-orange to-brand-orange-bright hover:from-brand-cyan hover:to-brand-cyan-dark shadow-orange-glow transition-all"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-full font-bold uppercase tracking-wider text-xs text-white bg-gradient-to-r from-brand-orange to-brand-orange-bright hover:from-brand-cyan hover:to-brand-cyan-dark shadow-orange-glow transition-all"
               >
                 Schedule Site Visit Inspection
               </button>

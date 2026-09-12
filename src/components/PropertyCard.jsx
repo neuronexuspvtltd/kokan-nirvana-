@@ -1,6 +1,7 @@
 import React from 'react';
-import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Waves, Compass } from 'lucide-react';
+import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Waves, Compass, Download } from 'lucide-react';
 import TiltCard from './TiltCard';
+import { downloadPropertyBrochure } from '../utils/brochureGenerator';
 
 export default function PropertyCard({ property, onViewDetails, onEnquire }) {
   return (
@@ -78,6 +79,18 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                downloadPropertyBrochure(property);
+              }}
+              className="p-2 sm:p-2.5 rounded-full bg-brand-cyan-tint hover:bg-brand-cyan hover:text-white text-brand-slate transition-colors shadow-sm"
+              title="Download Property Brochure"
+              aria-label="Download Property Brochure"
+            >
+              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-cyan group-hover:text-white" />
+            </button>
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
