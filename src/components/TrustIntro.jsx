@@ -22,9 +22,9 @@ export default function TrustIntro({ onExploreServices }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <SectionHeading
-          tag="Brand Identity & Heritage"
-          title="Where the Konkan Meets Your Future"
-          subtitle="Combining coastal serenity with unyielding legal transparency and deep regional mastery in Dapoli."
+          tag="THE KONKAN WAY OF LIVING"
+          title="Your Place in Beautiful Dapoli"
+          subtitle="Find a peaceful second home, holiday home, or investment property in the heart of Konkan."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-8 sm:mt-12">
@@ -59,40 +59,50 @@ export default function TrustIntro({ onExploreServices }) {
           <div className="lg:col-span-6 flex flex-col justify-center space-y-5 sm:space-y-6">
             <div className="inline-flex items-center gap-2 text-brand-cyan font-bold text-xs uppercase tracking-wider bg-brand-cyan-light px-3.5 py-1.5 rounded-full w-fit">
               <Waves className="w-4 h-4 text-brand-cyan animate-pulse" />
-              <span>Boutique Coastal Real Estate Partner</span>
+              <span>More Than a Property. A Place to Belong.</span>
             </div>
 
             <h3 className="font-serif text-2xl sm:text-4xl font-bold text-brand-slate leading-snug">
-              Transforming your dream of owning a coastal retreat into a secure, clear-title reality.
+              Helping You Find Your Perfect Place in Konkan.
             </h3>
 
             <p className="text-gray-600 leading-relaxed text-sm sm:text-base font-sans">
-              At <strong className="text-brand-slate font-bold">Kokan Nirvana</strong>, we specialize in thoughtfully selected sea-shore properties, Collector Sanctioned N.A. land parcels, ready terrace cottages, and agricultural farm lands across the serene Dapoli region of Ratnagiri.
+              At <strong className="text-brand-slate font-bold">Kokan Nirvana Sea Shore Property LLP</strong>, we help you discover carefully selected properties in Dapoli — from peaceful second homes and holiday properties to investment opportunities. With our local experience and end-to-end support, we make property buying simple, clear, and comfortable.
             </p>
 
             <p className="text-gray-600 leading-relaxed text-xs sm:text-sm font-sans">
-              With over 8 years of dedicated regional presence, we ensure every transaction is backed by crystal-clear 7/12 extract documentation, transparent pricing, and complete legal support from site visit to key handover.
+              From choosing the right property and arranging site visits to documentation and purchase, our team supports you at every step.
             </p>
 
-            {/* Core Values Bullet Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
-              <div className="flex items-start gap-3">
-                <div className="p-2 rounded-xl bg-brand-cyan-light text-brand-cyan mt-1 flex-shrink-0">
-                  <ShieldCheck className="w-5 h-5" />
+            {/* 3 Feature Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-gray-100">
+              <div className="flex items-start gap-2.5 p-3 rounded-2xl bg-brand-cyan-tint/30 border border-brand-cyan/15">
+                <div className="p-2 rounded-xl bg-brand-cyan-light text-brand-cyan flex-shrink-0 mt-0.5">
+                  <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-brand-slate text-sm">100% Legal Certainty</h4>
-                  <p className="text-xs text-gray-500">Verified 7/12 extracts & Collector NA sanctions</p>
+                  <h4 className="font-bold text-brand-slate text-xs sm:text-sm">100% Property Support</h4>
+                  <p className="text-[11px] text-gray-500 font-medium leading-snug">Clear documentation & guidance</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <div className="p-2 rounded-xl bg-brand-orange-light text-brand-orange mt-1 flex-shrink-0">
-                  <Award className="w-5 h-5" />
+              <div className="flex items-start gap-2.5 p-3 rounded-2xl bg-brand-orange-tint/30 border border-brand-orange/15">
+                <div className="p-2 rounded-xl bg-brand-orange-light text-brand-orange flex-shrink-0 mt-0.5">
+                  <Award className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-brand-slate text-sm">Turnkey Construction</h4>
-                  <p className="text-xs text-gray-500">Architectural design, gardens & key handover</p>
+                  <h4 className="font-bold text-brand-slate text-xs sm:text-sm">End-to-End Assistance</h4>
+                  <p className="text-[11px] text-gray-500 font-medium leading-snug">From site visit to purchase</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2.5 p-3 rounded-2xl bg-slate-100 border border-slate-200">
+                <div className="p-2 rounded-xl bg-white text-brand-slate flex-shrink-0 shadow-xs mt-0.5">
+                  <Compass className="w-4 h-4 text-brand-cyan" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-brand-slate text-xs sm:text-sm">10+ Years of Experience</h4>
+                  <p className="text-[11px] text-gray-500 font-medium leading-snug">Local knowledge you can trust</p>
                 </div>
               </div>
             </div>

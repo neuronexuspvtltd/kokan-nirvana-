@@ -22,34 +22,38 @@ export default function CTA({ onOpenInquiry }) {
           <div className="space-y-3 text-center lg:text-left max-w-2xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30 w-fit">
               <Waves className="w-3.5 h-3.5 text-brand-cyan" />
-              <span>Start Your Sea-Shore Journey Today</span>
+              <span>Find Your Place in Konkan</span>
             </div>
 
             <h3 className="font-serif text-3xl sm:text-4xl font-bold leading-tight">
-              Ready to find your personal coastal paradise in Konkan?
+              Discover a place that feels like your own.
             </h3>
 
             <p className="text-gray-300 text-sm sm:text-base font-sans">
-              Schedule a personalized beachfront site visit tour in Dapoli or request 7/12 extract title reports for our sea-view N.A. plots.
+              Explore our carefully selected properties in Dapoli — from peaceful second homes and holiday properties to investment opportunities.
+            </p>
+
+            <p className="text-gray-400 text-xs font-sans pt-2 border-t border-white/10 leading-relaxed italic">
+              Looking for a second home in Dapoli, a holiday home in Konkan, or a property for investment? Explore Kokan Nirvana Sea Shore Property LLP and find your perfect place in beautiful Dapoli.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-            <button
-              onClick={onOpenInquiry}
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto flex-shrink-0">
+            <a
+              href="/properties"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest text-white bg-brand-cyan hover:bg-brand-cyan-dark shadow-lg transition-all transform hover:-translate-y-0.5"
             >
-              <span>Schedule Site Visit</span>
+              <span>Explore Properties</span>
               <ArrowUpRight className="w-4 h-4" />
-            </button>
+            </a>
 
-            <a
-              href={`tel:${BRAND_INFO.phones[0].raw}`}
+            <button
+              onClick={onOpenInquiry}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest text-white border border-white/20 hover:bg-white/10 transition-all"
             >
               <Phone className="w-4 h-4 text-brand-cyan" />
-              <span>Call Us Direct</span>
-            </a>
+              <span>Contact Support</span>
+            </button>
           </div>
 
         </div>

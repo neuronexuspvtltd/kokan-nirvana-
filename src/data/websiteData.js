@@ -3,8 +3,8 @@
 export const BRAND_INFO = {
   name: "Kokan Nirvana",
   tagline: "Sea-Shore Property Specialist",
-  legalEntity: "Kokan Nirvana Coastal Real Estate Developers & Consultants",
-  experienceYears: "8+",
+  legalEntity: "Kokan Nirvana Sea Shore Property LLP",
+  experienceYears: "10+",
   locationsCount: "10+",
   clientsSatisfied: "500+",
   offices: [

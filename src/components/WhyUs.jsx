@@ -6,44 +6,44 @@ import { Sparkles, MapPin, FileCheck, Award, HeartHandshake, TrendingUp } from '
 export default function WhyUs() {
   const pillars = [
     {
-      title: "Curated Sea-Shore Plots",
-      description: "Every plot, villa, and apartment is hand-selected for high aesthetic appeal, scenic sea vistas, and superior soil stability.",
-      icon: Sparkles,
+      title: "Prime Locations",
+      description: "Carefully selected properties in beautiful and promising locations across Dapoli.",
+      icon: MapPin,
       color: "text-brand-cyan",
       bg: "bg-brand-cyan-light"
     },
     {
-      title: "Strategic Coastal Locations",
-      description: "Projects positioned near Dapoli's finest coastlines—Ladghar, Murud, Anjarle, and Harnai—with seamless highway connectivity.",
-      icon: MapPin,
+      title: "Second & Holiday Homes",
+      description: "Create your own peaceful space for weekends, holidays, and special family moments.",
+      icon: Sparkles,
       color: "text-brand-orange",
       bg: "bg-brand-orange-light"
     },
     {
-      title: "Transparent Legal Guidance",
-      description: "No hidden charges, zero ambiguous terms. Verified 7/12 extracts, Collector NA sanctions, and RERA documentation.",
-      icon: FileCheck,
+      title: "Smart Investment",
+      description: "Properties chosen with both lifestyle and long-term value in mind.",
+      icon: TrendingUp,
       color: "text-brand-cyan-dark",
       bg: "bg-brand-cyan-light"
     },
     {
-      title: "Local Konkan Expertise",
-      description: "Over 8 years of deep regional presence in Ratnagiri district. We understand local land dynamics, soil stability, and zoning laws.",
+      title: "10+ Years of Experience",
+      description: "Over a decade of local experience and a strong understanding of the Dapoli property market.",
       icon: Award,
       color: "text-brand-cyan",
       bg: "bg-brand-cyan-light"
     },
     {
-      title: "Trusted Client Assistance",
-      description: "End-to-end client support: plot selection, site visit arrangement, registration, land development, and bungalow construction.",
-      icon: HeartHandshake,
+      title: "Complete Support",
+      description: "From your first enquiry to site visits, documentation, purchase, and beyond — we are with you at every step.",
+      icon: FileCheck,
       color: "text-brand-orange",
       bg: "bg-brand-orange-light"
     },
     {
-      title: "Long-Term Asset Value",
-      description: "Properties chosen for personal retreat bliss, strong capital appreciation, and high weekend homestay rental yields.",
-      icon: TrendingUp,
+      title: "A Relationship for Life",
+      description: "Our relationship doesn't end after the purchase. We believe in being there for our customers for years to come.",
+      icon: HeartHandshake,
       color: "text-brand-slate",
       bg: "bg-gray-100"
     }
@@ -62,9 +62,9 @@ export default function WhyUs() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          tag="The Kokan Nirvana Difference"
-          title="Why Discriminating Sea-View Buyers Choose Us"
-          subtitle="A refined approach to coastal real estate built on transparency, craftsmanship, and regional authority."
+          tag="Why Choose Kokan Nirvana?"
+          title="The Konkan Way of Living"
+          subtitle="More Than a Property. A Place to Belong."
         />
 
         {/* On Mobile: Horizontal Swipeable Carousel | On Desktop: Standard Grid */}
