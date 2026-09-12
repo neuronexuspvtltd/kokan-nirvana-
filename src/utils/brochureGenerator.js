@@ -1,51 +1,9 @@
 import { BRAND_INFO } from '../data/websiteData';
 
-// Helper to safely load images into HTML5 Canvas
-const loadImage = (src) => {
-  return new Promise((resolve) => {
-    if (!src) return resolve(null);
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => resolve(img);
-    img.onerror = () => {
-      const img2 = new Image();
-      img2.onload = () => resolve(img2);
-      img2.onerror = () => resolve(null);
-      img2.src = src;
-    };
-    img.src = src;
-  });
-};
-
-// Helper to wrap text cleanly on canvas and return final Y coordinate
-const wrapText = (ctx, text, x, y, maxWidth, lineHeight) => {
-  if (!text) return y;
-  const words = text.split(' ');
-  let line = '';
-  let currentY = y;
-
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    const testWidth = metrics.width;
-    if (testWidth > maxWidth && n > 0) {
-      ctx.fillText(line, x, currentY);
-      line = words[n] + ' ';
-      currentY += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-  ctx.fillText(line, x, currentY);
-  return currentY + lineHeight;
-};
-
-export const downloadPropertyBrochure = async (property) => {
+export const downloadPropertyBrochure = (property) => {
   if (!property) return;
 
-  const fileName = `${property.title.replace(/[^a-zA-Z0-9]/g, '_')}_Card.jpg`;
-
-  // 1. If property has a direct static brochure PDF file, download it immediately
+  // If a direct brochure PDF exists for this property, download it directly
   if (property.brochurePdf) {
     const link = document.createElement('a');
     link.href = property.brochurePdf;
@@ -56,242 +14,322 @@ export const downloadPropertyBrochure = async (property) => {
     return;
   }
 
-  // 2. Pre-load Property Cover Image
+  // Otherwise, generate a luxury branded PDF print brochure
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) {
+    alert('Please allow popup permissions in your browser to download/print the property brochure.');
+    return;
+  }
+
   const origin = window.location.origin;
-  const imageSrc = property.image?.startsWith('http') ? property.image : `${origin}${property.image}`;
-  const img = await loadImage(imageSrc);
+  const heroImageSrc = property.image?.startsWith('http') ? property.image : `${origin}${property.image}`;
 
-  // Layout Dimensions
-  const width = 800;
-  const headerHeight = 85;
-  const photoHeight = 380;
+  const brochureHtml = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>${property.title} - Official Brochure | Kokan Nirvana</title>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #0F172A;
+            background: #F8FAFC;
+            padding: 30px 20px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+          .container {
+            max-width: 840px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            border: 1px solid #0284C730;
+          }
+          .header {
+            background: #09131F;
+            color: white;
+            padding: 28px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #0284C7;
+          }
+          .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #38BDF8;
+            letter-spacing: 1px;
+          }
+          .brand-subtitle {
+            font-size: 11px;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 4px;
+            font-weight: 600;
+          }
+          .badge {
+            background: linear-gradient(135deg, #0284C7, #0369A1);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+          }
+          .hero-container {
+            position: relative;
+            height: 360px;
+            overflow: hidden;
+          }
+          .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, #09131FE6, transparent);
+            padding: 30px 40px 20px 40px;
+            color: white;
+          }
+          .hero-tag {
+            background: #38BDF8;
+            color: #09131F;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+          }
+          .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFFFFF;
+          }
+          .content {
+            padding: 36px 40px;
+          }
+          .location-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #0284C7;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #E2E8F0;
+          }
+          .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+            background: #F0F9FF;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #BAE6FD;
+          }
+          .spec-label {
+            font-size: 11px;
+            color: #64748B;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+          }
+          .spec-val {
+            font-size: 14px;
+            color: #0F172A;
+            font-weight: 800;
+          }
+          .section-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #38BDF8;
+            padding-bottom: 6px;
+            display: inline-block;
+          }
+          .desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 32px;
+          }
+          .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 36px;
+          }
+          .feature-item {
+            background: #F8FAFC;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1E293B;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+          }
+          .feature-item::before {
+            content: "✓";
+            color: #0284C7;
+            font-weight: 800;
+            margin-right: 10px;
+            font-size: 15px;
+          }
+          .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 36px;
+          }
+          .gallery-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+          }
+          .footer {
+            background: #09131F;
+            color: white;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .footer-contact {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #94A3B8;
+          }
+          .footer-contact strong {
+            color: #FFFFFF;
+            font-size: 14px;
+          }
+          .footer-contact a {
+            color: #38BDF8;
+            text-decoration: none;
+            font-weight: 700;
+          }
+          .stamp {
+            border: 2px dashed #38BDF8;
+            padding: 12px 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: #38BDF8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: #0284C715;
+          }
+          @media print {
+            body { padding: 0; background: white; }
+            .container { box-shadow: none; border: none; border-radius: 0; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <div>
+              <div class="brand-title">${BRAND_INFO.name.toUpperCase()}</div>
+              <div class="brand-subtitle">${BRAND_INFO.tagline}</div>
+            </div>
+            <div class="badge">Official Brochure</div>
+          </div>
 
-  // Measure content height dynamically to eliminate any bottom white gaps
-  const tempCanvas = document.createElement('canvas');
-  const tempCtx = tempCanvas.getContext('2d');
-  tempCtx.font = '13px sans-serif';
+          <div class="hero-container">
+            <img src="${heroImageSrc}" class="hero-img" alt="${property.title}" />
+            <div class="hero-overlay">
+              <span class="hero-tag">${property.category}</span>
+              <div class="hero-title">${property.title}</div>
+            </div>
+          </div>
 
-  const words = (property.description || '').split(' ');
-  let lineCount = 1;
-  let testLine = '';
-  words.forEach((w) => {
-    if (tempCtx.measureText(testLine + w + ' ').width > 740) {
-      lineCount++;
-      testLine = w + ' ';
-    } else {
-      testLine += w + ' ';
-    }
-  });
+          <div class="content">
+            <div class="location-bar">
+              <div>📍 ${property.location}</div>
+              <div>Collector N.A. Sanctioned</div>
+            </div>
 
-  const descHeight = lineCount * 20 + 20;
-  const featuresCount = property.features ? property.features.length : 0;
-  const featureRows = Math.ceil(featuresCount / 2);
-  const featuresHeight = featureRows * 42 + 25;
-  const plotBoxHeight = 48 + 30;
-  const footerHeight = 110;
+            <div class="specs-grid">
+              <div>
+                <div class="spec-label">Plot Area / Size</div>
+                <div class="spec-val">${property.plotArea}</div>
+              </div>
+              <div>
+                <div class="spec-label">Property Type</div>
+                <div class="spec-val">${property.type}</div>
+              </div>
+              <div>
+                <div class="spec-label">Legal Title</div>
+                <div class="spec-val">100% Clear 7/12 Extract</div>
+              </div>
+            </div>
 
-  const bodyHeight = 35 + 28 + descHeight + 18 + featuresHeight + plotBoxHeight;
-  const totalHeight = headerHeight + photoHeight + bodyHeight + footerHeight;
+            <h2 class="section-heading">Property Overview</h2>
+            <p class="desc">${property.description}</p>
 
-  // Create Canvas with exact calculated height
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = totalHeight;
-  const ctx = canvas.getContext('2d');
+            <h2 class="section-heading">Infrastructure & Key Highlights</h2>
+            <div class="features-list">
+              ${property.features.map(f => `<div class="feature-item">${f}</div>`).join('')}
+            </div>
 
-  // Fill White Background
-  ctx.fillStyle = '#FFFFFF';
-  ctx.fillRect(0, 0, width, totalHeight);
+            ${property.gallery && property.gallery.length > 0 ? `
+              <h2 class="section-heading">Project Site Gallery</h2>
+              <div class="gallery-grid">
+                ${property.gallery.slice(0, 3).map(img => `<img src="${img.startsWith('http') ? img : origin + img}" class="gallery-img" alt="Gallery" />`).join('')}
+              </div>
+            ` : ''}
+          </div>
 
-  // Outer Card Border
-  ctx.strokeStyle = '#0284C7';
-  ctx.lineWidth = 3;
-  ctx.strokeRect(2, 2, width - 4, totalHeight - 4);
+          <div class="footer">
+            <div class="footer-contact">
+              <strong>${BRAND_INFO.legalEntity}</strong><br />
+              Dapoli Office: Ainarkar Heights, Near BSNL Office, Dapoli, Ratnagiri<br />
+              Direct Lines: <a href="tel:+919096999901">+91 90969 99901</a> / <a href="tel:+919096219901">+91 90962 19901</a><br />
+              Email: ${BRAND_INFO.email}
+            </div>
+            <div class="stamp">
+              Verified 7/12<br />Title Sanctioned
+            </div>
+          </div>
+        </div>
 
-  // 1. Header Bar
-  ctx.fillStyle = '#09131F';
-  ctx.fillRect(0, 0, width, headerHeight);
+        <script>
+          window.onload = function() {
+            setTimeout(function() {
+              window.print();
+            }, 500);
+          };
+        </script>
+      </body>
+    </html>
+  `;
 
-  ctx.fillStyle = '#38BDF8';
-  ctx.font = 'bold 22px Georgia, serif';
-  ctx.fillText(BRAND_INFO.name.toUpperCase(), 30, 42);
-
-  ctx.fillStyle = '#94A3B8';
-  ctx.font = 'bold 10px sans-serif';
-  ctx.fillText(BRAND_INFO.tagline.toUpperCase() + ' • DAPOLI', 30, 62);
-
-  // Header Badge Right
-  ctx.fillStyle = '#0284C7';
-  ctx.fillRect(570, 26, 200, 34);
-  ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 11px sans-serif';
-  ctx.fillText('OFFICIAL PROPERTY CARD', 585, 48);
-
-  // 2. Photo Section
-  const imgY = headerHeight;
-  if (img) {
-    const imgRatio = img.width / img.height;
-    const targetRatio = width / photoHeight;
-    let renderW = width;
-    let renderH = photoHeight;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    if (imgRatio > targetRatio) {
-      renderW = photoHeight * imgRatio;
-      offsetX = (width - renderW) / 2;
-    } else {
-      renderH = width / imgRatio;
-      offsetY = (photoHeight - renderH) / 2;
-    }
-
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(0, imgY, width, photoHeight);
-    ctx.clip();
-    ctx.drawImage(img, offsetX, imgY + offsetY, renderW, renderH);
-    ctx.restore();
-  } else {
-    ctx.fillStyle = '#0B1522';
-    ctx.fillRect(0, imgY, width, photoHeight);
-  }
-
-  // Photo Gradient Overlay
-  const grad = ctx.createLinearGradient(0, imgY + 220, 0, imgY + photoHeight);
-  grad.addColorStop(0, 'rgba(11,21,34,0)');
-  grad.addColorStop(1, 'rgba(11,21,34,0.92)');
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, imgY + 220, width, 160);
-
-  // Top-Left Badge (Category)
-  ctx.fillStyle = '#0284C7';
-  ctx.fillRect(30, imgY + 20, 140, 30);
-  ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 11px sans-serif';
-  ctx.fillText((property.category || 'SEA-SHORE').toUpperCase(), 45, imgY + 39);
-
-  // Top-Right Badge (7/12 Clear)
-  ctx.fillStyle = '#0F172A';
-  ctx.fillRect(630, imgY + 20, 140, 30);
-  ctx.fillStyle = '#34D399';
-  ctx.font = 'bold 11px sans-serif';
-  ctx.fillText('7/12 CLEAR ✓', 655, imgY + 39);
-
-  // Bottom Location & Type Tags
-  ctx.fillStyle = '#F1F5F9';
-  ctx.font = 'bold 15px sans-serif';
-  ctx.fillText('LOCATION: ' + property.location, 30, imgY + photoHeight - 20);
-
-  ctx.fillStyle = '#7DD3FC';
-  ctx.font = 'bold 12px sans-serif';
-  ctx.fillText('TYPE: ' + property.type, 540, imgY + photoHeight - 20);
-
-  // 3. Body Content
-  let currentY = imgY + photoHeight + 35;
-
-  // Title
-  ctx.fillStyle = '#0F172A';
-  ctx.font = 'bold 24px Georgia, serif';
-  ctx.fillText(property.title, 30, currentY);
-  currentY += 28;
-
-  // Description
-  ctx.fillStyle = '#475569';
-  ctx.font = '13px sans-serif';
-  currentY = wrapText(ctx, property.description, 30, currentY, 740, 20);
-  currentY += 20;
-
-  // Highlights Header
-  ctx.fillStyle = '#0284C7';
-  ctx.font = 'bold 12px sans-serif';
-  ctx.fillText('KEY INFRASTRUCTURE & HIGHLIGHTS:', 30, currentY);
-  currentY += 18;
-
-  // Features Grid (2 Columns)
-  if (property.features && property.features.length > 0) {
-    const pillHeight = 32;
-    const colWidth = 355;
-    const gapX = 30;
-
-    property.features.forEach((feat, i) => {
-      const isCol1 = i % 2 === 0;
-      const posX = isCol1 ? 30 : 30 + colWidth + gapX;
-      const posY = currentY + Math.floor(i / 2) * 42;
-
-      // Draw Pill Box
-      ctx.fillStyle = '#F0F9FF';
-      ctx.strokeStyle = '#BAE6FD';
-      ctx.lineWidth = 1;
-      ctx.fillRect(posX, posY, colWidth, pillHeight);
-      ctx.strokeRect(posX, posY, colWidth, pillHeight);
-
-      // Checkmark & Text
-      ctx.fillStyle = '#0284C7';
-      ctx.font = 'bold 13px sans-serif';
-      ctx.fillText('✓', posX + 12, posY + 20);
-
-      ctx.fillStyle = '#0369A1';
-      ctx.font = '600 12px sans-serif';
-      ctx.fillText(feat, posX + 28, posY + 20);
-    });
-
-    currentY += featureRows * 42 + 15;
-  }
-
-  // Plot Area Box
-  const boxHeight = 48;
-  ctx.fillStyle = '#F8FAFC';
-  ctx.strokeStyle = '#0284C7';
-  ctx.lineWidth = 1.5;
-  ctx.fillRect(30, currentY, 740, boxHeight);
-  ctx.strokeRect(30, currentY, 740, boxHeight);
-
-  ctx.fillStyle = '#0F172A';
-  ctx.font = 'bold 14px sans-serif';
-  ctx.fillText('PLOT AREA / SIZE: ', 48, currentY + 29);
-
-  ctx.fillStyle = '#0284C7';
-  ctx.font = 'bold 14px sans-serif';
-  ctx.fillText(property.plotArea, 185, currentY + 29);
-
-  ctx.fillStyle = '#059669';
-  ctx.font = 'bold 12px sans-serif';
-  ctx.fillText('COLLECTOR N.A. PASSED ✓', 565, currentY + 29);
-
-  currentY += boxHeight + 30;
-
-  // 4. Footer Bar (Ends exactly at totalHeight)
-  ctx.fillStyle = '#09131F';
-  ctx.fillRect(0, currentY, width, footerHeight);
-
-  ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 14px sans-serif';
-  ctx.fillText(BRAND_INFO.legalEntity, 30, currentY + 35);
-
-  ctx.fillStyle = '#38BDF8';
-  ctx.font = 'bold 13px sans-serif';
-  ctx.fillText('Direct Call Lines: +91 90969 99901 / +91 90962 19901', 30, currentY + 62);
-
-  ctx.fillStyle = '#94A3B8';
-  ctx.font = '11px sans-serif';
-  ctx.fillText('Dapoli Regional Office: Ainarkar Heights, Near BSNL Office, Dapoli, Ratnagiri', 30, currentY + 85);
-
-  // Title Guarantee Stamp Box
-  ctx.strokeStyle = '#38BDF8';
-  ctx.lineWidth = 1.5;
-  ctx.strokeRect(610, currentY + 22, 160, 65);
-
-  ctx.fillStyle = '#38BDF8';
-  ctx.font = 'bold 11px sans-serif';
-  ctx.fillText('VERIFIED 7/12', 645, currentY + 47);
-  ctx.fillText('TITLE GUARANTEED', 628, currentY + 67);
-
-  // Trigger Immediate Direct File Download
-  const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
-  const link = document.createElement('a');
-  link.download = fileName;
-  link.href = dataUrl;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  printWindow.document.write(brochureHtml);
+  printWindow.document.close();
 };
