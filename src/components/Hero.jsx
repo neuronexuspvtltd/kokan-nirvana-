@@ -32,7 +32,7 @@ export default function Hero() {
         <h1 className="font-serif text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight sm:leading-[1.1] drop-shadow-xl max-w-3xl">
           Discover a Place <br className="hidden sm:inline" />
           <span className="font-normal italic text-2xl sm:text-5xl md:text-6xl text-brand-cyan-light font-serif block sm:inline mt-1 sm:mt-0">
-            Worth Calling Home
+            To Call Your Own
           </span>
         </h1>
 
