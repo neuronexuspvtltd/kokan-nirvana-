@@ -46,8 +46,9 @@ export const PROPERTIES_DATA = [
     category: "Sea View Plot",
     plotArea: "2 - 5 Guntha (2,178 - 5,445 sq.ft.)",
     startingPrice: "On Request",
-    image: "/properties/sea_gate/info.jpeg",
+    image: "/properties/sea_gate/cover.jpg",
     gallery: [
+      "/properties/sea_gate/cover.jpg",
       "/properties/sea_gate/info.jpeg",
       "/properties/sea_gate/layout.jpeg",
       "/properties/sea_gate/page_1.jpg",
@@ -82,8 +83,9 @@ export const PROPERTIES_DATA = [
     category: "Sea View Plot",
     plotArea: "2.5 - 5 Guntha (2,722 - 5,445 sq.ft.)",
     startingPrice: "On Request",
-    image: "/properties/azure_vistas/info.jpeg",
+    image: "/properties/azure_vistas/cover.jpg",
     gallery: [
+      "/properties/azure_vistas/cover.jpg",
       "/properties/azure_vistas/info.jpeg",
     ],
     features: ["1.5 KM Distance From Ladghar Beach", "Collector Sanctioned N.A. Plot", "100% Clear Title Project", "Concrete Internal Roads", "Grand Security Entrance", "Water & Power Supply"],
@@ -189,8 +191,9 @@ export const PROPERTIES_DATA = [
     category: "Sea View Bungalow",
     plotArea: "1BHK & 2BHK Holiday Cottages",
     startingPrice: "On Request",
-    image: "/properties/kokan_casa/page_1.jpg",
+    image: "/properties/kokan_casa/cover.jpg",
     gallery: [
+      "/properties/kokan_casa/cover.jpg",
       "/properties/kokan_casa/page_1.jpg",
       "/properties/kokan_casa/page_2.jpg",
       "/properties/kokan_casa/page_3.jpg",
