@@ -46,6 +46,7 @@ export const PROPERTIES_DATA = [
     category: "Sea-Shore",
     plotArea: "2 - 5 Guntha (2,178 - 5,445 sq.ft.)",
     startingPrice: "On Request",
+    brochurePdf: "/properties/sea_gate/brochure.pdf",
     image: "/properties/sea_gate/info.jpeg",
     gallery: [
       "/properties/sea_gate/info.jpeg",
@@ -153,6 +154,7 @@ export const PROPERTIES_DATA = [
     category: "Residential",
     plotArea: "1BHK & 2BHK Luxury Cottages",
     startingPrice: "On Request",
+    brochurePdf: "/properties/sapphire_retreats/brochure.pdf",
     image: "/properties/sapphire_retreats/rowhouse.jpeg",
     gallery: [
       "/properties/sapphire_retreats/rowhouse.jpeg",
@@ -189,6 +191,7 @@ export const PROPERTIES_DATA = [
     category: "Residential",
     plotArea: "1BHK & 2BHK Holiday Cottages",
     startingPrice: "On Request",
+    brochurePdf: "/properties/kokan_casa/brochure.pdf",
     image: "/properties/kokan_casa/page_1.jpg",
     gallery: [
       "/properties/kokan_casa/page_1.jpg",

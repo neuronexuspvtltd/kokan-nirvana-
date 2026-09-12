@@ -1,335 +1,136 @@
 import { BRAND_INFO } from '../data/websiteData';
 
-export const downloadPropertyBrochure = (property) => {
+// Helper to load html2pdf from CDN
+const loadHtml2Pdf = () => {
+  return new Promise((resolve, reject) => {
+    if (window.html2pdf) return resolve(window.html2pdf);
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    script.onload = () => resolve(window.html2pdf);
+    script.onerror = () => reject(new Error('Failed to load html2pdf script'));
+    document.head.appendChild(script);
+  });
+};
+
+export const downloadPropertyBrochure = async (property) => {
   if (!property) return;
 
-  // If a direct brochure PDF exists for this property, download it directly
+  const fileName = `${property.title.replace(/[^a-zA-Z0-9]/g, '_')}_Brochure.pdf`;
+
+  // 1. If property has a direct static brochure PDF file, download it immediately
   if (property.brochurePdf) {
     const link = document.createElement('a');
     link.href = property.brochurePdf;
-    link.download = `${property.title.replace(/[^a-zA-Z0-9]/g, '_')}_Brochure.pdf`;
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     return;
   }
 
-  // Otherwise, generate a luxury branded PDF print brochure
-  const printWindow = window.open('', '_blank');
-  if (!printWindow) {
-    alert('Please allow popup permissions in your browser to download/print the property brochure.');
-    return;
-  }
+  // 2. Otherwise compile and trigger direct PDF file download via html2pdf
+  const container = document.createElement('div');
+  container.style.position = 'absolute';
+  container.style.left = '-9999px';
+  container.style.top = '-9999px';
+  container.style.width = '794px'; // Standard A4 width at 96dpi
+  container.style.backgroundColor = '#ffffff';
 
   const origin = window.location.origin;
   const heroImageSrc = property.image?.startsWith('http') ? property.image : `${origin}${property.image}`;
 
-  const brochureHtml = `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <title>${property.title} - Official Brochure | Kokan Nirvana</title>
-        <style>
-          @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-          * { box-sizing: border-box; margin: 0; padding: 0; }
-          body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #0F172A;
-            background: #F8FAFC;
-            padding: 30px 20px;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-          }
-          .container {
-            max-width: 840px;
-            margin: 0 auto;
-            background: #FFFFFF;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-            border: 1px solid #0284C730;
-          }
-          .header {
-            background: #09131F;
-            color: white;
-            padding: 28px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid #0284C7;
-          }
-          .brand-title {
-            font-family: 'Cinzel', serif;
-            font-size: 26px;
-            font-weight: 800;
-            color: #38BDF8;
-            letter-spacing: 1px;
-          }
-          .brand-subtitle {
-            font-size: 11px;
-            color: #94A3B8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 4px;
-            font-weight: 600;
-          }
-          .badge {
-            background: linear-gradient(135deg, #0284C7, #0369A1);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-          }
-          .hero-container {
-            position: relative;
-            height: 360px;
-            overflow: hidden;
-          }
-          .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-          .hero-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, #09131FE6, transparent);
-            padding: 30px 40px 20px 40px;
-            color: white;
-          }
-          .hero-tag {
-            background: #38BDF8;
-            color: #09131F;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 8px;
-          }
-          .hero-title {
-            font-family: 'Cinzel', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #FFFFFF;
-          }
-          .content {
-            padding: 36px 40px;
-          }
-          .location-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #0284C7;
-            font-weight: 700;
-            margin-bottom: 24px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid #E2E8F0;
-          }
-          .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 32px;
-            background: #F0F9FF;
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid #BAE6FD;
-          }
-          .spec-label {
-            font-size: 11px;
-            color: #64748B;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-          }
-          .spec-val {
-            font-size: 14px;
-            color: #0F172A;
-            font-weight: 800;
-          }
-          .section-heading {
-            font-family: 'Cinzel', serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: #0F172A;
-            margin-bottom: 14px;
-            border-bottom: 2px solid #38BDF8;
-            padding-bottom: 6px;
-            display: inline-block;
-          }
-          .desc {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #334155;
-            margin-bottom: 32px;
-          }
-          .features-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 36px;
-          }
-          .feature-item {
-            background: #F8FAFC;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #1E293B;
-            border: 1px solid #E2E8F0;
-            display: flex;
-            align-items: center;
-          }
-          .feature-item::before {
-            content: "✓";
-            color: #0284C7;
-            font-weight: 800;
-            margin-right: 10px;
-            font-size: 15px;
-          }
-          .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 36px;
-          }
-          .gallery-img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid #E2E8F0;
-          }
-          .footer {
-            background: #09131F;
-            color: white;
-            padding: 30px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-          .footer-contact {
-            font-size: 12px;
-            line-height: 1.7;
-            color: #94A3B8;
-          }
-          .footer-contact strong {
-            color: #FFFFFF;
-            font-size: 14px;
-          }
-          .footer-contact a {
-            color: #38BDF8;
-            text-decoration: none;
-            font-weight: 700;
-          }
-          .stamp {
-            border: 2px dashed #38BDF8;
-            padding: 12px 20px;
-            border-radius: 14px;
-            text-align: center;
-            font-size: 11px;
-            font-weight: 800;
-            color: #38BDF8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: #0284C715;
-          }
-          @media print {
-            body { padding: 0; background: white; }
-            .container { box-shadow: none; border: none; border-radius: 0; }
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <div>
-              <div class="brand-title">${BRAND_INFO.name.toUpperCase()}</div>
-              <div class="brand-subtitle">${BRAND_INFO.tagline}</div>
-            </div>
-            <div class="badge">Official Brochure</div>
+  container.innerHTML = `
+    <div style="font-family: Arial, sans-serif; color: #0F172A; width: 794px; background: #ffffff; padding: 0;">
+      <!-- Header -->
+      <div style="background: #09131F; color: white; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #0284C7;">
+        <div>
+          <div style="font-size: 22px; font-weight: bold; color: #38BDF8; letter-spacing: 1px;">${BRAND_INFO.name.toUpperCase()}</div>
+          <div style="font-size: 10px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px;">${BRAND_INFO.tagline}</div>
+        </div>
+        <div style="background: #0284C7; color: white; padding: 6px 14px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase;">
+          Official Property Brochure
+        </div>
+      </div>
+
+      <!-- Hero Image Container -->
+      <div style="position: relative; height: 320px; overflow: hidden; background: #0F172A;">
+        <img src="${heroImageSrc}" style="width: 100%; height: 100%; object-fit: cover;" crossorigin="anonymous" />
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(9,19,31,0.95), transparent); padding: 24px 32px; color: white;">
+          <span style="background: #38BDF8; color: #09131F; font-size: 9px; font-weight: bold; text-transform: uppercase; padding: 3px 10px; border-radius: 12px;">${property.category}</span>
+          <div style="font-size: 24px; font-weight: bold; margin-top: 6px; color: white;">${property.title}</div>
+        </div>
+      </div>
+
+      <!-- Main Body -->
+      <div style="padding: 28px 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #0284C7; font-weight: bold; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #E2E8F0;">
+          <div>📍 ${property.location}</div>
+          <div>Collector N.A. Sanctioned</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; background: #F0F9FF; padding: 16px; border-radius: 12px; border: 1px solid #BAE6FD;">
+          <div>
+            <div style="font-size: 10px; color: #64748B; text-transform: uppercase; font-weight: bold;">Plot Area / Size</div>
+            <div style="font-size: 13px; color: #0F172A; font-weight: bold; margin-top: 2px;">${property.plotArea}</div>
           </div>
-
-          <div class="hero-container">
-            <img src="${heroImageSrc}" class="hero-img" alt="${property.title}" />
-            <div class="hero-overlay">
-              <span class="hero-tag">${property.category}</span>
-              <div class="hero-title">${property.title}</div>
-            </div>
+          <div>
+            <div style="font-size: 10px; color: #64748B; text-transform: uppercase; font-weight: bold;">Property Type</div>
+            <div style="font-size: 13px; color: #0F172A; font-weight: bold; margin-top: 2px;">${property.type}</div>
           </div>
-
-          <div class="content">
-            <div class="location-bar">
-              <div>📍 ${property.location}</div>
-              <div>Collector N.A. Sanctioned</div>
-            </div>
-
-            <div class="specs-grid">
-              <div>
-                <div class="spec-label">Plot Area / Size</div>
-                <div class="spec-val">${property.plotArea}</div>
-              </div>
-              <div>
-                <div class="spec-label">Property Type</div>
-                <div class="spec-val">${property.type}</div>
-              </div>
-              <div>
-                <div class="spec-label">Legal Title</div>
-                <div class="spec-val">100% Clear 7/12 Extract</div>
-              </div>
-            </div>
-
-            <h2 class="section-heading">Property Overview</h2>
-            <p class="desc">${property.description}</p>
-
-            <h2 class="section-heading">Infrastructure & Key Highlights</h2>
-            <div class="features-list">
-              ${property.features.map(f => `<div class="feature-item">${f}</div>`).join('')}
-            </div>
-
-            ${property.gallery && property.gallery.length > 0 ? `
-              <h2 class="section-heading">Project Site Gallery</h2>
-              <div class="gallery-grid">
-                ${property.gallery.slice(0, 3).map(img => `<img src="${img.startsWith('http') ? img : origin + img}" class="gallery-img" alt="Gallery" />`).join('')}
-              </div>
-            ` : ''}
-          </div>
-
-          <div class="footer">
-            <div class="footer-contact">
-              <strong>${BRAND_INFO.legalEntity}</strong><br />
-              Dapoli Office: Ainarkar Heights, Near BSNL Office, Dapoli, Ratnagiri<br />
-              Direct Lines: <a href="tel:+919096999901">+91 90969 99901</a> / <a href="tel:+919096219901">+91 90962 19901</a><br />
-              Email: ${BRAND_INFO.email}
-            </div>
-            <div class="stamp">
-              Verified 7/12<br />Title Sanctioned
-            </div>
+          <div>
+            <div style="font-size: 10px; color: #64748B; text-transform: uppercase; font-weight: bold;">Legal Title</div>
+            <div style="font-size: 13px; color: #0F172A; font-weight: bold; margin-top: 2px;">100% Clear 7/12 Extract</div>
           </div>
         </div>
 
-        <script>
-          window.onload = function() {
-            setTimeout(function() {
-              window.print();
-            }, 500);
-          };
-        </script>
-      </body>
-    </html>
+        <div style="font-size: 15px; font-weight: bold; color: #0F172A; margin-bottom: 8px; border-bottom: 2px solid #38BDF8; padding-bottom: 4px; display: inline-block;">Property Overview</div>
+        <p style="font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 24px;">${property.description}</p>
+
+        <div style="font-size: 15px; font-weight: bold; color: #0F172A; margin-bottom: 10px; border-bottom: 2px solid #38BDF8; padding-bottom: 4px; display: inline-block;">Infrastructure & Key Highlights</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px;">
+          ${property.features.map(f => `<div style="background: #F8FAFC; padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; color: #1E293B; border: 1px solid #E2E8F0;">✓ ${f}</div>`).join('')}
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="background: #09131F; color: white; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-size: 11px; line-height: 1.6; color: #94A3B8;">
+          <strong style="color: white; font-size: 13px;">${BRAND_INFO.legalEntity}</strong><br />
+          Dapoli Office: Ainarkar Heights, Near BSNL Office, Dapoli, Ratnagiri<br />
+          Direct Lines: +91 90969 99901 / +91 90962 19901
+        </div>
+        <div style="border: 2px dashed #38BDF8; padding: 8px 14px; border-radius: 10px; text-align: center; font-size: 10px; font-weight: bold; color: #38BDF8; text-transform: uppercase;">
+          Verified 7/12<br />Title Guaranteed
+        </div>
+      </div>
+    </div>
   `;
 
-  printWindow.document.write(brochureHtml);
-  printWindow.document.close();
+  document.body.appendChild(container);
+
+  try {
+    const html2pdf = await loadHtml2Pdf();
+    const opt = {
+      margin: 0,
+      filename: fileName,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, logging: false },
+      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+    };
+    
+    // Direct PDF file download
+    await html2pdf().set(opt).from(container).save();
+  } catch (err) {
+    console.error('Direct PDF download error, fallbacking:', err);
+    // Fallback: open print/pdf prompt
+    const printWin = window.open('', '_blank');
+    if (printWin) {
+      printWin.document.write(`<!DOCTYPE html><html><head><title>${fileName}</title></head><body>${container.innerHTML}<script>window.onload=function(){window.print();}</script></body></html>`);
+      printWin.document.close();
+    }
+  } finally {
+    if (document.body.contains(container)) {
+      document.body.removeChild(container);
+    }
+  }
 };
