@@ -290,6 +290,7 @@ export const TESTIMONIALS_DATA = [
     rating: 5,
     text: "Bought a 3,000 sq.ft sea-view NA plot in Dapoli through Kokan Nirvana. The 7/12 extract was handed over with zero issues. Truly professional service!",
     property: "The Sea Gate Cliffside NA Plot",
+    videoUrl: "https://www.instagram.com/reel/DdBBHGNyH5G/?stkn=MWExMzJ1c2JsdjB5bw==",
   },
   {
     id: "aniket-raval",
@@ -298,6 +299,7 @@ export const TESTIMONIALS_DATA = [
     rating: 5,
     text: "Managing a land purchase from abroad was seamless with Kokan Nirvana. They conducted a 30-year title check and shared video walk-throughs.",
     property: "The HillTop Dapoli Site",
+    videoUrl: "https://www.instagram.com/reel/DakeSHgNrWU/?stkn=cjc3bjJpaHk4cmhz",
   },
   {
     id: "sneha-deshmukh",
@@ -306,6 +308,16 @@ export const TESTIMONIALS_DATA = [
     rating: 5,
     text: "From selecting the plot near Ladghar beach to building our weekend cottage, Kokan Nirvana managed everything end-to-end.",
     property: "Vista Twin Tower Row House",
+    videoUrl: "https://www.instagram.com/reel/DUC-drkDVNK/?stkn=eXQyd3U3ZDlyczZs",
+  },
+  {
+    id: "mahesh-kulkarni",
+    name: "Mahesh & Sunita Kulkarni",
+    role: "Second Home Owners, Thane",
+    rating: 5,
+    text: "Investing in a coastal plot with Kokan Nirvana gave us complete peace of mind. Transparent legal process, clear titles, and excellent local guidance.",
+    property: "Seaclusion Beachside Plot",
+    videoUrl: "https://www.instagram.com/reel/DS64AGAkjvs/?stkn=MWo2eTJpNWM5cWp6eQ==",
   },
 ];
 
