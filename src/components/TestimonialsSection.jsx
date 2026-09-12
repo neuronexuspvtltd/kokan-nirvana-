@@ -48,9 +48,9 @@ export default function TestimonialsSection() {
                       href={t.videoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-600 via-rose-500 to-amber-500 hover:opacity-90 shadow-sm transition-all"
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-brand-cyan hover:bg-brand-cyan-dark shadow-md transition-all duration-300"
                     >
-                      <PlayCircle className="w-3.5 h-3.5 text-white" />
+                      <PlayCircle className="w-4 h-4 text-white" />
                       <span>Watch Video Review</span>
                     </a>
                   )}
