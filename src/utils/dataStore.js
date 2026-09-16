@@ -56,7 +56,37 @@ export const saveBrandInfo = async (data) => {
   }
 };
 
-export const getProperties = () => getStoredData('properties', PROPERTIES_DATA);
+export const getProperties = () => {
+  const stored = getStoredData('properties', null);
+  if (!stored) return PROPERTIES_DATA;
+
+  let modified = false;
+  const synced = stored.map((item) => {
+    const defaultProp = PROPERTIES_DATA.find((p) => p.id === item.id);
+    if (defaultProp) {
+      if (
+        !item.image ||
+        item.image.includes('info.jpeg') ||
+        item.image.includes('page_1.jpg') ||
+        item.image.includes('info.jpg')
+      ) {
+        modified = true;
+        return {
+          ...item,
+          image: defaultProp.image,
+          gallery: defaultProp.gallery,
+        };
+      }
+    }
+    return item;
+  });
+
+  if (modified) {
+    setStoredData('properties', synced);
+  }
+
+  return synced;
+};
 export const saveProperties = async (data) => {
   setStoredData('properties', data);
   if (isFirebaseConfigured()) {
