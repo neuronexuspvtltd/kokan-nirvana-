@@ -10,7 +10,7 @@ export const BRAND_INFO = {
   offices: [
     {
       title: "Dapoli Regional & Site Office",
-      address: "B Wing, Ainarkar Heights, Near BSNL Office, Opp. Maratha Mandir CBSE English School, Dapoli, Ratnagiri - 415712",
+      address: "Office No 106, B Wing, Ainarkar Height, Near BSNL Office, Opp. Maratha Mandir CBSE English School, Dapoli, Ratnagiri - 415712",
     },
     {
       title: "Ichalkaranji Head Office",
@@ -21,7 +21,7 @@ export const BRAND_INFO = {
     "Support@kokannirvanaseashoreproperties.com",
     "Info@kokannirvanaseashoreproperties.com",
   ],
-  address: "B Wing, Ainarkar Heights, Near BSNL Office, Dapoli - 415712 | Office No. 01, Gore Building, Near Reliance Digital, Ichalkaranji - 416115",
+  address: "Office No 106, B Wing, Ainarkar Height, Near BSNL Office, Dapoli - 415712 | Office No. 01, Gore Building, Near Reliance Digital, Ichalkaranji - 416115",
   email: "Support@kokannirvanaseashoreproperties.com",
   phones: [
     { display: "+91 90969 99901", raw: "919096999901" },

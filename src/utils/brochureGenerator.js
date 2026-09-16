@@ -104,7 +104,7 @@ export const downloadPropertyBrochure = async (property) => {
       <div style="background: #09131F; color: white; padding: 18px 24px; border-radius: 0 0 12px 12px; display: flex; justify-content: space-between; align-items: center;">
         <div style="font-size: 10px; line-height: 1.5; color: #94A3B8;">
           <strong style="color: white; font-size: 12px;">${BRAND_INFO.legalEntity}</strong><br />
-          Dapoli Office: Ainarkar Heights, Near BSNL Office, Dapoli, Ratnagiri<br />
+          Dapoli Office: Office No 106, B Wing, Ainarkar Height, Near BSNL Office, Dapoli, Ratnagiri - 415712<br />
           Direct Lines: +91 90969 99901 / +91 90962 19901 | Email: ${BRAND_INFO.email}
         </div>
         <div style="border: 2px dashed #38BDF8; padding: 6px 12px; border-radius: 8px; font-size: 9px; font-weight: 800; color: #38BDF8; text-transform: uppercase; text-align: center;">
