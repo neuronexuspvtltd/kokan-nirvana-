@@ -37,8 +37,8 @@ export default function Hero() {
         </h1>
 
         {/* Concise Subtitle */}
-        <p className="mt-4 sm:mt-6 text-xs sm:text-base text-gray-100 font-sans font-normal max-w-xs sm:max-w-xl leading-relaxed drop-shadow font-medium px-2 sm:px-0">
-          Collector N.A. plots & luxury sea-view estates along the pristine Dapoli coast.
+        <p className="mt-4 sm:mt-6 text-xs sm:text-base text-gray-100 font-sans font-normal max-w-xs sm:max-w-2xl leading-relaxed drop-shadow font-medium px-2 sm:px-0">
+          Curated NA Plots, Row Houses, Apartments & farmhouse plot for living, leisure and investment along the Dapoli coast.
         </p>
 
         {/* Primary CTA */}
