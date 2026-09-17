@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as XLSX from 'xlsx';
 import {
   getProperties,
   saveProperties,
@@ -10,6 +11,7 @@ import {
   saveBrandInfo,
   getLeads,
   deleteLead,
+  importLeads,
 } from '../utils/dataStore';
 import { isFirebaseConfigured } from '../firebase';
 import {
@@ -33,6 +35,8 @@ import {
   Upload,
   Image as ImageIcon,
   Database,
+  FileSpreadsheet,
+  Download,
 } from 'lucide-react';
 
 export default function AdminPage() {
@@ -212,6 +216,85 @@ export default function AdminPage() {
       setLeads(updated);
       showToast('Inquiry lead removed.');
     }
+  };
+
+  // EXCEL IMPORT & EXPORT HANDLERS
+  const handleExcelImport = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (evt) => {
+      try {
+        const bstr = evt.target.result;
+        const wb = XLSX.read(bstr, { type: 'binary' });
+        const wsname = wb.SheetNames[0];
+        const ws = wb.Sheets[wsname];
+        const rawData = XLSX.utils.sheet_to_json(ws);
+
+        if (!rawData || rawData.length === 0) {
+          alert('The selected Excel file is empty or has no valid rows.');
+          return;
+        }
+
+        const updatedLeads = await importLeads(rawData);
+        setLeads(updatedLeads);
+        showToast(`Successfully imported ${rawData.length} customer inquiry lead(s) from Excel!`);
+        e.target.value = null;
+      } catch (err) {
+        console.error('Excel Import Error:', err);
+        alert('Failed to parse Excel file. Please ensure it is a valid .xlsx, .xls, or .csv file.');
+      }
+    };
+    reader.readAsBinaryString(file);
+  };
+
+  const handleExcelExport = () => {
+    if (!leads || leads.length === 0) {
+      alert('No customer inquiries available to export.');
+      return;
+    }
+
+    const exportData = leads.map((l) => ({
+      'Date': l.date || '',
+      'Customer Name': l.name || '',
+      'Phone': l.phone || '',
+      'Email': l.email || '',
+      'Interest': l.interest || '',
+      'Note / Requirements': l.note || '',
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Customer_Inquiries');
+    XLSX.writeFile(wb, `Kokan_Nirvana_Customer_Inquiries_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    showToast('Customer inquiries exported to Excel successfully!');
+  };
+
+  const handleDownloadSampleTemplate = () => {
+    const sampleData = [
+      {
+        'Customer Name': 'Aniket Patil',
+        'Phone': '+91 98765 43210',
+        'Email': 'aniket.patil@example.com',
+        'Interest': 'Sea View N.A. Plot',
+        'Note / Requirements': 'Interested in 5 Guntha plot near Ladghar beach Dapoli',
+        'Date': new Date().toISOString().slice(0, 16).replace('T', ' '),
+      },
+      {
+        'Customer Name': 'Snehal Kulkarni',
+        'Phone': '+91 91234 56789',
+        'Email': 'snehal.k@example.com',
+        'Interest': 'Terrace Row House',
+        'Note / Requirements': 'Inquiring about 2BHK row house booking',
+        'Date': new Date().toISOString().slice(0, 16).replace('T', ' '),
+      },
+    ];
+
+    const ws = XLSX.utils.json_to_sheet(sampleData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sample_Leads_Template');
+    XLSX.writeFile(wb, 'Kokan_Nirvana_Sample_Leads_Template.xlsx');
   };
 
   // BRAND SETTINGS HANDLER
@@ -586,15 +669,48 @@ export default function AdminPage() {
         {/* TAB 4: INQUIRIES & LEADS VIEWER */}
         {activeTab === 'leads' && (
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm space-y-6">
-            <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between border-b border-gray-100 pb-4 gap-4">
               <div>
                 <h2 className="font-serif text-xl font-bold text-brand-slate">Customer Inquiries & Leads</h2>
-                <p className="text-xs text-gray-500">Live inquiries submitted by website visitors.</p>
+                <p className="text-xs text-gray-500">Live inquiries submitted by website visitors or imported from Excel.</p>
               </div>
 
-              <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-brand-cyan-tint text-brand-cyan border border-brand-cyan/20">
-                {leads.length} Inquiries Total
-              </span>
+              <div className="flex flex-wrap items-center gap-2.5 w-full lg:w-auto">
+                <span className="px-3.5 py-2 rounded-full text-xs font-bold bg-brand-cyan-tint text-brand-cyan border border-brand-cyan/20">
+                  {leads.length} Inquiries Total
+                </span>
+
+                {/* Import Excel / CSV Button */}
+                <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer shadow-sm transition-all" title="Upload and import leads from .xlsx, .xls, or .csv file">
+                  <FileSpreadsheet className="w-4 h-4" />
+                  <span>Import Excel / CSV</span>
+                  <input
+                    type="file"
+                    accept=".xlsx, .xls, .csv"
+                    className="hidden"
+                    onChange={handleExcelImport}
+                  />
+                </label>
+
+                {/* Export Excel Button */}
+                <button
+                  onClick={handleExcelExport}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition-all"
+                  title="Export all inquiries to Excel file"
+                >
+                  <Download className="w-4 h-4 text-brand-cyan" />
+                  <span>Export Excel</span>
+                </button>
+
+                {/* Sample Template Link */}
+                <button
+                  onClick={handleDownloadSampleTemplate}
+                  className="text-[11px] text-gray-500 hover:text-brand-cyan font-semibold underline underline-offset-2"
+                  title="Download sample Excel template format"
+                >
+                  Sample Template (.xlsx)
+                </button>
+              </div>
             </div>
 
             {leads.length > 0 ? (

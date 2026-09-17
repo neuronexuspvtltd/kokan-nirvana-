@@ -157,3 +157,27 @@ export const deleteLead = async (id) => {
   }
   return updated;
 };
+
+export const importLeads = async (newLeadsList) => {
+  const currentLeads = getLeads();
+  const formattedNewLeads = newLeadsList.map((lead, idx) => ({
+    id: `lead-imp-${Date.now()}-${idx}`,
+    name: lead['Customer Name'] || lead.name || lead.Name || 'Unknown Contact',
+    email: lead['Email'] || lead.email || 'No Email',
+    phone: String(lead['Contact Info'] || lead['Phone'] || lead.phone || lead.Contact || lead['Contact No'] || '').trim(),
+    interest: lead['Interest'] || lead.interest || lead.Property || 'General Inquiry',
+    note: lead['Note / Requirements'] || lead.note || lead.Note || lead.Requirements || lead.Message || '',
+    date: lead['Date'] || lead.date || new Date().toISOString().slice(0, 16).replace('T', ' '),
+  }));
+
+  const merged = [...formattedNewLeads, ...currentLeads];
+  setStoredData('leads', merged);
+  if (isFirebaseConfigured()) {
+    try {
+      await setDoc(doc(db, 'content', 'leads'), { items: merged });
+    } catch (err) {
+      console.warn('Firebase bulk lead import warning:', err);
+    }
+  }
+  return merged;
+};
