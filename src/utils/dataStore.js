@@ -110,7 +110,31 @@ export const saveServices = async (data) => {
   }
 };
 
-export const getBlogPosts = () => getStoredData('blogPosts', BLOG_POSTS);
+export const getBlogPosts = () => {
+  const stored = getStoredData('blogPosts', null);
+  if (!stored) return BLOG_POSTS;
+
+  let modified = false;
+  const synced = stored.map((item) => {
+    const defaultBlog = BLOG_POSTS.find((b) => b.id === item.id);
+    if (defaultBlog) {
+      if (!item.image || item.image.includes('unsplash.com')) {
+        modified = true;
+        return {
+          ...item,
+          image: defaultBlog.image,
+        };
+      }
+    }
+    return item;
+  });
+
+  if (modified) {
+    setStoredData('blogPosts', synced);
+  }
+
+  return synced;
+};
 export const saveBlogPosts = async (data) => {
   setStoredData('blogPosts', data);
   if (isFirebaseConfigured()) {

@@ -322,7 +322,7 @@ export const BLOG_POSTS = [
     date: "August 15, 2026",
     category: "Legal Guide",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80",
+    image: "/blogs/712_extract_guide.jpg",
     excerpt: "Learn what to look for in a 7/12 extract: mutation entry numbers, encumbrances, cultivator columns, and how Kokan Nirvana verifies every title.",
     content: `Buying property in the coastal region of Maharashtra requires a thorough understanding of revenue documents, most notably the 7/12 Extract (Satbara Utara).
 
@@ -343,7 +343,7 @@ At Kokan Nirvana, our legal team conducts a 30-year title search for every singl
     date: "July 28, 2026",
     category: "Market Insights",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    image: "/blogs/dapoli_real_estate.jpg",
     excerpt: "With improved Mumbai-Goa highway connectivity and pristine uncrowded beaches, Dapoli is rapidly emerging as the top choice for second homes.",
     content: `Dapoli, often referred to as the 'Mini Mahabaleshwar of Konkan' due to its pleasant year-round climate, has become one of the most sought-after coastal real estate corridors in Maharashtra.
 
@@ -362,7 +362,7 @@ Unlike heavily commercialized beach destinations, Dapoli offers white sand beach
     date: "June 12, 2026",
     category: "Architecture & Construction",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
+    image: "/blogs/coastal_villa_architecture.jpg",
     excerpt: "Essential tips for weather-proofing your sea-side home: Mangalore tile roofs, anti-corrosive fittings, slope drainage, and rainwater harvesting.",
     content: `Building a home near the ocean requires specialized construction practices to handle heavy Konkan monsoons and saline coastal winds.
 
