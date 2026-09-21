@@ -397,11 +397,11 @@ export default function AboutSection({ hideHeader = false }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
+          <div className="flex lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 lg:pb-0">
             {BRAND_INFO.coreValues.map((val, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-3xl p-5 border border-gray-200 shadow-sm hover:border-brand-cyan/40 hover:shadow-md transition-all space-y-3 flex flex-col justify-between"
+                className="w-[72vw] max-w-[240px] sm:w-auto flex-shrink-0 snap-center bg-white rounded-3xl p-5 border border-gray-200 shadow-sm hover:border-brand-cyan/40 hover:shadow-md transition-all space-y-3 flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="w-10 h-10 rounded-2xl bg-brand-slate text-brand-cyan flex items-center justify-center font-bold text-lg font-serif shadow-sm">
