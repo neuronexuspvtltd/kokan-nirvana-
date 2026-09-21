@@ -2,11 +2,74 @@
 
 export const BRAND_INFO = {
   name: "Kokan Nirvana",
-  tagline: "Sea-Shore Property Specialist",
-  legalEntity: "Kokan Nirvana Sea Shore Property LLP",
-  experienceYears: "10+",
+  tagline: "Building dreams by the shore, creating value for a lifetime.",
+  legalEntity: "Kokan Nirvana Sea-Shore Properties LLP",
+  experienceYears: "8+",
   locationsCount: "10+",
   clientsSatisfied: "500+",
+  mahaRera: "A061282602334",
+  purpose: {
+    title: "Our Purpose",
+    text: "To transform lives by helping families own their dream property in Konkan while ensuring trust, respect, transparency, and long-term value.",
+    quote: "We don't just sell land. We help people build their future.",
+  },
+  vision: {
+    title: "Our Vision",
+    text: "To become the most trusted and preferred real estate developer in Konkan by delivering premium, sustainable, value-driven developments that enhance lives and create lasting legacies.",
+  },
+  mission: {
+    title: "Our Mission",
+    text: "To develop world-class properties in prime coastal and hill locations with complete transparency, superior quality, and excellent customer service, creating long-term value for our clients, investors, and communities.",
+  },
+  vision2038: {
+    title: "2038 Vision (BHAG)",
+    target: "10,000+ Happy Families",
+    subtitle: "Most Trusted Coastal Property Brand in Konkan",
+    text: "To be a leading and most trusted coastal property brand in Konkan, recognized for quality, trust and customer experience.",
+    quote: "From Selling Properties to Building Coastal Communities",
+  },
+  founder: {
+    name: "Mr. Shubham Anvekar",
+    role: "Founder & Managing Director",
+    image: "/team/shubham_anvekar.jpg",
+    bio: "Driven by vision and passion, committed to delivering premium coastal living experiences with trust, transparency and quality.",
+    quote: "Our mission is simple – to build more than just properties, we build trust, lifestyle and a better tomorrow for our customers.",
+    highlights: [
+      "8+ Years of Industry Experience",
+      "Focused on Quality, Legality & Customer Satisfaction",
+      "Built on Trust, Transparency & Integrity",
+      "Delivering Value, Building Relationships",
+    ],
+  },
+  coreValues: [
+    { code: "R", name: "Reliability", desc: "Built on honesty, transparency and mutual trust." },
+    { code: "T", name: "Trust", desc: "100% legal clarity and compliance with local regulations." },
+    { code: "E", name: "Empowerment", desc: "Empowering growth, confidence, and peace of mind." },
+    { code: "S", name: "Support", desc: "End-to-end guidance in every step of transaction." },
+    { code: "R", name: "Respect", desc: "Respecting every customer interaction, project, and commitment." },
+  ],
+  brandPromises: [
+    { title: "Expertise in Sea-Facing Properties", desc: "Achieve >90% Customer Satisfaction" },
+    { title: "End-to-End Support in Transactions", desc: "Maintain 95% Process Completion Rate" },
+    { title: "Legal Clarity in Every Deal", desc: "100% Compliance with Local Regulations" },
+  ],
+  journeyTimeline: [
+    { year: "2017", title: "Company Established", desc: "Founded with a vision to offer premium coastal real estate in Dapoli." },
+    { year: "Launch", title: "First Project Launch", desc: "Began our journey with a focus on quality, transparency and title clarity." },
+    { year: "Trust", title: "Growing Customer Trust", desc: "Built strong relationships and earned the trust of hundreds of happy families." },
+    { year: "Growth", title: "Multiple Successful Projects", desc: "Delivered and launched multiple projects across premium locations in Dapoli." },
+    { year: "Excellence", title: "8+ Years Experience", desc: "8+ years of industry expertise and continuous commitment to excellence." },
+  ],
+  aboutDapoli: {
+    description: "Dapoli – a hidden gem of Konkan known for its pristine beaches, lush greenery, pleasant climate, and peaceful lifestyle. A perfect destination for second homes, retirement, and smart investments.",
+    pillars: [
+      { title: "Scenic Beauty", icon: "Waves" },
+      { title: "Clean Environment", icon: "Tree" },
+      { title: "Growing Tourism", icon: "TrendingUp" },
+      { title: "High Appreciation", icon: "BarChart" },
+      { title: "Strong Future Community", icon: "Users" },
+    ],
+  },
   offices: [
     {
       title: "Dapoli Regional & Site Office",
