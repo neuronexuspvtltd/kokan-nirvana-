@@ -64,6 +64,9 @@ export const getProperties = () => {
   const synced = stored.map((item) => {
     const defaultProp = PROPERTIES_DATA.find((p) => p.id === item.id);
     if (defaultProp) {
+      let updatedItem = { ...item };
+      
+      // Sync image if using old scans
       if (
         !item.image ||
         item.image.includes('info.jpeg') ||
@@ -71,12 +74,17 @@ export const getProperties = () => {
         item.image.includes('info.jpg')
       ) {
         modified = true;
-        return {
-          ...item,
-          image: defaultProp.image,
-          gallery: defaultProp.gallery,
-        };
+        updatedItem.image = defaultProp.image;
+        updatedItem.gallery = defaultProp.gallery;
       }
+
+      // Sync category if changed in default mapping
+      if (item.category !== defaultProp.category) {
+        modified = true;
+        updatedItem.category = defaultProp.category;
+      }
+
+      return updatedItem;
     }
     return item;
   });
