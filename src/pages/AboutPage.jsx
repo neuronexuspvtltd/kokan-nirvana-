@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SubpageHero from '../components/SubpageHero';
 import AboutSection from '../components/AboutSection';
-import TestimonialsSection from '../components/TestimonialsSection';
 import CTA from '../components/CTA';
 
 export default function AboutPage() {
@@ -18,8 +17,6 @@ export default function AboutPage() {
       />
 
       <AboutSection hideHeader={true} />
-      
-      <TestimonialsSection />
 
       <CTA onOpenInquiry={() => navigate('/contact')} />
     </div>
