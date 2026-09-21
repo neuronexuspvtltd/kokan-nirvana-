@@ -35,9 +35,9 @@ function AnimatedJourneyTimeline({ items }) {
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Start progress when top of container reaches 75% of viewport
-      const startPos = windowHeight * 0.75;
-      const totalHeight = rect.height;
+      // Evaluate progress as timeline crosses the viewport center
+      const startPos = windowHeight * 0.7;
+      const totalHeight = rect.height - 72;
       const currentScroll = startPos - rect.top;
 
       let progress = (currentScroll / totalHeight) * 100;
@@ -46,25 +46,25 @@ function AnimatedJourneyTimeline({ items }) {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial evaluation
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div ref={containerRef} className="relative max-w-4xl mx-auto py-6">
-      {/* Background Vertical Line Track */}
-      <div className="absolute left-6 sm:left-36 top-8 bottom-8 w-1 bg-gray-200 rounded-full"></div>
+    <div ref={containerRef} className="relative max-w-4xl mx-auto py-8">
+      {/* Background Vertical Line Track (Starts at center of Node 1, ends at center of Node 5) */}
+      <div className="absolute left-7 sm:left-40 top-[2.25rem] bottom-[2.25rem] w-1 bg-gray-200 rounded-full"></div>
 
       {/* Animated Filled Line */}
       <div
-        className="absolute left-6 sm:left-36 top-8 w-1 rounded-full bg-gradient-to-b from-brand-cyan via-blue-500 to-brand-orange shadow-[0_0_12px_rgba(14,165,233,0.8)] transition-all duration-150 ease-out"
-        style={{ height: `${scrollProgress}%` }}
+        className="absolute left-7 sm:left-40 top-[2.25rem] w-1 rounded-full bg-gradient-to-b from-brand-cyan via-blue-500 to-brand-orange shadow-[0_0_12px_rgba(14,165,233,0.8)] transition-all duration-150 ease-out"
+        style={{ height: `calc((100% - 4.5rem) * ${scrollProgress / 100})` }}
       ></div>
 
       {/* Traveling Glowing Beacon Dot */}
       <div
-        className="absolute left-6 sm:left-36 -translate-x-[10px] -translate-y-1/2 w-6 h-6 rounded-full bg-brand-cyan border-4 border-white shadow-[0_0_20px_#0ea5e9] z-20 transition-all duration-150 ease-out flex items-center justify-center pointer-events-none"
-        style={{ top: `calc(2rem + ${scrollProgress * 0.88}%)` }}
+        className="absolute left-7 sm:left-40 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-brand-cyan border-4 border-white shadow-[0_0_18px_#0ea5e9] z-20 transition-all duration-150 ease-out flex items-center justify-center pointer-events-none"
+        style={{ top: `calc(2.25rem + (100% - 4.5rem) * ${scrollProgress / 100})` }}
       >
         <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
       </div>
@@ -77,12 +77,12 @@ function AnimatedJourneyTimeline({ items }) {
           const isActive = Math.abs(scrollProgress - itemThreshold) < 15;
 
           return (
-            <div key={idx} className="relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 group">
+            <div key={idx} className="relative flex flex-col sm:flex-row items-start sm:items-center min-h-[5rem] group">
               
               {/* Year Label */}
-              <div className="sm:w-28 text-left sm:text-right pl-14 sm:pl-0">
+              <div className="sm:w-32 text-left sm:text-right pl-16 sm:pl-0 sm:pr-8 sm:py-2 flex-shrink-0">
                 <span
-                  className={`font-serif text-sm sm:text-lg font-bold transition-all duration-300 block ${
+                  className={`font-serif text-sm sm:text-base font-bold transition-all duration-300 block ${
                     isPassed ? 'text-brand-cyan scale-105' : 'text-gray-400'
                   }`}
                 >
@@ -90,8 +90,8 @@ function AnimatedJourneyTimeline({ items }) {
                 </span>
               </div>
 
-              {/* Bullet Node */}
-              <div className="absolute left-6 sm:left-36 -translate-x-1/2 flex items-center justify-center">
+              {/* Bullet Node (Centered on Line) */}
+              <div className="absolute left-7 sm:left-40 top-3 sm:top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
                 <div
                   className={`w-6 h-6 rounded-full border-4 transition-all duration-500 flex items-center justify-center ${
                     isPassed
@@ -100,14 +100,14 @@ function AnimatedJourneyTimeline({ items }) {
                   }`}
                 >
                   {isActive && (
-                    <span className="absolute w-9 h-9 rounded-full bg-brand-cyan/30 animate-ping"></span>
+                    <span className="absolute w-8 h-8 rounded-full bg-brand-cyan/30 animate-ping"></span>
                   )}
                 </div>
               </div>
 
-              {/* Content Card */}
+              {/* Content Card (Generous margin, never overlaps line) */}
               <div
-                className={`ml-14 sm:ml-0 flex-1 p-5 sm:p-6 rounded-2xl border transition-all duration-500 ${
+                className={`ml-16 sm:ml-12 flex-1 p-5 sm:p-6 rounded-2xl border transition-all duration-500 ${
                   isPassed
                     ? 'bg-white border-brand-cyan/40 shadow-xl shadow-brand-cyan/5 -translate-y-1'
                     : 'bg-sand-50/70 border-gray-200/80 opacity-70'
