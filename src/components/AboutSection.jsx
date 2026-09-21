@@ -239,7 +239,68 @@ export default function AboutSection({ hideHeader = false }) {
         </div>
 
         {/* ========================================================================= */}
-        {/* SECTION 2: VISION, MISSION & 2038 BHAG (UNIFIED LUXURY DESIGN) */}
+        {/* SECTION 2: FOUNDER & LEADERSHIP SPOTLIGHT */}
+        {/* ========================================================================= */}
+        <div className="bg-sand-50 rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-cyan block">Leadership Spotlight</span>
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-brand-slate">Meet Our Founder</h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Founder Photo */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative group max-w-xs sm:max-w-sm w-full">
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-brand-cyan to-brand-orange rounded-3xl blur-md opacity-40 group-hover:opacity-75 transition duration-500"></div>
+                <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-900">
+                  <img
+                    src={BRAND_INFO.founder.image}
+                    alt={BRAND_INFO.founder.name}
+                    className="w-full h-80 sm:h-96 object-cover object-top"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-5 text-white">
+                    <h3 className="font-serif text-xl font-bold">{BRAND_INFO.founder.name}</h3>
+                    <span className="text-xs text-brand-cyan font-semibold block">{BRAND_INFO.founder.role}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Founder Details & Quote */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-3">
+                <h3 className="font-serif text-2xl font-bold text-brand-slate">{BRAND_INFO.founder.name}</h3>
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-brand-cyan-light text-brand-cyan border border-brand-cyan/20">
+                  {BRAND_INFO.founder.role}
+                </span>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans pt-2">
+                  {BRAND_INFO.founder.bio}
+                </p>
+              </div>
+
+              {/* Founder Quote Card */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-brand-cyan/20 shadow-sm space-y-2">
+                <Quote className="w-5 h-5 text-brand-cyan" />
+                <p className="text-xs sm:text-sm italic font-serif text-brand-slate font-medium leading-relaxed">
+                  "{BRAND_INFO.founder.quote}"
+                </p>
+              </div>
+
+              {/* Highlights List */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {BRAND_INFO.founder.highlights.map((h, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-gray-200 text-xs font-semibold text-brand-slate">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SECTION 3: VISION & MISSION */}
         {/* ========================================================================= */}
         <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-brand-cyan/30 shadow-2xl space-y-10 relative overflow-hidden">
           {/* Background Ambient Glows */}
@@ -318,67 +379,6 @@ export default function AboutSection({ hideHeader = false }) {
               <p className="font-serif text-base sm:text-xl font-bold text-gray-100 italic leading-relaxed">
                 "We don't just sell properties. We create destinations where families build lifelong memories."
               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* ========================================================================= */}
-        {/* SECTION 3: FOUNDER & LEADERSHIP SPOTLIGHT */}
-        {/* ========================================================================= */}
-        <div className="bg-sand-50 rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-cyan block">Leadership Spotlight</span>
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-brand-slate">Meet Our Founder</h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Founder Photo */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative group max-w-xs sm:max-w-sm w-full">
-                <div className="absolute -inset-1.5 bg-gradient-to-r from-brand-cyan to-brand-orange rounded-3xl blur-md opacity-40 group-hover:opacity-75 transition duration-500"></div>
-                <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-900">
-                  <img
-                    src={BRAND_INFO.founder.image}
-                    alt={BRAND_INFO.founder.name}
-                    className="w-full h-80 sm:h-96 object-cover object-top"
-                  />
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-5 text-white">
-                    <h3 className="font-serif text-xl font-bold">{BRAND_INFO.founder.name}</h3>
-                    <span className="text-xs text-brand-cyan font-semibold block">{BRAND_INFO.founder.role}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Founder Details & Quote */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="space-y-3">
-                <h3 className="font-serif text-2xl font-bold text-brand-slate">{BRAND_INFO.founder.name}</h3>
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-brand-cyan-light text-brand-cyan border border-brand-cyan/20">
-                  {BRAND_INFO.founder.role}
-                </span>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans pt-2">
-                  {BRAND_INFO.founder.bio}
-                </p>
-              </div>
-
-              {/* Founder Quote Card */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-brand-cyan/20 shadow-sm space-y-2">
-                <Quote className="w-5 h-5 text-brand-cyan" />
-                <p className="text-xs sm:text-sm italic font-serif text-brand-slate font-medium leading-relaxed">
-                  "{BRAND_INFO.founder.quote}"
-                </p>
-              </div>
-
-              {/* Highlights List */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {BRAND_INFO.founder.highlights.map((h, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-gray-200 text-xs font-semibold text-brand-slate">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                    <span>{h}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
