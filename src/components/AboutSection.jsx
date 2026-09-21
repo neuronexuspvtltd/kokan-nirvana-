@@ -253,15 +253,15 @@ export default function AboutSection({ hideHeader = false }) {
               <span>Strategic Direction & Purpose</span>
             </span>
             <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white tracking-tight">
-              Vision, Mission & 2038 BHAG
+              Vision & Mission
             </h2>
             <p className="text-gray-300 text-xs sm:text-sm font-sans">
               Our guiding principles driving long-term value, customer trust, and coastal community development across Konkan.
             </p>
           </div>
 
-          {/* 3 Unified Cards Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10 items-stretch">
+          {/* 2 Unified Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 relative z-10 items-stretch">
             
             {/* Card 1: Our Vision */}
             <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-brand-cyan/50 shadow-lg hover:shadow-brand-cyan/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
@@ -306,30 +306,6 @@ export default function AboutSection({ hideHeader = false }) {
               <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-brand-orange uppercase tracking-wider">
                 <span>100% Legal Clarity & Quality</span>
                 <ShieldCheck className="w-4 h-4 text-brand-orange opacity-80" />
-              </div>
-            </div>
-
-            {/* Card 3: 2038 Vision (BHAG) */}
-            <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-amber-500/30 hover:border-amber-400 shadow-lg hover:shadow-amber-500/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-500"></div>
-
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center justify-center shadow-inner">
-                  <Users className="w-6 h-6" />
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-400 block">Our 2038 BHAG Target</span>
-                  <h3 className="font-serif text-2xl font-bold text-amber-400">{BRAND_INFO.vision2038.target}</h3>
-                  <span className="text-xs font-semibold text-gray-300 block">{BRAND_INFO.vision2038.subtitle}</span>
-                </div>
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans pt-1">
-                  {BRAND_INFO.vision2038.text}
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-amber-400 uppercase tracking-wider">
-                <span>Building Coastal Communities</span>
-                <HeartHandshake className="w-4 h-4 text-amber-400 opacity-80" />
               </div>
             </div>
 
