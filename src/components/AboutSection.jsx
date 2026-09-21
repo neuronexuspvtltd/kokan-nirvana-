@@ -55,19 +55,11 @@ function AnimatedJourneyTimeline({ items }) {
       {/* Background Vertical Line Track (Starts at center of Node 1, ends at center of Node 5) */}
       <div className="absolute left-7 sm:left-40 top-[2.25rem] bottom-[2.25rem] w-1 bg-gray-200 rounded-full"></div>
 
-      {/* Animated Filled Line */}
+      {/* Animated Filled Line with Glowing Tip */}
       <div
-        className="absolute left-7 sm:left-40 top-[2.25rem] w-1 rounded-full bg-gradient-to-b from-brand-cyan via-blue-500 to-brand-orange shadow-[0_0_12px_rgba(14,165,233,0.8)] transition-all duration-150 ease-out"
+        className="absolute left-7 sm:left-40 top-[2.25rem] w-1 rounded-full bg-gradient-to-b from-brand-cyan via-blue-500 to-brand-orange shadow-[0_0_12px_rgba(14,165,233,0.8)] transition-all duration-150 ease-out after:content-[''] after:absolute after:-bottom-1 after:-left-1 after:w-3 after:h-3 after:rounded-full after:bg-brand-cyan after:shadow-[0_0_10px_#0ea5e9]"
         style={{ height: `calc((100% - 4.5rem) * ${scrollProgress / 100})` }}
       ></div>
-
-      {/* Traveling Glowing Beacon Dot */}
-      <div
-        className="absolute left-7 sm:left-40 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-brand-cyan border-4 border-white shadow-[0_0_18px_#0ea5e9] z-20 transition-all duration-150 ease-out flex items-center justify-center pointer-events-none"
-        style={{ top: `calc(2.25rem + (100% - 4.5rem) * ${scrollProgress / 100})` }}
-      >
-        <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
-      </div>
 
       {/* Timeline Items */}
       <div className="space-y-10 sm:space-y-12 relative z-10">
@@ -91,16 +83,17 @@ function AnimatedJourneyTimeline({ items }) {
               </div>
 
               {/* Bullet Node (Centered on Line) */}
-              <div className="absolute left-7 sm:left-40 top-3 sm:top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+              <div className="absolute left-7 sm:left-40 top-3 sm:top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-10">
                 <div
                   className={`w-6 h-6 rounded-full border-4 transition-all duration-500 flex items-center justify-center ${
                     isPassed
                       ? 'bg-brand-cyan border-white shadow-[0_0_14px_#0ea5e9] scale-110'
-                      : 'bg-white border-gray-300'
+                      : 'bg-white border-gray-300 scale-100'
                   }`}
                 >
+                  <span className={`w-2 h-2 rounded-full transition-colors duration-300 ${isPassed ? 'bg-white' : 'bg-gray-300'}`}></span>
                   {isActive && (
-                    <span className="absolute w-8 h-8 rounded-full bg-brand-cyan/30 animate-ping"></span>
+                    <span className="absolute w-8 h-8 rounded-full bg-brand-cyan/25 animate-ping pointer-events-none"></span>
                   )}
                 </div>
               </div>
