@@ -131,82 +131,107 @@ export default function AboutSection({ hideHeader = false }) {
         </div>
 
         {/* ========================================================================= */}
-        {/* SECTION 2: VISION, MISSION & 2038 BHAG (3 PILLAR CARDS) */}
+        {/* SECTION 2: VISION, MISSION & 2038 BHAG (UNIFIED LUXURY DESIGN) */}
         {/* ========================================================================= */}
-        <div className="space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-brand-cyan-light text-brand-cyan border border-brand-cyan/20">
+        <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-brand-cyan/30 shadow-2xl space-y-10 relative overflow-hidden">
+          {/* Background Ambient Glows */}
+          <div className="absolute top-0 right-1/4 w-80 h-80 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3 relative z-10">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30">
               <Compass className="w-3.5 h-3.5" />
-              <span>Strategic Direction</span>
+              <span>Strategic Direction & Purpose</span>
             </span>
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-brand-slate">
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white tracking-tight">
               Vision, Mission & 2038 BHAG
             </h2>
-            <p className="text-gray-600 text-xs sm:text-sm">
-              Our guiding principles driving long-term value, customer trust, and community development across Konkan.
+            <p className="text-gray-300 text-xs sm:text-sm font-sans">
+              Our guiding principles driving long-term value, customer trust, and coastal community development across Konkan.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {/* Our Vision */}
-            <div className="bg-sand-50 rounded-3xl p-6 sm:p-8 border border-brand-cyan/20 shadow-sm flex flex-col justify-between hover:shadow-md transition-all relative overflow-hidden group">
-              <div className="space-y-4 relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-brand-cyan text-white flex items-center justify-center shadow-md">
+          {/* 3 Unified Cards Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10 items-stretch">
+            
+            {/* Card 1: Our Vision */}
+            <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-brand-cyan/50 shadow-lg hover:shadow-brand-cyan/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-blue-500"></div>
+              
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 flex items-center justify-center shadow-inner">
                   <Eye className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif text-xl font-bold text-brand-slate">{BRAND_INFO.vision.title}</h3>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-cyan block">Strategic Outlook</span>
+                  <h3 className="font-serif text-xl font-bold text-white">{BRAND_INFO.vision.title}</h3>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans pt-1">
                   {BRAND_INFO.vision.text}
                 </p>
               </div>
-              <div className="pt-6 border-t border-gray-200/60 mt-6 text-[11px] font-bold text-brand-cyan uppercase tracking-wider">
-                Enhancing Lives & Legacies
+
+              <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-brand-cyan uppercase tracking-wider">
+                <span>Enhancing Lives & Legacies</span>
+                <Sparkles className="w-4 h-4 text-brand-cyan opacity-80" />
               </div>
             </div>
 
-            {/* Our Mission */}
-            <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-8 border border-brand-cyan/30 shadow-xl flex flex-col justify-between relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/15 rounded-full blur-2xl pointer-events-none"></div>
-              <div className="space-y-4 relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-brand-orange text-white flex items-center justify-center shadow-md">
+            {/* Card 2: Our Mission */}
+            <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-brand-orange/50 shadow-lg hover:shadow-brand-orange/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-amber-500"></div>
+
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-brand-orange/15 text-brand-orange border border-brand-orange/30 flex items-center justify-center shadow-inner">
                   <Target className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif text-xl font-bold text-white">{BRAND_INFO.mission.title}</h3>
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-orange block">Execution Commitment</span>
+                  <h3 className="font-serif text-xl font-bold text-white">{BRAND_INFO.mission.title}</h3>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans pt-1">
                   {BRAND_INFO.mission.text}
                 </p>
               </div>
-              <div className="pt-6 border-t border-white/15 mt-6 text-[11px] font-bold text-brand-orange uppercase tracking-wider">
-                100% Transparency & Superior Quality
+
+              <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-brand-orange uppercase tracking-wider">
+                <span>100% Legal Clarity & Quality</span>
+                <ShieldCheck className="w-4 h-4 text-brand-orange opacity-80" />
               </div>
             </div>
 
-            {/* 2038 Vision (BHAG) */}
-            <div className="bg-sand-50 rounded-3xl p-6 sm:p-8 border border-amber-400/40 shadow-sm flex flex-col justify-between hover:shadow-md transition-all relative overflow-hidden group">
-              <div className="space-y-4 relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md">
+            {/* Card 3: 2038 Vision (BHAG) */}
+            <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-amber-500/30 hover:border-amber-400 shadow-lg hover:shadow-amber-500/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-500"></div>
+
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center justify-center shadow-inner">
                   <Users className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-600">Our BHAG Goal</span>
-                  <h3 className="font-serif text-xl font-bold text-brand-slate">{BRAND_INFO.vision2038.target}</h3>
-                  <span className="text-xs font-bold text-gray-500 block">{BRAND_INFO.vision2038.subtitle}</span>
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-400 block">Our 2038 BHAG Target</span>
+                  <h3 className="font-serif text-2xl font-bold text-amber-400">{BRAND_INFO.vision2038.target}</h3>
+                  <span className="text-xs font-semibold text-gray-300 block">{BRAND_INFO.vision2038.subtitle}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans">
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans pt-1">
                   {BRAND_INFO.vision2038.text}
                 </p>
               </div>
-              <div className="pt-6 border-t border-gray-200/60 mt-6 text-[11px] font-bold text-amber-600 uppercase tracking-wider">
-                "{BRAND_INFO.vision2038.quote}"
+
+              <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-amber-400 uppercase tracking-wider">
+                <span>Building Coastal Communities</span>
+                <HeartHandshake className="w-4 h-4 text-amber-400 opacity-80" />
               </div>
             </div>
+
           </div>
 
           {/* Inspirational Quote Banner */}
-          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-8 text-center border border-brand-cyan/30 shadow-xl relative overflow-hidden">
-            <div className="max-w-3xl mx-auto space-y-2 relative z-10">
-              <Quote className="w-8 h-8 text-brand-cyan mx-auto opacity-70" />
-              <p className="font-serif text-lg sm:text-2xl font-bold text-gray-100 italic leading-relaxed">
+          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 text-center border border-white/10 relative overflow-hidden z-10">
+            <div className="max-w-3xl mx-auto space-y-2">
+              <Quote className="w-7 h-7 text-brand-cyan mx-auto opacity-80" />
+              <p className="font-serif text-base sm:text-xl font-bold text-gray-100 italic leading-relaxed">
                 "We don't just sell properties. We create destinations where families build lifelong memories."
               </p>
             </div>
