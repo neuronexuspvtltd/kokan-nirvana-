@@ -243,18 +243,25 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "kokan-casa",
-    title: "Kokan Casa Coastal Cottages",
-    location: "Dapoli Coastline, Ratnagiri",
-    type: "Boutique Coastal Row Houses",
+    title: "Konkan Casa Premium Residential Plots",
+    location: "Mouje Aghari, Dapoli, Ratnagiri",
+    type: "Premium Residential Plotting Layout",
     category: "Sea View Plot",
-    plotArea: "1BHK & 2BHK Holiday Cottages",
+    plotArea: "1,800 - 3,500 sq.ft. Demarcated Plots",
     startingPrice: "On Request",
     image: "/properties/kokan_casa/cover.jpg",
     gallery: [
       "/properties/kokan_casa/cover.jpg",
     ],
-    features: ["Authentic Konkan Roofline Aesthetics", "Close Proximity to Coastline", "100% Clear 7/12 Title", "Turnkey Possessions", "Rental Homestay Yields"],
-    description: "Charming coastal residential row house project in Dapoli. Offers turnkey 1BHK & 2BHK holiday cottages designed for weekend retreats and rental returns.",
+    features: [
+      "Grand Entrance Gateway & Compound Wall",
+      "Wide Internal Tar Roads & Avenue Plantation",
+      "Individual Water Line & Electricity Provisions",
+      "Stone Demarcated Individual Plots",
+      "Planned Rainwater Drainage System",
+      "100% Clear 7/12 Title Extract",
+    ],
+    description: "Premium residential plotting project nestled in the peaceful surroundings of Mouje Aghari, Dapoli. Thoughtfully designed with a grand entrance gateway, wide internal tar roads, individual stone plot demarcations, electricity, water lines, and green avenue plantations — offering an ideal site to build a holiday home, retirement villa, or dream residence.",
   },
 ];
 
