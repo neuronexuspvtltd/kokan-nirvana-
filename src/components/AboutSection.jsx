@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SectionHeading from './SectionHeading';
 import Logo from './Logo';
 import { BRAND_INFO } from '../data/websiteData';
@@ -22,6 +22,121 @@ import {
   Calendar,
 } from 'lucide-react';
 
+/* ========================================================================= */
+/* SCROLL-ANIMATED JOURNEY TIMELINE COMPONENT */
+/* ========================================================================= */
+function AnimatedJourneyTimeline({ items }) {
+  const containerRef = useRef(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Start progress when top of container reaches 75% of viewport
+      const startPos = windowHeight * 0.75;
+      const totalHeight = rect.height;
+      const currentScroll = startPos - rect.top;
+
+      let progress = (currentScroll / totalHeight) * 100;
+      progress = Math.max(0, Math.min(100, progress));
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial evaluation
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative max-w-4xl mx-auto py-6">
+      {/* Background Vertical Line Track */}
+      <div className="absolute left-6 sm:left-36 top-8 bottom-8 w-1 bg-gray-200 rounded-full"></div>
+
+      {/* Animated Filled Line */}
+      <div
+        className="absolute left-6 sm:left-36 top-8 w-1 rounded-full bg-gradient-to-b from-brand-cyan via-blue-500 to-brand-orange shadow-[0_0_12px_rgba(14,165,233,0.8)] transition-all duration-150 ease-out"
+        style={{ height: `${scrollProgress}%` }}
+      ></div>
+
+      {/* Traveling Glowing Beacon Dot */}
+      <div
+        className="absolute left-6 sm:left-36 -translate-x-[10px] -translate-y-1/2 w-6 h-6 rounded-full bg-brand-cyan border-4 border-white shadow-[0_0_20px_#0ea5e9] z-20 transition-all duration-150 ease-out flex items-center justify-center pointer-events-none"
+        style={{ top: `calc(2rem + ${scrollProgress * 0.88}%)` }}
+      >
+        <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+      </div>
+
+      {/* Timeline Items */}
+      <div className="space-y-10 sm:space-y-12 relative z-10">
+        {items.map((item, idx) => {
+          const itemThreshold = (idx / (items.length - 1)) * 100;
+          const isPassed = scrollProgress >= itemThreshold - 5;
+          const isActive = Math.abs(scrollProgress - itemThreshold) < 15;
+
+          return (
+            <div key={idx} className="relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 group">
+              
+              {/* Year Label */}
+              <div className="sm:w-28 text-left sm:text-right pl-14 sm:pl-0">
+                <span
+                  className={`font-serif text-sm sm:text-lg font-bold transition-all duration-300 block ${
+                    isPassed ? 'text-brand-cyan scale-105' : 'text-gray-400'
+                  }`}
+                >
+                  {item.year}
+                </span>
+              </div>
+
+              {/* Bullet Node */}
+              <div className="absolute left-6 sm:left-36 -translate-x-1/2 flex items-center justify-center">
+                <div
+                  className={`w-6 h-6 rounded-full border-4 transition-all duration-500 flex items-center justify-center ${
+                    isPassed
+                      ? 'bg-brand-cyan border-white shadow-[0_0_14px_#0ea5e9] scale-110'
+                      : 'bg-white border-gray-300'
+                  }`}
+                >
+                  {isActive && (
+                    <span className="absolute w-9 h-9 rounded-full bg-brand-cyan/30 animate-ping"></span>
+                  )}
+                </div>
+              </div>
+
+              {/* Content Card */}
+              <div
+                className={`ml-14 sm:ml-0 flex-1 p-5 sm:p-6 rounded-2xl border transition-all duration-500 ${
+                  isPassed
+                    ? 'bg-white border-brand-cyan/40 shadow-xl shadow-brand-cyan/5 -translate-y-1'
+                    : 'bg-sand-50/70 border-gray-200/80 opacity-70'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1.5">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-brand-slate">{item.title}</h3>
+                  <span
+                    className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider transition-colors ${
+                      isPassed ? 'bg-brand-cyan-light text-brand-cyan border border-brand-cyan/20' : 'bg-gray-200 text-gray-500'
+                    }`}
+                  >
+                    Milestone {idx + 1}
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans">{item.desc}</p>
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ========================================================================= */
+/* MAIN ABOUT SECTION */
+/* ========================================================================= */
 export default function AboutSection({ hideHeader = false }) {
   return (
     <section id="about" className={`${hideHeader ? 'pt-6 sm:pt-12 pb-16 sm:pb-24' : 'py-16 sm:py-20 lg:py-28'} bg-white relative overflow-hidden`}>
@@ -335,7 +450,7 @@ export default function AboutSection({ hideHeader = false }) {
         </div>
 
         {/* ========================================================================= */}
-        {/* SECTION 5: OUR JOURNEY (TIMELINE) */}
+        {/* SECTION 5: OUR JOURNEY (SCROLL-ANIMATED TIMELINE) */}
         {/* ========================================================================= */}
         <div className="space-y-8">
           <div className="text-center max-w-3xl mx-auto space-y-2">
@@ -344,29 +459,12 @@ export default function AboutSection({ hideHeader = false }) {
               Our Journey
             </h2>
             <p className="text-xs sm:text-sm text-gray-600">
-              Building trust. Delivering value. Creating legacies.
+              Building trust. Delivering value. Creating legacies. Scroll down to trace our history.
             </p>
           </div>
 
-          <div className="relative border-l-2 border-brand-cyan/30 ml-4 sm:ml-32 space-y-8 py-4">
-            {BRAND_INFO.journeyTimeline.map((item, idx) => (
-              <div key={idx} className="relative pl-6 sm:pl-8 group">
-                {/* Bullet */}
-                <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-cyan border-4 border-white shadow-md group-hover:scale-125 transition-transform"></div>
-                
-                {/* Year Label */}
-                <span className="sm:absolute sm:-left-32 sm:top-1 font-serif text-sm sm:text-base font-bold text-brand-cyan block sm:text-right w-24">
-                  {item.year}
-                </span>
-
-                {/* Content Box */}
-                <div className="bg-sand-50 p-4 sm:p-5 rounded-2xl border border-gray-200/80 shadow-sm space-y-1 max-w-2xl">
-                  <h3 className="font-serif text-base font-bold text-brand-slate">{item.title}</h3>
-                  <p className="text-xs text-gray-600 leading-relaxed font-sans">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Interactive Scroll Timeline */}
+          <AnimatedJourneyTimeline items={BRAND_INFO.journeyTimeline} />
 
           <div className="text-center pt-4">
             <p className="font-serif text-sm sm:text-base font-bold italic text-brand-slate">
