@@ -20,6 +20,8 @@ import {
   BarChart,
   Compass,
   Calendar,
+  Trophy,
+  Star,
 } from 'lucide-react';
 
 /* ========================================================================= */
@@ -300,7 +302,7 @@ export default function AboutSection({ hideHeader = false }) {
         </div>
 
         {/* ========================================================================= */}
-        {/* SECTION 3: VISION & MISSION */}
+        {/* SECTION 3: VISION & BHAG GOALS (OFFICIAL ROADMAP CARDS) */}
         {/* ========================================================================= */}
         <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-brand-cyan/30 shadow-2xl space-y-10 relative overflow-hidden">
           {/* Background Ambient Glows */}
@@ -314,59 +316,129 @@ export default function AboutSection({ hideHeader = false }) {
               <span>Strategic Direction & Purpose</span>
             </span>
             <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white tracking-tight">
-              Vision & Mission
+              Vision & BHAG Goals
             </h2>
             <p className="text-gray-300 text-xs sm:text-sm font-sans">
-              Our guiding principles driving long-term value, customer trust, and coastal community development across Konkan.
+              Our 3–5 year strategic roadmap and 2038 commitment to building coastal communities across Konkan.
             </p>
           </div>
 
-          {/* 2 Unified Cards Grid */}
+          {/* 2 Unified Roadmap Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 relative z-10 items-stretch">
             
-            {/* Card 1: Our Vision */}
+            {/* Card 1: 3–5 Year Vision (FEB 2031) */}
             <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-brand-cyan/50 shadow-lg hover:shadow-brand-cyan/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-blue-500"></div>
               
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 flex items-center justify-center shadow-inner">
-                  <Eye className="w-6 h-6" />
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-cyan block">3–5 Year Vision</span>
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">Our 2031 Vision</h3>
+                  </div>
+                  <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-brand-cyan border border-blue-500/30 font-mono uppercase tracking-wider">
+                    FEB 2031
+                  </span>
                 </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-cyan block">Strategic Outlook</span>
-                  <h3 className="font-serif text-xl font-bold text-white">{BRAND_INFO.vision.title}</h3>
+
+                <div className="space-y-4">
+                  {/* Point 1 */}
+                  <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="w-10 h-10 rounded-xl bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <TrendingUp className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-serif text-lg font-bold text-white block">₹500 Cr</span>
+                      <span className="text-xs font-bold text-brand-cyan uppercase tracking-wider">TURNOVER TARGET</span>
+                    </div>
+                  </div>
+
+                  {/* Point 2 */}
+                  <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-serif text-base sm:text-lg font-bold text-white block">50–100 Team Members</span>
+                      <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">HIGH PERFORMANCE TEAM</span>
+                    </div>
+                  </div>
+
+                  {/* Point 3 */}
+                  <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Building2 className="w-5 h-5" />
+                    </div>
+                    <div className="space-y-1">
+                      <span className="font-serif text-sm font-bold text-white block leading-snug">Strong Corporate Presence</span>
+                      <p className="text-xs text-gray-300 leading-relaxed font-sans">
+                        Digital-first systems, corporate office, presence across Maharashtra & industry-leading brand reputation.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans pt-1">
-                  {BRAND_INFO.vision.text}
-                </p>
               </div>
 
               <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-brand-cyan uppercase tracking-wider">
-                <span>Enhancing Lives & Legacies</span>
+                <span>Expansion & Market Leadership</span>
                 <Sparkles className="w-4 h-4 text-brand-cyan opacity-80" />
               </div>
             </div>
 
-            {/* Card 2: Our Mission */}
-            <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-brand-orange/50 shadow-lg hover:shadow-brand-orange/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-amber-500"></div>
+            {/* Card 2: 2038 OUR BHAG */}
+            <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-amber-500/30 hover:border-amber-400 shadow-lg hover:shadow-amber-500/10 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-brand-orange"></div>
 
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-orange/15 text-brand-orange border border-brand-orange/30 flex items-center justify-center shadow-inner">
-                  <Target className="w-6 h-6" />
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-400 block">Our BHAG Goal</span>
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-amber-400">2038 BHAG Target</h3>
+                  </div>
+                  <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 font-mono uppercase tracking-wider">
+                    2038
+                  </span>
                 </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-orange block">Execution Commitment</span>
-                  <h3 className="font-serif text-xl font-bold text-white">{BRAND_INFO.mission.title}</h3>
+
+                <div className="space-y-4">
+                  {/* Point 1 */}
+                  <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-serif text-lg font-bold text-white block">10,000+ Happy Families</span>
+                      <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">COMMUNITY TRUST</span>
+                    </div>
+                  </div>
+
+                  {/* Point 2 */}
+                  <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="w-10 h-10 rounded-xl bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Trophy className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-serif text-sm font-bold text-white block leading-snug">Most Trusted Coastal Property Brand</span>
+                      <span className="text-xs text-gray-300 font-medium block">Premier destination developer in Konkan</span>
+                    </div>
+                  </div>
+
+                  {/* Point 3 */}
+                  <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Star className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-serif text-sm font-bold text-white block leading-snug">National Recognition Across India</span>
+                      <span className="text-xs text-gray-300 font-medium block">Recognized for top quality, trust & customer experience</span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans pt-1">
-                  {BRAND_INFO.mission.text}
-                </p>
               </div>
 
-              <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-brand-orange uppercase tracking-wider">
-                <span>100% Legal Clarity & Quality</span>
-                <ShieldCheck className="w-4 h-4 text-brand-orange opacity-80" />
+              <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between text-[11px] font-bold text-amber-400 uppercase tracking-wider">
+                <span>Building Coastal Communities</span>
+                <HeartHandshake className="w-4 h-4 text-amber-400 opacity-80" />
               </div>
             </div>
 
