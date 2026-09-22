@@ -278,7 +278,7 @@ export default function AdminPage() {
         'Phone': '+91 98765 43210',
         'Email': 'aniket.patil@example.com',
         'Interest': 'Sea View N.A. Plot',
-        'Note / Requirements': 'Interested in 5 Guntha plot near Ladghar beach Dapoli',
+        'Note / Requirements': 'Interested in 5,445 sq.ft. plot near Ladghar beach Dapoli',
         'Date': new Date().toISOString().slice(0, 16).replace('T', ' '),
       },
       {

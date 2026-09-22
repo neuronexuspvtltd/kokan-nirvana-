@@ -107,7 +107,7 @@ export const PROPERTIES_DATA = [
     location: "Anjarle Beach Cliff, Dapoli",
     type: "Cliffside Collector NA Plot",
     category: "Sea View Plot",
-    plotArea: "2 - 5 Guntha (2,178 - 5,445 sq.ft.)",
+    plotArea: "2,178 - 5,445 sq.ft.",
     startingPrice: "On Request",
     image: "/properties/sea_gate/cover.jpg",
     gallery: [
@@ -124,7 +124,7 @@ export const PROPERTIES_DATA = [
     location: "Tamastirth Ladghar Dapoli",
     type: "Beachside Collector NA Plot",
     category: "Sea View Plot",
-    plotArea: "3.5 - 11 Guntha (3,811 - 11,979 sq.ft.)",
+    plotArea: "3,811 - 11,979 sq.ft.",
     startingPrice: "On Request",
     image: "/properties/seaclusion/drone1.jpeg",
     gallery: [
@@ -134,7 +134,7 @@ export const PROPERTIES_DATA = [
       "/properties/seaclusion/info.jpeg",
     ],
     features: ["800m Distance From Sea Side", "Near Tamastirth Ladghar & Karde Beach", "Individual Plot Demarcation", "Internal WBM Road", "Gated Entrance & Fencing", "100% Clear 7/12 Title"],
-    description: "Beachside Collector N.A. plot layout situated 800 meters from Tamastirth Ladghar Beach and Karde Beach. Offers expansive plot sizes up to 11 Guntha with complete boundary fencing and grand entrance gate.",
+    description: "Beachside Collector N.A. plot layout situated 800 meters from Tamastirth Ladghar Beach and Karde Beach. Offers expansive plot sizes up to 11,979 sq.ft. with complete boundary fencing and grand entrance gate.",
   },
   {
     id: "azure-vistas",
@@ -142,7 +142,7 @@ export const PROPERTIES_DATA = [
     location: "Ladghar Beach Corridor, Dapoli",
     type: "Collector Sanctioned NA Plot",
     category: "Sea View Plot",
-    plotArea: "2.5 - 5 Guntha (2,722 - 5,445 sq.ft.)",
+    plotArea: "2,722 - 5,445 sq.ft.",
     startingPrice: "On Request",
     image: "/properties/azure_vistas/cover.jpg",
     gallery: [
@@ -158,7 +158,7 @@ export const PROPERTIES_DATA = [
     location: "Tamastirth Ladghar Beach Dapoli",
     type: "Panoramic Plot Layout",
     category: "Nearby Sea Properties",
-    plotArea: "3 - 10 Guntha (3,267 - 10,890 sq.ft.)",
+    plotArea: "3,267 - 10,890 sq.ft.",
     startingPrice: "On Request",
     image: "/properties/hilltop_dapoli/drone1.jpg",
     gallery: [
@@ -196,7 +196,7 @@ export const PROPERTIES_DATA = [
     location: "Tamastirth Ladghar Dapoli",
     type: "Exclusive Coastal Living Plot",
     category: "Nearby Sea Properties",
-    plotArea: "2.5 - 10 Guntha (2,722 - 10,890 sq.ft.)",
+    plotArea: "2,722 - 10,890 sq.ft.",
     startingPrice: "On Request",
     image: "/properties/zen_habited/dji1.jpg",
     gallery: [

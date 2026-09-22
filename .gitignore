@@ -37,6 +37,7 @@ node_modules/
 # Production build output
 dist-ssr/
 *.local
+*.zip
 
 # Editor directories and files
 .vscode/*
