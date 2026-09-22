@@ -137,7 +137,7 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "sea-gate",
-    title: "The Sea Gate Cliffside NA Plots",
+    title: "The Sea Gate Cliffside",
     location: "Anjarle Beach Cliff, Dapoli",
     type: "Cliffside Collector NA Plot",
     category: "Sea View Plot",
