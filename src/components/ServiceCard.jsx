@@ -19,15 +19,11 @@ export default function ServiceCard({ service, onSelect }) {
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-cyan via-brand-orange to-brand-cyan-dark opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
       <div className="space-y-6">
-        {/* Icon & Category Pill */}
+        {/* Icon */}
         <div className="flex items-center justify-between">
           <div className="p-3.5 rounded-2xl bg-brand-cyan-tint text-brand-cyan group-hover:bg-brand-cyan group-hover:text-white transition-colors duration-300 shadow-sm">
             <IconComponent className="w-6 h-6" />
           </div>
-
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-slate bg-sand-100 px-3 py-1 rounded-full border border-gray-200">
-            Collector N.A.
-          </span>
         </div>
 
         {/* Title & Description */}
