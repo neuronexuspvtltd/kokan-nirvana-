@@ -142,7 +142,7 @@ export default function AboutSection({ hideHeader = false }) {
         {!hideHeader && (
           <SectionHeading
             tag="Company Background & Philosophy"
-            title="About Kokan Nirvana"
+            title="About Kokan Nirvana Sea-Shore Property"
             subtitle="Building dreams by the shore, creating value for a lifetime."
           />
         )}

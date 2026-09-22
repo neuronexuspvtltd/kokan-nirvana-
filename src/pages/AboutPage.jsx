@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <SubpageHero
         tag="Company Background"
-        title="About Kokan Nirvana"
+        title="About Kokan Nirvana Sea-Shore Property"
         subtitle="Building trust and delivering verified sea-shore property investments across Dapoli, Ratnagiri."
         bgImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85"
       />
