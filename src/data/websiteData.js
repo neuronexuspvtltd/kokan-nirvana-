@@ -268,9 +268,9 @@ export const PROPERTIES_DATA = [
 export const SERVICES_DATA = [
   {
     id: "na-plots",
-    title: "Residential Collector N.A. Plots",
+    title: "Residential Sea View N.A. Plots",
     icon: "Trees",
-    tag: "Collector N.A. Layouts",
+    tag: "Sea View N.A. Layouts",
     description: "Sanctioned N.A. plot layouts with demarcated boundaries, internal tar roads, electricity, and separate title extract for every buyer.",
     priceRange: "On Request",
     features: [

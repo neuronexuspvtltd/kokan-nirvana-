@@ -110,10 +110,22 @@ export const getServices = () => {
   const stored = getStoredData('services', null);
   if (!stored) return SERVICES_DATA;
 
+  let modified = false;
+  const synced = stored.map((item) => {
+    const defaultSvc = SERVICES_DATA.find((s) => s.id === item.id);
+    if (defaultSvc) {
+      if (item.title !== defaultSvc.title || item.tag !== defaultSvc.tag) {
+        modified = true;
+        return { ...item, title: defaultSvc.title, tag: defaultSvc.tag };
+      }
+    }
+    return item;
+  });
+
   const hasObsolete = stored.some((s) => s.id === 'legal-advisory');
-  if (hasObsolete) {
-    setStoredData('services', SERVICES_DATA);
-    return SERVICES_DATA;
+  if (hasObsolete || modified) {
+    setStoredData('services', synced);
+    return synced;
   }
 
   return stored;
