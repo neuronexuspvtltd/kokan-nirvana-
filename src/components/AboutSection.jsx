@@ -168,7 +168,7 @@ export default function AboutSection({ hideHeader = false }) {
               </h3>
 
               <p className="text-xs text-gray-300 leading-relaxed font-sans mb-6">
-                Kokan Nirvana Sea-Shore Properties LLP is a trusted real estate developer in Konkan, committed to delivering premium, sustainable, and value-driven properties in the most scenic coastal and hill locations.
+                To transform lives by helping families own their dream property in Konkan while ensuring trust, respect, transparency, and long-term value.
               </p>
 
               {/* Purpose Quote Box */}
