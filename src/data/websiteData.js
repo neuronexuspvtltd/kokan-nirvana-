@@ -32,7 +32,7 @@ export const BRAND_INFO = {
     name: "Mr. Shubham Anvekar",
     role: "Founder & Managing Director",
     image: "/team/shubham_anvekar.jpg",
-    bio: "Driven by vision and passion, committed to delivering premium coastal living experiences with trust, transparency and quality.",
+    bio: "To Contribute to Positive Changes in Many People's Lives by Helping them Achieve their Dreams and Live Life with Respect, Regardless of Their Financial and Social Status.",
     quote: "Our mission is simple – to build more than just properties, we build trust, lifestyle and a better tomorrow for our customers.",
     highlights: [
       "8+ Years of Industry Experience",
