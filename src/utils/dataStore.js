@@ -84,12 +84,13 @@ export const getProperties = () => {
         updatedItem.category = defaultProp.category;
       }
 
-      // Sync zen-habited specific fields
-      if (item.id === 'zen-habited' && item.title !== defaultProp.title) {
+      // Sync property specific fields if updated in defaults
+      if (item.title !== defaultProp.title || item.plotArea !== defaultProp.plotArea) {
         modified = true;
         updatedItem.title = defaultProp.title;
         updatedItem.location = defaultProp.location;
         updatedItem.type = defaultProp.type;
+        updatedItem.plotArea = defaultProp.plotArea;
         updatedItem.startingPrice = defaultProp.startingPrice;
         updatedItem.features = defaultProp.features;
         updatedItem.description = defaultProp.description;

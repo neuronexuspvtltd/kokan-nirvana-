@@ -210,11 +210,11 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "orchard-estate",
-    title: "Orchard Estate NA Plot Layout",
-    location: "Dapoli Green Corridor",
-    type: "Collector NA Plot Layout",
+    title: "The Orchard Estate Premium Farmhouse Plots",
+    location: "Rajapur, Taluka Dapoli, Ratnagiri - 415612",
+    type: "Premium Farmhouse Plotting Layout",
     category: "Nearby Sea Properties",
-    plotArea: "3,000 - 8,000 sq.ft.",
+    plotArea: "Approx. 20,000 sq.ft. (Half Acre)",
     startingPrice: "On Request",
     image: "/properties/orchard_estate/img1.jpeg",
     gallery: [
@@ -223,8 +223,15 @@ export const PROPERTIES_DATA = [
       "/properties/orchard_estate/img3.jpeg",
       "/properties/orchard_estate/img4.jpeg",
     ],
-    features: ["Surrounded by Mango & Betel Nut Groves", "Internal Tar Roads", "Demarcated Plots", "Water & Power Connections", "100% Clear 7/12 Title"],
-    description: "Spacious Collector N.A. plot layout nestled amidst lush Konkan fruit orchards in Dapoli. Ideal for custom villa construction and peaceful weekend living.",
+    features: [
+      "Space for Farmhouse & Orchard",
+      "Concrete Main Road & Tar Internal Roads",
+      "Internal Street Lighting",
+      "Water & Electricity Provision to Each Plot",
+      "Rainwater Drainage System",
+      "Compound Wall & Grand Entrance Gate",
+    ],
+    description: "A premium farmhouse plotting project in Rajapur, Dapoli, Ratnagiri, created for your own farmhouse, orchard, garden and family retreat. Excellent connectivity via NH 66 & Konkan Railway.",
   },
   {
     id: "hilltop-dapoli",
