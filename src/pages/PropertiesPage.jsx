@@ -38,7 +38,7 @@ export default function PropertiesPage() {
       <SubpageHero
         tag="Complete Portfolio"
         title="Properties & Coastal Sites"
-        subtitle="Discover Collector NA Sea-View Plots, Sea-View Row Houses, Sea-View Apartments, Bungalows & Premium Coastal Properties in Dapoli."
+        subtitle="Discover Premium Coastal Properties in Dapoli."
         bgImage="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2000&q=85"
       />
 
