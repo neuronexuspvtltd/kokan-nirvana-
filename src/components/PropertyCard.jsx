@@ -26,11 +26,6 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
             <Waves className="w-3 h-3 text-white" />
             <span>{property.category}</span>
           </span>
-
-          <span className="px-2.5 py-1 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-slate-900/80 backdrop-blur-md text-emerald-400 shadow-sm border border-emerald-500/40 flex items-center gap-1">
-            <ShieldCheck className="w-3 h-3 text-emerald-400" />
-            <span>7/12 Clear</span>
-          </span>
         </div>
 
         {/* Location & Sea Horizon Tag on Bottom of Image */}
