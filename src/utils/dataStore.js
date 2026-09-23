@@ -106,7 +106,18 @@ export const saveProperties = async (data) => {
   }
 };
 
-export const getServices = () => getStoredData('services', SERVICES_DATA);
+export const getServices = () => {
+  const stored = getStoredData('services', null);
+  if (!stored) return SERVICES_DATA;
+
+  const hasObsolete = stored.some((s) => s.id === 'legal-advisory');
+  if (hasObsolete) {
+    setStoredData('services', SERVICES_DATA);
+    return SERVICES_DATA;
+  }
+
+  return stored;
+};
 export const saveServices = async (data) => {
   setStoredData('services', data);
   if (isFirebaseConfigured()) {

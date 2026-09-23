@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, CheckCircle2, ShieldCheck, Building2, Trees, Home, Landmark, HardHat, FileText } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, ShieldCheck, Building2, Trees, Home, Landmark, HardHat, FileText, Compass } from 'lucide-react';
 
 const iconMap = {
   Trees: Trees,
@@ -8,6 +8,7 @@ const iconMap = {
   Landmark: Landmark,
   HardHat: HardHat,
   FileText: FileText,
+  Compass: Compass,
 };
 
 export default function ServiceCard({ service, onSelect }) {
@@ -50,7 +51,7 @@ export default function ServiceCard({ service, onSelect }) {
       {/* Footer Action */}
       <div className="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
         <div className="text-xs">
-          <span className="text-brand-cyan font-bold block text-[11px]">Turnkey Documentation</span>
+          <span className="text-brand-cyan font-bold block text-[11px]">{service.tag || 'Turnkey Documentation'}</span>
         </div>
 
         <button
