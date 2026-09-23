@@ -104,7 +104,7 @@ export const PROPERTIES_DATA = [
   {
     id: "seaclusion",
     title: "Seaclusion Beachside NA Plots",
-    location: "Tamastirth Ladghar Dapoli",
+    location: "Savane, Anjarle, Dapoli",
     type: "Beachside Collector NA Plot",
     category: "Sea View Plot",
     plotArea: "3,811 - 11,979 sq.ft.",
@@ -116,8 +116,15 @@ export const PROPERTIES_DATA = [
       "/properties/seaclusion/entrance.jpeg",
       "/properties/seaclusion/info.jpeg",
     ],
-    features: ["800m Distance From Sea Side", "Near Tamastirth Ladghar & Karde Beach", "Individual Plot Demarcation", "Internal WBM Road", "Gated Entrance & Fencing", "100% Clear 7/12 Title"],
-    description: "Beachside Collector N.A. plot layout situated 800 meters from Tamastirth Ladghar Beach and Karde Beach. Offers expansive plot sizes up to 11,979 sq.ft. with complete boundary fencing and grand entrance gate.",
+    features: [
+      "Unobstructed Sea View from Every Plot",
+      "Gated Community & Fully Developed Roads",
+      "Luxury Infinity Pool & Club House",
+      "Landscaped Open Spaces & Greenery",
+      "Dedicated Yoga & Nature Trails",
+      "Near Savane & Anjarle Beach",
+    ],
+    description: "Experience premium coastal living at Seaclusion in Savane, Anjarle, Dapoli. Discover thoughtfully designed sea-view plots with unobstructed ocean vistas from every plot, a gated community with fully developed roads, luxury infinity pool & club house, landscaped open spaces, and dedicated yoga & nature trails.",
   },
   {
     id: "azure-vistas",
