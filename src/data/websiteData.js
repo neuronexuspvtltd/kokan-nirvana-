@@ -151,7 +151,7 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "vista-twin-tower",
-    title: "Vista Twin Tower Terrace Houses",
+    title: "Vista Twin Tower",
     location: "Dapoli, Ratnagiri, Maharashtra",
     type: "Premium Sea-View Apartment",
     category: "Sea View Apartment",
