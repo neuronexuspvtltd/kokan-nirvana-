@@ -152,11 +152,11 @@ export const PROPERTIES_DATA = [
   {
     id: "vista-twin-tower",
     title: "Vista Twin Tower Terrace Houses",
-    location: "Tamastirth Ladghar Dapoli",
-    type: "Sea View Terrace Row House",
+    location: "Dapoli, Ratnagiri, Maharashtra",
+    type: "Premium Sea-View Apartment",
     category: "Sea View Apartment",
     plotArea: "1 BHK & 2 BHK (672 & 1,005 sq.ft.)",
-    startingPrice: "On Request",
+    startingPrice: "Starting at ₹42,00,000",
     image: "/properties/vista_twin_tower/twintower.jpg",
     gallery: [
       "/properties/vista_twin_tower/twintower.jpg",
@@ -165,8 +165,15 @@ export const PROPERTIES_DATA = [
       "/properties/vista_twin_tower/actual2.jpg",
       "/properties/vista_twin_tower/info.jpg",
     ],
-    features: ["800m Distance From Sea Side", "1BHK & 2BHK Terrace Row Houses", "RCC Frame & AAC Block Structure", "Granite Kitchen Platform", "Powder Coated Windows", "100% Clear Title"],
-    description: "Modern 1 BHK & 2 BHK sea-view terrace row houses located 800m from Ladghar beach. Built with RCC frame structure, vitrified 2'x2' tile flooring, granite kitchen counters, and private sea-view balconies.",
+    features: [
+      "1 & 2 BHK Sea-View Luxury Apartments",
+      "RERA Approved Residential Towers",
+      "Swimming Pool & Modern Clubhouse",
+      "In-House Restaurant & Dining Facilities",
+      "Uninterrupted Ocean & Sunset Balconies",
+      "24/7 Gated Security & Modern Utilities",
+    ],
+    description: "Premium 1 & 2 BHK sea-view apartments in Dapoli, Konkan starting at ₹42,00,000. Enjoy RERA-approved residential towers with modern amenities including a swimming pool, clubhouse, in-house restaurant, peaceful coastal surroundings, and a beautiful beachside lifestyle.",
   },
   {
     id: "sea-gate",
