@@ -236,11 +236,11 @@ export const PROPERTIES_DATA = [
   {
     id: "hilltop-dapoli",
     title: "The HillTop Dapoli Ocean Sites",
-    location: "Tamastirth Ladghar Beach Dapoli",
-    type: "Panoramic Plot Layout",
+    location: "Near Serenity Hills, Shivaji Nagar Khambona, Bandhware Road, Dapoli - 415712",
+    type: "Premium Hilltop Plots Layout",
     category: "Nearby Sea Properties",
-    plotArea: "3,267 - 10,890 sq.ft.",
-    startingPrice: "On Request",
+    plotArea: "3,200 - 4,500 sq.ft.",
+    startingPrice: "₹700 per sq.ft.",
     image: "/properties/hilltop_dapoli/drone1.jpg",
     gallery: [
       "/properties/hilltop_dapoli/drone1.jpg",
@@ -249,8 +249,15 @@ export const PROPERTIES_DATA = [
       "/properties/hilltop_dapoli/morning1.jpeg",
       "/properties/hilltop_dapoli/info.jpeg",
     ],
-    features: ["2.5 KM Distance From Tamastirth Beach", "Panoramic Sea & Valley View", "Solid WBM Road", "Collector Sanctioned NA", "100% Clear Title Guaranteed", "Gated Security & Solar Lighting"],
-    description: "Ongoing Collector Sanctioned N.A. plot project 2.5 KM from Tamastirth Ladghar Beach. Offers breathtaking panoramic ocean & valley views, solid WBM roads, internal plantation, and gated security.",
+    features: [
+      "24 Exclusive Plots with Hilltop Views",
+      "Kashmir-like Monsoon & Forest Environment",
+      "Gated Community & Compound Wall Security",
+      "Water Supply & Electricity Provision",
+      "Street Lights & Rainwater Drainage System",
+      "Peaceful Weekend Retreat Location",
+    ],
+    description: "Experience panoramic hilltop views at one of Dapoli's elevated locations, surrounded by lush hills, forests and open skies. Offers 24 exclusive plots with Kashmir-like monsoon atmosphere, internal roads, water & electricity supply, street lights, and gated community security near Serenity Hills.",
   },
   {
     id: "zen-habited",
