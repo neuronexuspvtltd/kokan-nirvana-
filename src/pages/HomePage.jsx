@@ -46,7 +46,7 @@ export default function HomePage() {
           <SectionHeading
             tag="Featured Collections"
             title="Explore Our Handpicked Properties"
-            subtitle="Discover top Collector NA plots, sea-view terrace row houses, and luxury coastal residences in Dapoli."
+            subtitle="Discover Collector NA Sea-View Plots, Sea-View Row Houses, Sea-View Apartments, Bungalows & Premium Coastal Properties in Dapoli."
           />
 
           {/* On Mobile: Horizontal Swipeable Carousel | On Desktop: Tight gap 3-column grid for wider chunky cards */}
