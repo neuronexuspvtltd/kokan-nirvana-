@@ -247,12 +247,12 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "zen-habited",
-    title: "Zen Habitat Exclusive Coastal Plots",
-    location: "Tamastirth Ladghar Dapoli",
-    type: "Exclusive Coastal Living Plot",
+    title: "Zen Habitats Premium Farmhouse Plots",
+    location: "Dapoli, Ratnagiri, Maharashtra",
+    type: "Collector Approved NA Farmhouse Plot",
     category: "Nearby Sea Properties",
     plotArea: "2,722 - 10,890 sq.ft.",
-    startingPrice: "On Request",
+    startingPrice: "₹650 per sq.ft.",
     image: "/properties/zen_habited/dji1.jpg",
     gallery: [
       "/properties/zen_habited/dji1.jpg",
@@ -260,8 +260,15 @@ export const PROPERTIES_DATA = [
       "/properties/zen_habited/dji3.jpg",
       "/properties/zen_habited/layout.jpeg",
     ],
-    features: ["1.5 KM Distance From Sea Side", "Near Tamastirth Ladghar Beach", "Internal Concrete Road", "Individual Plot Fencing", "Water & Electricity Supply", "Grand Entrance Gate"],
-    description: "Exclusive coastal living plot project 1.5 KM from Ladghar Beach, Dapoli. Offers clear 7/12 titles, internal concrete roads, individual plot demarcation fencing, and ready utility connections.",
+    features: [
+      "Peaceful Coastal Lifestyle & Nature",
+      "Collector Approved NA Plots",
+      "Gated Community & Road Connectivity",
+      "Water & Electricity Provision",
+      "Zen Garden, Walkway & Lotus Pond",
+      "Recreation Zone & Children's Play Area",
+    ],
+    description: "Zen Habitats is a serene Collector Approved N.A. plotting project by Ansh Realty, surrounded by nature in Dapoli, Konkan. Designed for a peaceful coastal lifestyle featuring gated community security, road connectivity, water & electricity provision, Zen garden with grand walkway, gazebo & lotus pond, recreation zone, and children's play area.",
   },
 ];
 

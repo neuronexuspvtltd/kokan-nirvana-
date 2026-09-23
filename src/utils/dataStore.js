@@ -84,6 +84,17 @@ export const getProperties = () => {
         updatedItem.category = defaultProp.category;
       }
 
+      // Sync zen-habited specific fields
+      if (item.id === 'zen-habited' && item.title !== defaultProp.title) {
+        modified = true;
+        updatedItem.title = defaultProp.title;
+        updatedItem.location = defaultProp.location;
+        updatedItem.type = defaultProp.type;
+        updatedItem.startingPrice = defaultProp.startingPrice;
+        updatedItem.features = defaultProp.features;
+        updatedItem.description = defaultProp.description;
+      }
+
       return updatedItem;
     }
     return item;
