@@ -245,7 +245,7 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "orchard-estate",
-    title: "The Orchard Estate Premium Farmhouse Plots",
+    title: "The Orchard Estate - Farmhouse Agriculture Plot",
     location: "Dapoli, Ratnagiri",
     type: "Premium Farmhouse Plot",
     category: "Nearby Sea Properties",
