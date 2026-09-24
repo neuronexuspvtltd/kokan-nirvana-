@@ -144,7 +144,7 @@ export default function ContactForm({ prefilledProperty = null }) {
           >
             <option value="Sea View N.A. Plot">Sea View N.A. Plot</option>
             <option value="Near Beach Plot">Near Beach N.A. Plot</option>
-            <option value="Sea View Terrace Row House">Sea View Row House</option>
+            <option value="Sea View Bungalow">Sea View Bungalow</option>
             <option value="Luxury Sea View Apartment">Sea View Apartment</option>
             <option value="Custom Bungalow Construction">Custom Bungalow Construction</option>
             <option value="Coastal Agriculture Land">Coastal Agriculture Land</option>

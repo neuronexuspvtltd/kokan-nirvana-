@@ -223,9 +223,9 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "sapphire-retreats",
-    title: "Sea View Row Houses",
+    title: "Sea View Bungalows",
     location: "Dapoli, Ratnagiri, Maharashtra",
-    type: "Panoramic Sea View Row House",
+    type: "Panoramic Sea View Bungalow",
     category: "Sea View Bungalow",
     plotArea: "1 & 2 BHK (480 - 898 sq.ft. Carpet Area)",
     startingPrice: "On Request",
@@ -241,7 +241,7 @@ export const PROPERTIES_DATA = [
       "Premium High-Spec Construction Quality",
       "Gated Security Community",
     ],
-    description: "Premium sea-view row houses in Dapoli, Ratnagiri, Maharashtra featuring only 8 exclusive units. Designed in 1 & 2 BHK duplex layouts with 480-898 sq.ft. carpet area, private sea-view terraces, panoramic Arabian Sea vistas, modern kitchen & dining spaces, and high-spec construction quality.",
+    description: "Premium sea-view bungalows in Dapoli, Ratnagiri, Maharashtra featuring only 8 exclusive units. Designed in 1 & 2 BHK duplex layouts with 480-898 sq.ft. carpet area, private sea-view terraces, panoramic Arabian Sea vistas, modern kitchen & dining spaces, and high-spec construction quality.",
   },
   {
     id: "orchard-estate",
@@ -340,7 +340,7 @@ export const SERVICES_DATA = [
     title: "Sea View Cottages & Terrace Houses",
     icon: "Home",
     tag: "Turnkey Cottages",
-    description: "Turnkey row houses and terrace cottages designed with authentic Konkan architectural rooflines, spacious verandas, and ocean views.",
+    description: "Turnkey bungalows and terrace cottages designed with authentic Konkan architectural rooflines, spacious verandas, and ocean views.",
     priceRange: "On Request",
     features: [
       "1BHK & 3BHK Architectural Layouts",
@@ -432,7 +432,7 @@ export const TESTIMONIALS_DATA = [
     role: "Bungalow Owner, Mumbai",
     rating: 5,
     text: "From selecting the plot near Ladghar beach to building our weekend cottage, Kokan Nirvana managed everything end-to-end.",
-    property: "Vista Twin Tower Row House",
+    property: "Vista Twin Tower",
     videoUrl: "https://www.instagram.com/reel/DUC-drkDVNK/?stkn=eXQyd3U3ZDlyczZs",
   },
   {

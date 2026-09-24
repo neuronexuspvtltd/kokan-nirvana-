@@ -246,7 +246,7 @@ export default function ContactSection({ prefilledProperty, hideHeader = false }
                     >
                       <option>Sea View N.A. Plot</option>
                       <option>Near Beach N.A. Plot</option>
-                      <option>Sea View Terrace Row House</option>
+                      <option>Sea View Bungalow</option>
                       <option>Luxury Sea View Apartment</option>
                       <option>Agricultural Farm Land</option>
                     </select>

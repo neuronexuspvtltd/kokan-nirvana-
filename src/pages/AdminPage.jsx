@@ -292,8 +292,8 @@ export default function AdminPage() {
         'Customer Name': 'Snehal Kulkarni',
         'Phone': '+91 91234 56789',
         'Email': 'snehal.k@example.com',
-        'Interest': 'Terrace Row House',
-        'Note / Requirements': 'Inquiring about 2BHK row house booking',
+        'Interest': 'Sea View Bungalow',
+        'Note / Requirements': 'Inquiring about 2BHK bungalow booking',
         'Date': new Date().toISOString().slice(0, 16).replace('T', ' '),
       },
     ];
@@ -1022,7 +1022,7 @@ export default function AdminPage() {
                   className="w-full px-4 py-2.5 rounded-xl text-xs bg-sand-50 border border-gray-200 font-medium"
                 >
                   <option value="Trees">Trees (Land/Plots)</option>
-                  <option value="Home">Home (Row Houses)</option>
+                  <option value="Home">Home (Bungalows)</option>
                   <option value="Building2">Building2 (Apartments)</option>
                   <option value="Landmark">Landmark (Agriculture)</option>
                   <option value="HardHat">HardHat (Construction)</option>
