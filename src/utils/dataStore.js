@@ -85,7 +85,7 @@ export const getProperties = () => {
       }
 
       // Sync property specific fields if updated in defaults
-      if (item.title !== defaultProp.title || item.plotArea !== defaultProp.plotArea) {
+      if (item.title !== defaultProp.title || item.plotArea !== defaultProp.plotArea || item.id === 'hilltop-dapoli') {
         modified = true;
         updatedItem.title = defaultProp.title;
         updatedItem.location = defaultProp.location;
@@ -94,6 +94,7 @@ export const getProperties = () => {
         updatedItem.startingPrice = defaultProp.startingPrice;
         updatedItem.features = defaultProp.features;
         updatedItem.description = defaultProp.description;
+        updatedItem.gallery = defaultProp.gallery;
       }
 
       return updatedItem;

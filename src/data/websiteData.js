@@ -282,7 +282,6 @@ export const PROPERTIES_DATA = [
       "/properties/hilltop_dapoli/drone2.jpg",
       "/properties/hilltop_dapoli/drone3.jpg",
       "/properties/hilltop_dapoli/morning1.jpeg",
-      "/properties/hilltop_dapoli/info.jpeg",
     ],
     features: [
       "24 Exclusive Plots with Hilltop Views",
