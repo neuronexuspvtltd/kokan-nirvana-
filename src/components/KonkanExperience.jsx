@@ -92,7 +92,7 @@ export default function KonkanExperience({ onExploreProperties }) {
         <div className="mt-12 sm:mt-16 p-6 sm:p-12 rounded-3xl bg-white/10 backdrop-blur-md border border-white/15 text-center max-w-4xl mx-auto space-y-4 sm:space-y-6">
           <Sun className="w-8 h-8 sm:w-10 sm:h-10 text-brand-orange mx-auto animate-pulse" />
           <h3 className="font-serif text-xl sm:text-3xl font-bold italic leading-relaxed text-gray-100">
-            "Owning a sea-shore plot in Konkan is not just an investment in land; it's securing a calm, evergreen sanctuary for your family's future."
+            "Owning a sea-shore property in Konkan is not just an investment in land; it's securing a calm, evergreen sanctuary for your family's future."
           </h3>
           <div className="pt-2">
             <button
