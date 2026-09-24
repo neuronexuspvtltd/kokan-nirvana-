@@ -107,12 +107,19 @@ export default function AdminPage() {
   // Login handler
   const handleLogin = (e) => {
     e.preventDefault();
-    if (loginCreds.username === 'admin' && loginCreds.password === 'admin123') {
+    const userInput = loginCreds.username.trim().toLowerCase();
+    const validUsers = [
+      'support@kokannirvanaseashoreproperties.com',
+      'info@kokannirvanaseashoreproperties.com',
+      'admin',
+    ];
+
+    if (validUsers.includes(userInput) && loginCreds.password === 'Kokannirvana@123') {
       setIsAuthenticated(true);
       sessionStorage.setItem('kokan_admin_auth', 'true');
       setLoginError('');
     } else {
-      setLoginError('Invalid Username or Password. (Default: admin / admin123)');
+      setLoginError('Invalid Email/Username or Password.');
     }
   };
 
@@ -327,11 +334,11 @@ export default function AdminPage() {
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold uppercase text-brand-slate mb-1">Username</label>
+              <label className="block text-xs font-bold uppercase text-brand-slate mb-1">Email / Username</label>
               <input
                 type="text"
                 required
-                placeholder="admin"
+                placeholder="Support@kokannirvanaseashoreproperties.com"
                 value={loginCreds.username}
                 onChange={(e) => setLoginCreds({ ...loginCreds, username: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl text-xs bg-sand-50 border border-gray-200 focus:outline-none focus:border-brand-cyan text-brand-slate font-medium"
@@ -359,7 +366,7 @@ export default function AdminPage() {
           </form>
 
           <p className="text-[11px] text-gray-400 text-center mt-6">
-            Default credentials: <span className="font-mono text-slate-700 font-bold">admin / admin123</span>
+            Authorised Admin Login Email & Password configured.
           </p>
         </div>
       </div>
