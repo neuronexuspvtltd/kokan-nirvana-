@@ -246,8 +246,8 @@ export const PROPERTIES_DATA = [
   {
     id: "orchard-estate",
     title: "The Orchard Estate Premium Farmhouse Plots",
-    location: "Rajapur, Taluka Dapoli, Ratnagiri - 415612",
-    type: "Premium Farmhouse Plotting Layout",
+    location: "Dapoli, Ratnagiri",
+    type: "Premium Farmhouse Plot",
     category: "Nearby Sea Properties",
     plotArea: "Approx. 20,000 sq.ft. (Half Acre)",
     startingPrice: "On Request",
@@ -271,8 +271,8 @@ export const PROPERTIES_DATA = [
   {
     id: "hilltop-dapoli",
     title: "The HillTop Dapoli Ocean Sites",
-    location: "Near Serenity Hills, Shivaji Nagar Khambona, Bandhware Road, Dapoli - 415712",
-    type: "Premium Hilltop Plots Layout",
+    location: "Dapoli, Ratnagiri",
+    type: "Premium Hilltop Plot",
     category: "Nearby Sea Properties",
     plotArea: "3,200 - 4,500 sq.ft.",
     startingPrice: "₹700 per sq.ft.",
