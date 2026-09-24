@@ -270,7 +270,7 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "hilltop-dapoli",
-    title: "The HillTop Dapoli Ocean Sites",
+    title: "The Hilltop Dapoli – A Slice of Kashmir in Dapoli",
     location: "Dapoli, Ratnagiri",
     type: "Premium Hilltop Plot",
     category: "Nearby Sea Properties",
