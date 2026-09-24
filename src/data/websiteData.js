@@ -223,7 +223,7 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "sapphire-retreats",
-    title: "Sea View Bungalows",
+    title: "Sea View Bungalow",
     location: "Dapoli, Ratnagiri",
     type: "Panoramic Sea View Bungalow",
     category: "Sea View Bungalow",

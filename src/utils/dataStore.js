@@ -85,16 +85,27 @@ export const getProperties = () => {
       }
 
       // Sync property specific fields if updated in defaults
-      if (item.title !== defaultProp.title || item.plotArea !== defaultProp.plotArea || item.id === 'hilltop-dapoli') {
+      if (
+        item.type !== defaultProp.type ||
+        item.title !== defaultProp.title ||
+        item.category !== defaultProp.category ||
+        item.location !== defaultProp.location ||
+        item.description !== defaultProp.description ||
+        item.plotArea !== defaultProp.plotArea ||
+        item.id === 'hilltop-dapoli' ||
+        item.id === 'sapphire-retreats'
+      ) {
         modified = true;
         updatedItem.title = defaultProp.title;
-        updatedItem.location = defaultProp.location;
+        updatedItem.category = defaultProp.category;
         updatedItem.type = defaultProp.type;
+        updatedItem.location = defaultProp.location;
         updatedItem.plotArea = defaultProp.plotArea;
         updatedItem.startingPrice = defaultProp.startingPrice;
         updatedItem.features = defaultProp.features;
         updatedItem.description = defaultProp.description;
         updatedItem.gallery = defaultProp.gallery;
+        updatedItem.image = defaultProp.image;
       }
 
       return updatedItem;
