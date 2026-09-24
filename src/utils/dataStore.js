@@ -93,7 +93,8 @@ export const getProperties = () => {
         item.description !== defaultProp.description ||
         item.plotArea !== defaultProp.plotArea ||
         item.id === 'hilltop-dapoli' ||
-        item.id === 'sapphire-retreats'
+        item.id === 'sapphire-retreats' ||
+        item.id === 'kokan-casa'
       ) {
         modified = true;
         updatedItem.title = defaultProp.title;
