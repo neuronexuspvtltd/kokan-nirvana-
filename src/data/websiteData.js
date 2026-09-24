@@ -152,7 +152,7 @@ export const PROPERTIES_DATA = [
   {
     id: "vista-twin-tower",
     title: "Vista Twin Tower",
-    location: "Dapoli, Ratnagiri, Maharashtra",
+    location: "Dapoli, Ratnagiri",
     type: "Premium Sea-View Apartment",
     category: "Sea View Apartment",
     plotArea: "1 BHK & 2 BHK (672 & 1,005 sq.ft.)",
@@ -224,7 +224,7 @@ export const PROPERTIES_DATA = [
   {
     id: "sapphire-retreats",
     title: "Sea View Bungalows",
-    location: "Dapoli, Ratnagiri, Maharashtra",
+    location: "Dapoli, Ratnagiri",
     type: "Panoramic Sea View Bungalow",
     category: "Sea View Bungalow",
     plotArea: "1 & 2 BHK (480 - 898 sq.ft. Carpet Area)",
@@ -241,7 +241,7 @@ export const PROPERTIES_DATA = [
       "Premium High-Spec Construction Quality",
       "Gated Security Community",
     ],
-    description: "Premium sea-view bungalows in Dapoli, Ratnagiri, Maharashtra featuring only 8 exclusive units. Designed in 1 & 2 BHK duplex layouts with 480-898 sq.ft. carpet area, private sea-view terraces, panoramic Arabian Sea vistas, modern kitchen & dining spaces, and high-spec construction quality.",
+    description: "Premium sea-view bungalows in Dapoli, Ratnagiri featuring only 8 exclusive units. Designed in 1 & 2 BHK duplex layouts with 480-898 sq.ft. carpet area, private sea-view terraces, panoramic Arabian Sea vistas, modern kitchen & dining spaces, and high-spec construction quality.",
   },
   {
     id: "orchard-estate",
@@ -296,7 +296,7 @@ export const PROPERTIES_DATA = [
   {
     id: "zen-habited",
     title: "Zen Habitats Premium Farmhouse Plots",
-    location: "Dapoli, Ratnagiri, Maharashtra",
+    location: "Dapoli, Ratnagiri",
     type: "Collector Approved NA Farmhouse Plot",
     category: "Nearby Sea Properties",
     plotArea: "2,722 - 10,890 sq.ft.",
