@@ -95,7 +95,8 @@ export const getProperties = () => {
         item.id === 'hilltop-dapoli' ||
         item.id === 'sapphire-retreats' ||
         item.id === 'kokan-casa' ||
-        item.id === 'orchard-estate'
+        item.id === 'orchard-estate' ||
+        item.id === 'zen-habited'
       ) {
         modified = true;
         updatedItem.title = defaultProp.title;

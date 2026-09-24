@@ -295,9 +295,9 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "zen-habited",
-    title: "Zen Habitats Premium Farmhouse Plots",
+    title: "Zen Habitats Premium N.A & Residential Plots",
     location: "Dapoli, Ratnagiri",
-    type: "Collector Approved NA Farmhouse Plot",
+    type: "Collector Approved NA Plot",
     category: "Nearby Sea Properties",
     plotArea: "2,722 - 10,890 sq.ft.",
     startingPrice: "₹650 per sq.ft.",
