@@ -38,7 +38,7 @@ export default function Hero() {
 
         {/* Concise Subtitle */}
         <p className="mt-4 sm:mt-6 text-xs sm:text-base text-gray-100 font-sans font-normal max-w-xs sm:max-w-2xl leading-relaxed drop-shadow font-medium px-2 sm:px-0">
-          Curated NA Plots, Sea View Bungalows, Apartments & farmhouse plot for living, leisure and investment along the Dapoli coast.
+          Curated NA Plots, Sea View Row Houses, Apartments & farmhouse plot for living, leisure and investment along the Dapoli coast.
         </p>
 
         {/* Primary CTA */}

@@ -223,10 +223,10 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "sapphire-retreats",
-    title: "Sea View Bungalow",
+    title: "Sea View Row House",
     location: "Dapoli, Ratnagiri",
-    type: "Panoramic Sea View Bungalow",
-    category: "Sea View Bungalow",
+    type: "Panoramic Sea View Row House",
+    category: "Sea View Row House",
     plotArea: "1 & 2 BHK (480 - 898 sq.ft. Carpet Area)",
     startingPrice: "On Request",
     image: "/properties/sapphire_retreats/rowhouse.jpeg",
@@ -241,7 +241,7 @@ export const PROPERTIES_DATA = [
       "Premium High-Spec Construction Quality",
       "Gated Security Community",
     ],
-    description: "Premium sea-view bungalows in Dapoli, Ratnagiri featuring only 8 exclusive units. Designed in 1 & 2 BHK duplex layouts with 480-898 sq.ft. carpet area, private sea-view terraces, panoramic Arabian Sea vistas, modern kitchen & dining spaces, and high-spec construction quality.",
+    description: "Premium sea-view row houses in Dapoli, Ratnagiri featuring only 8 exclusive units. Designed in 1 & 2 BHK duplex layouts with 480-898 sq.ft. carpet area, private sea-view terraces, panoramic Arabian Sea vistas, modern kitchen & dining spaces, and high-spec construction quality.",
   },
   {
     id: "orchard-estate",

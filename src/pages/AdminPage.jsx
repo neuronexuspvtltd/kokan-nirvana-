@@ -906,7 +906,7 @@ export default function AdminPage() {
                   >
                     <option value="Sea View Plot">Sea View Plot</option>
                     <option value="Sea View Apartment">Sea View Apartment</option>
-                    <option value="Sea View Bungalow">Sea View Bungalow</option>
+                    <option value="Sea View Row House">Sea View Row House</option>
                     <option value="Nearby Sea Properties">Nearby Sea Properties</option>
                   </select>
                 </div>
