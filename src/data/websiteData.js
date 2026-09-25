@@ -178,8 +178,8 @@ export const PROPERTIES_DATA = [
   {
     id: "sea-gate",
     title: "The Sea Gate Cliffside",
-    location: "Anjarle Beach Cliff, Dapoli",
-    type: "Sea View N.A. & Villa Plots",
+    location: "Near MH SH4, Ladghar, Chandranagar, Maharashtra 415712",
+    type: "Sea View Residential Plot",
     category: "Sea View Plot",
     plotArea: "2,178 - 5,445 sq.ft.",
     startingPrice: "₹800 per sq.ft.",
@@ -191,13 +191,13 @@ export const PROPERTIES_DATA = [
     ],
     features: [
       "Breathtaking Arabian Sea Views from Mountain-Top",
-      "Connected to Konkan Coastal Highway",
+      "Connected to Konkan Coastal Highway (MH SH4)",
       "Road Access & Street Lighting",
       "Water Supply & Electricity Provision",
       "Project Entry Gate, Compound Wall & Plantation",
       "Suitable for Second Home, Retirement & Investment",
     ],
-    description: "Premium sea-view N.A. & villa plots on a mountain-top location with stunning Arabian Sea views in Anjarle, Dapoli. Connected directly to the Konkan Coastal Highway, featuring gated entry, compound wall, internal road access, street lighting, water supply, and greenery plantation. Perfect for second homes, retirement living, or high-appreciation investment.",
+    description: "Premium sea-view N.A. & residential plots on a mountain-top location with stunning Arabian Sea views in Ladghar, Dapoli. Connected directly to the Konkan Coastal Highway (MH SH4), featuring gated entry, compound wall, internal road access, street lighting, water supply, and greenery plantation.",
   },
   {
     id: "kokan-casa",
