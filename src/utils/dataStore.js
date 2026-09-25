@@ -137,25 +137,23 @@ export const getServices = () => {
   const stored = getStoredData('services', null);
   if (!stored) return SERVICES_DATA;
 
-  let modified = false;
-  const synced = stored.map((item) => {
-    const defaultSvc = SERVICES_DATA.find((s) => s.id === item.id);
-    if (defaultSvc) {
-      if (item.title !== defaultSvc.title || item.tag !== defaultSvc.tag) {
-        modified = true;
-        return { ...item, title: defaultSvc.title, tag: defaultSvc.tag };
-      }
+  const synced = SERVICES_DATA.map((defaultSvc) => {
+    const existing = stored.find((s) => s.id === defaultSvc.id);
+    if (existing) {
+      return {
+        ...defaultSvc,
+        ...existing,
+        title: defaultSvc.title,
+        tag: defaultSvc.tag,
+        description: defaultSvc.description,
+        features: defaultSvc.features,
+      };
     }
-    return item;
+    return defaultSvc;
   });
 
-  const hasObsolete = stored.some((s) => s.id === 'legal-advisory');
-  if (hasObsolete || modified) {
-    setStoredData('services', synced);
-    return synced;
-  }
-
-  return stored;
+  setStoredData('services', synced);
+  return synced;
 };
 export const saveServices = async (data) => {
   setStoredData('services', data);
