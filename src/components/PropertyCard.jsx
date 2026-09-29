@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Maximize2, ShieldCheck, ArrowUpRight, Waves, Compass, Download } from 'lucide-react';
+import { Maximize2, ShieldCheck, ArrowUpRight, Waves, Compass, Download } from 'lucide-react';
 import TiltCard from './TiltCard';
 import { downloadPropertyBrochure } from '../utils/brochureGenerator';
 
@@ -28,13 +28,8 @@ export default function PropertyCard({ property, onViewDetails, onEnquire }) {
           </span>
         </div>
 
-        {/* Location & Sea Horizon Tag on Bottom of Image */}
-        <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3 sm:left-3 sm:right-3 text-white flex items-center justify-between gap-1.5 z-10">
-          <div className="flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-gray-100 flex-shrink-0 bg-slate-950/75 px-2 py-0.5 rounded-full border border-white/20">
-            <MapPin className="w-3.5 h-3.5 text-brand-cyan flex-shrink-0" />
-            <span className="whitespace-nowrap">{property.location}</span>
-          </div>
-
+        {/* Sea Horizon Tag on Bottom of Image */}
+        <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3 sm:left-3 sm:right-3 text-white flex items-center justify-end z-10">
           <span className="text-[10px] sm:text-[11px] font-bold text-brand-cyan-light bg-slate-950/85 px-2 py-0.5 sm:px-2.5 rounded-full border border-brand-cyan/40 min-w-0 flex items-center gap-1 truncate">
             <Compass className="w-3 h-3 text-brand-cyan flex-shrink-0" />
             <span className="truncate">{property.type}</span>
