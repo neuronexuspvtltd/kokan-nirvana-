@@ -94,6 +94,8 @@ export const getProperties = () => {
         item.plotArea !== defaultProp.plotArea ||
         item.id === 'hilltop-dapoli' ||
         item.id === 'sapphire-retreats' ||
+        item.id === 'seaclusion' ||
+        item.id === 'azure-vistas' ||
         item.id === 'kokan-casa' ||
         item.id === 'orchard-estate' ||
         item.id === 'zen-habited' ||
