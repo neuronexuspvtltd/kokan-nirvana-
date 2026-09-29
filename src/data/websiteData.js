@@ -152,7 +152,7 @@ export const PROPERTIES_DATA = [
   {
     id: "vista-twin-tower",
     title: "Vista Twin Tower",
-    location: "Dapoli, Ratnagiri",
+    location: "Harnai, Dapoli",
     type: "Premium Sea-View Apartment",
     category: "Sea View Apartment",
     plotArea: "1 BHK & 2 BHK (672 & 1,005 sq.ft.)",
@@ -173,7 +173,7 @@ export const PROPERTIES_DATA = [
       "Uninterrupted Ocean & Sunset Balconies",
       "24/7 Gated Security & Modern Utilities",
     ],
-    description: "Premium 1 & 2 BHK sea-view apartments in Dapoli, Konkan starting at ₹42,00,000. Enjoy RERA-approved residential towers with modern amenities including a swimming pool, clubhouse, in-house restaurant, peaceful coastal surroundings, and a beautiful beachside lifestyle.",
+    description: "Premium 1 & 2 BHK sea-view apartments in Harnai, Dapoli starting at ₹42,00,000. Enjoy RERA-approved residential towers with modern amenities including a swimming pool, clubhouse, in-house restaurant, peaceful coastal surroundings, and a beautiful beachside lifestyle.",
   },
   {
     id: "sea-gate",

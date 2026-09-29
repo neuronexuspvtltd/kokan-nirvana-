@@ -96,6 +96,7 @@ export const getProperties = () => {
         item.id === 'sapphire-retreats' ||
         item.id === 'seaclusion' ||
         item.id === 'azure-vistas' ||
+        item.id === 'vista-twin-tower' ||
         item.id === 'kokan-casa' ||
         item.id === 'orchard-estate' ||
         item.id === 'zen-habited' ||
