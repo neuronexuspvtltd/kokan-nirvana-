@@ -411,7 +411,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: "swapnil",
     name: "Swapnil",
-    role: "Property Investor, Pune",
+    role: "Property Investor",
     rating: 5,
     text: "Bought a 3,000 sq.ft sea-view NA plot in Dapoli through Kokan Nirvana. The 7/12 extract was handed over with zero issues. Truly professional service!",
     property: "The Sea Gate Cliffside NA Plot",
@@ -420,7 +420,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: "gagan-saraf",
     name: "Gagan Saraf",
-    role: "NRI Investor, UAE",
+    role: "NRI Investor",
     rating: 5,
     text: "Managing a land purchase from abroad was seamless with Kokan Nirvana. They conducted a 30-year title check and shared video walk-throughs.",
     property: "The HillTop Dapoli Site",
@@ -429,7 +429,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: "dn-raju",
     name: "D.N.Raju",
-    role: "Bungalow Owner, Mumbai",
+    role: "Bungalow Owner",
     rating: 5,
     text: "From selecting the plot near Ladghar beach to building our weekend cottage, Kokan Nirvana managed everything end-to-end.",
     property: "Vista Twin Tower",
@@ -438,7 +438,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: "prem-dalua",
     name: "Prem Dalua",
-    role: "Second Home Owner, Thane",
+    role: "Second Home Owner",
     rating: 5,
     text: "Investing in a coastal plot with Kokan Nirvana gave us complete peace of mind. Transparent legal process, clear titles, and excellent local guidance.",
     property: "Seaclusion Beachside Plot",
