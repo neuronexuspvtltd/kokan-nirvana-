@@ -44,7 +44,14 @@ export const setStoredData = (key, data) => {
 };
 
 // INITIALIZERS WITH FIREBASE SYNC & LOCAL FALLBACK
-export const getBrandInfo = () => getStoredData('brandInfo', BRAND_INFO);
+export const getBrandInfo = () => {
+  const stored = getStoredData('brandInfo', null);
+  if (!stored) return BRAND_INFO;
+  return {
+    ...stored,
+    socialLinks: BRAND_INFO.socialLinks,
+  };
+};
 export const saveBrandInfo = async (data) => {
   setStoredData('brandInfo', data);
   if (isFirebaseConfigured()) {

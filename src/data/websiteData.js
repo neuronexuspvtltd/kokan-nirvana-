@@ -94,9 +94,9 @@ export const BRAND_INFO = {
   ],
   whatsapp: "919096999901",
   socialLinks: {
-    facebook: "https://www.facebook.com/",
-    instagram: "https://www.instagram.com/ruchi_creation2616/",
-    youtube: "https://www.youtube.com/",
+    facebook: "https://www.facebook.com/share/193zJ93XLb/",
+    instagram: "https://www.instagram.com/kokan_nirvana_seashore_propert?stkn=MWM1dXo5ZTF2Nnk5OQ==",
+    youtube: "https://youtube.com/@kokannirvanasea-shoreprope3456?si=PHBDCchAqpj3prih",
   },
 };
 
