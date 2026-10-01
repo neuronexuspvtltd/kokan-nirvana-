@@ -223,7 +223,7 @@ export const PROPERTIES_DATA = [
   },
   {
     id: "sapphire-retreats",
-    title: "Sea View Row House",
+    title: "Sapphire Retreats Sea View Row House",
     location: "Anjarle, Dapoli",
     type: "Panoramic Sea View Row House",
     category: "Sea View Row House",
