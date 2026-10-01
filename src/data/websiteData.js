@@ -246,7 +246,7 @@ export const PROPERTIES_DATA = [
   {
     id: "orchard-estate",
     title: "The Orchard Estate - Farmhouse Agriculture Plot",
-    location: "Dapoli, Ratnagiri",
+    location: "Rajapur, Dapoli",
     type: "Premium Farmhouse Plot",
     category: "Nearby Sea Properties",
     plotArea: "Approx. 20,000 sq.ft. (Half Acre)",
