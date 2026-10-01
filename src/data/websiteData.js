@@ -224,7 +224,7 @@ export const PROPERTIES_DATA = [
   {
     id: "sapphire-retreats",
     title: "Sapphire Retreats Sea View Row House",
-    location: "Anjarle, Dapoli",
+    location: "Harnai, Dapoli",
     type: "Panoramic Sea View Row House",
     category: "Sea View Row House",
     plotArea: "1 & 2 BHK (480 - 898 sq.ft. Carpet Area)",
