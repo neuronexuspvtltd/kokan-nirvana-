@@ -202,7 +202,7 @@ export const PROPERTIES_DATA = [
   {
     id: "kokan-casa",
     title: "Konkan Casa Premium Residential Plots",
-    location: "Mouje Aghari, Taluka Dapoli, District Ratnagiri - 415712",
+    location: "Aghari, Dapoli",
     type: "Premium Residential Plotting Layout",
     category: "Sea View Plot",
     plotArea: "1,800 - 3,500 sq.ft.",
