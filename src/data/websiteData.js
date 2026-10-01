@@ -178,7 +178,7 @@ export const PROPERTIES_DATA = [
   {
     id: "sea-gate",
     title: "The Sea Gate Cliffside",
-    location: "Near MH SH4, Ladghar, Chandranagar, Maharashtra 415712",
+    location: "Ladghar, Dapoli",
     type: "Sea View Residential Plot",
     category: "Sea View Plot",
     plotArea: "2,178 - 5,445 sq.ft.",
