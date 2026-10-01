@@ -296,7 +296,7 @@ export const PROPERTIES_DATA = [
   {
     id: "zen-habited",
     title: "Zen Habitats Premium N.A & Residential Plots",
-    location: "Dapoli, Ratnagiri",
+    location: "Sukondi, Dapoli",
     type: "Collector Approved NA Plot",
     category: "Nearby Sea Properties",
     plotArea: "2,722 - 10,890 sq.ft.",
