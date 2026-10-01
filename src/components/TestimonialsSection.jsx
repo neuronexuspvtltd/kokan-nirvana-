@@ -40,7 +40,7 @@ export default function TestimonialsSection() {
                 <div className="space-y-3 pt-3 border-t border-gray-100">
                   <div>
                     <h4 className="font-serif font-bold text-sm text-brand-slate">{t.name}</h4>
-                    <span className="text-[11px] text-gray-400 font-medium block">{t.role}</span>
+                    {t.role && <span className="text-[11px] text-gray-400 font-medium block">{t.role}</span>}
                   </div>
 
                   {t.videoUrl && (
