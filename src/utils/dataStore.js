@@ -213,6 +213,9 @@ export const saveBlogPosts = async (data) => {
   }
 };
 
+export const GOOGLE_SHEET_WEBHOOK_URL =
+  'https://script.google.com/macros/s/AKfycbxrbnSCrLplDs5Nz1fDOXlUZBOCpAIrfGNIMxMf--fJpL7--SLmt6piEs6HoE5CtOFAOQ/exec';
+
 export const getLeads = () => getStoredData('leads', DEFAULT_LEADS);
 
 export const addLead = async (lead) => {
@@ -225,6 +228,7 @@ export const addLead = async (lead) => {
   const updated = [newLead, ...currentLeads];
   setStoredData('leads', updated);
 
+  // 1. Sync with Firebase Firestore (if configured)
   if (isFirebaseConfigured()) {
     try {
       await addDoc(collection(db, 'leads'), newLead);
@@ -232,6 +236,33 @@ export const addLead = async (lead) => {
       console.warn('Firebase lead push warning:', err);
     }
   }
+
+  // 2. Automatically sync with Client Google Spreadsheet
+  if (GOOGLE_SHEET_WEBHOOK_URL) {
+    try {
+      // Use no-cors mode to ensure request dispatches without browser cross-origin blocks
+      fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify({
+          date: newLead.date,
+          name: newLead.name || '',
+          phone: newLead.phone || '',
+          email: newLead.email || '',
+          interest: newLead.interest || '',
+          note: newLead.note || '',
+        }),
+      }).catch((err) => {
+        console.warn('Google Sheet sync background warning:', err);
+      });
+    } catch (err) {
+      console.warn('Google Sheet sync error:', err);
+    }
+  }
+
   return updated;
 };
 
