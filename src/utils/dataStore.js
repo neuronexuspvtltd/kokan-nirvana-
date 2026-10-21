@@ -240,24 +240,35 @@ export const addLead = async (lead) => {
   // 2. Automatically sync with Client Google Spreadsheet
   if (GOOGLE_SHEET_WEBHOOK_URL) {
     try {
-      // Use no-cors mode to ensure request dispatches without browser cross-origin blocks
-      fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'text/plain',
-        },
-        body: JSON.stringify({
-          date: newLead.date,
-          name: newLead.name || '',
-          phone: newLead.phone || '',
-          email: newLead.email || '',
-          interest: newLead.interest || '',
-          note: newLead.note || '',
-        }),
-      }).catch((err) => {
-        console.warn('Google Sheet sync background warning:', err);
+      const payload = JSON.stringify({
+        date: newLead.date,
+        name: newLead.name || '',
+        phone: newLead.phone || '',
+        email: newLead.email || '',
+        interest: newLead.interest || '',
+        note: newLead.note || '',
       });
+
+      // Use Blob to ensure Content-Type text/plain so preflight CORS is bypassed
+      let sent = false;
+      if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+        const blob = new Blob([payload], { type: 'text/plain;charset=utf-8' });
+        sent = navigator.sendBeacon(GOOGLE_SHEET_WEBHOOK_URL, blob);
+      }
+
+      if (!sent) {
+        fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          cache: 'no-cache',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: payload,
+        }).catch((err) => {
+          console.warn('Google Sheet sync background warning:', err);
+        });
+      }
     } catch (err) {
       console.warn('Google Sheet sync error:', err);
     }

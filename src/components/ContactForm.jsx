@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { PROPERTIES_DATA } from '../data/websiteData';
+import { addLead } from '../utils/dataStore';
 
 export default function ContactForm({ prefilledProperty = null }) {
   const [formData, setFormData] = useState({
@@ -40,6 +41,14 @@ export default function ContactForm({ prefilledProperty = null }) {
       return;
     }
     setPhoneError('');
+
+    addLead({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      interest: formData.propertyInterest,
+      note: formData.message,
+    });
 
     setSubmitted(true);
   };
