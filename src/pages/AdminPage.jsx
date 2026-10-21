@@ -10,6 +10,7 @@ import {
   getBrandInfo,
   saveBrandInfo,
   getLeads,
+  fetchLeadsFromFirestore,
   deleteLead,
   importLeads,
 } from '../utils/dataStore';
@@ -75,12 +76,18 @@ export default function AdminPage() {
     loadAllData();
   }, []);
 
-  const loadAllData = () => {
+  const loadAllData = async () => {
     setProperties(getProperties());
     setServices(getServices());
     setBlogPosts(getBlogPosts());
     setBrandInfo(getBrandInfo());
     setLeads(getLeads());
+
+    // Also fetch latest cloud leads from Firestore and update state
+    const cloudLeads = await fetchLeadsFromFirestore();
+    if (cloudLeads && cloudLeads.length > 0) {
+      setLeads(cloudLeads);
+    }
   };
 
   const showToast = (msg) => {

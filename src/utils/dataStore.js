@@ -218,6 +218,38 @@ export const GOOGLE_SHEET_WEBHOOK_URL =
 
 export const getLeads = () => getStoredData('leads', DEFAULT_LEADS);
 
+// Fetch leads from Firestore (if configured) and merge with LocalStorage
+export const fetchLeadsFromFirestore = async () => {
+  if (!isFirebaseConfigured()) return getLeads();
+  try {
+    const snap = await getDocs(collection(db, 'leads'));
+    if (!snap.empty) {
+      const remoteLeads = [];
+      snap.forEach((docSnap) => {
+        const d = docSnap.data();
+        remoteLeads.push({ id: docSnap.id, ...d });
+      });
+      // Sort newest first by date
+      remoteLeads.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      
+      // Merge with current local leads so neither is lost
+      const localLeads = getLeads();
+      const existingIds = new Set(remoteLeads.map((l) => l.id));
+      const combined = [...remoteLeads];
+      localLeads.forEach((l) => {
+        if (!existingIds.has(l.id)) {
+          combined.push(l);
+        }
+      });
+      setStoredData('leads', combined);
+      return combined;
+    }
+  } catch (err) {
+    console.warn('Error fetching leads from Firestore:', err);
+  }
+  return getLeads();
+};
+
 export const addLead = async (lead) => {
   const currentLeads = getLeads();
   const newLead = {
