@@ -216,6 +216,9 @@ export const saveBlogPosts = async (data) => {
 export const GOOGLE_SHEET_WEBHOOK_URL =
   'https://script.google.com/macros/s/AKfycbxrbnSCrLplDs5Nz1fDOXlUZBOCpAIrfGNIMxMf--fJpL7--SLmt6piEs6HoE5CtOFAOQ/exec';
 
+export const NEODOVE_CRM_ENDPOINT =
+  'https://e09b473d-0e0e-4ed2-b5c5-8bf2c88e40e0.neodove.com/integration/custom/01a65d86-8a19-4b50-b3bf-ec250d97523b/leads';
+
 export const getLeads = () => getStoredData('leads', DEFAULT_LEADS);
 
 // Fetch leads from Firestore (if configured) and merge with LocalStorage
@@ -303,6 +306,35 @@ export const addLead = async (lead) => {
       }
     } catch (err) {
       console.warn('Google Sheet sync error:', err);
+    }
+  }
+
+  // 3. Automatically sync with NeoDove CRM
+  if (NEODOVE_CRM_ENDPOINT) {
+    try {
+      // Parse clean digits from phone number for mobile field
+      const cleanPhone = (newLead.phone || '').replace(/\D/g, '');
+      const mobileNum = cleanPhone ? Number(cleanPhone.slice(-10)) : null;
+
+      const crmPayload = JSON.stringify({
+        name: newLead.name || 'Website Lead',
+        mobile: mobileNum || cleanPhone || '',
+        email: newLead.email || '',
+        detail: newLead.interest || '',
+        detail2: newLead.note || '',
+      });
+
+      fetch(NEODOVE_CRM_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: crmPayload,
+      }).catch((err) => {
+        console.warn('NeoDove CRM sync background warning:', err);
+      });
+    } catch (err) {
+      console.warn('NeoDove CRM sync error:', err);
     }
   }
 
